@@ -1,0 +1,248 @@
+# pipeline/models.yaml —— 模型身份主表（人工维护）
+# 新模型名出现在 pending.json 时，在此登记后次日生效
+#
+# 规则：
+# - 同一基础模型的不同推理档位后缀（-high/-low/-medium/max/fast 或 (high)/(medium) 括号变体）
+#   映射到同一 model_id，由各适配器的 dedup 逻辑取最高分
+# - 不同版本号（GLM-4.5 vs GLM-4.6 等）是不同条目，不合并
+# - alias 归一化匹配由 resolveModelId 的小写去符号逻辑兜底，无需穷举大小写
+#   （如 "GPT-5.6 Terra (medium)" 归一化为 gpt56terramedium）
+
+# ===== Anthropic =====
+- model_id: claude-fable-5
+  display_name: Claude Fable 5
+  org: Anthropic
+  license: closed
+  aliases: ["Claude Fable 5", "claude-fable-5", "claude-fable-5-high", "claude-fable-5-medium", "claude-fable-5-low", "Claude Fable 5 (high)"]
+- model_id: claude-opus-4-7
+  display_name: Claude Opus 4.7
+  org: Anthropic
+  license: closed
+  aliases: ["Claude Opus 4.7", "claude-opus-4.7", "claude-opus-4-7", "claude-opus-4-7-high", "claude-opus-4-7-medium", "claude-opus-4-7-low", "Claude Opus 4.7 (high)", "Claude 4.7 Opus"]
+- model_id: claude-opus-4-6
+  display_name: Claude Opus 4.6
+  org: Anthropic
+  license: closed
+  aliases: ["Claude Opus 4.6", "claude-opus-4.6", "claude-opus-4-6", "claude-opus-4-6-high", "claude-opus-4-6-medium", "claude-opus-4-6-low", "Claude Opus 4.6 (high)", "Claude 4.6 Opus"]
+- model_id: claude-opus-4-5
+  display_name: Claude Opus 4.5
+  org: Anthropic
+  license: closed
+  aliases: ["Claude Opus 4.5", "claude-opus-4.5", "claude-opus-4-5", "claude-opus-4-5-high", "Claude 4.5 Opus"]
+- model_id: claude-sonnet-4-5
+  display_name: Claude Sonnet 4.5
+  org: Anthropic
+  license: closed
+  aliases: ["Claude Sonnet 4.5", "claude-sonnet-4.5", "claude-sonnet-4-5", "claude-sonnet-4-5-high", "Claude 4.5 Sonnet", "claude-sonnet-45"]
+- model_id: claude-haiku-4-5
+  display_name: Claude Haiku 4.5
+  org: Anthropic
+  license: closed
+  aliases: ["Claude Haiku 4.5", "claude-haiku-4.5", "claude-haiku-4-5", "Claude 4.5 Haiku"]
+
+# ===== OpenAI =====
+- model_id: gpt-5-pro
+  display_name: GPT-5 Pro
+  org: OpenAI
+  license: closed
+  aliases: ["GPT-5 Pro", "gpt-5-pro", "gpt-5-pro (high)", "gpt-5-pro-high", "chatgpt-5-pro", "GPT-5 Pro Codex", "gpt-5-pro-codex"]
+- model_id: gpt-56-terra
+  display_name: GPT-5.6 Terra
+  org: OpenAI
+  license: closed
+  aliases: ["GPT-5.6 Terra", "gpt-5-6-terra", "gpt-56-terra", "GPT-5.6 Terra (medium)", "gpt-5-6-terra-medium", "gpt-56-terra (high)", "gpt-56-terra-high"]
+- model_id: gpt-55
+  display_name: GPT-5.5
+  org: OpenAI
+  license: closed
+  aliases: ["GPT-5.5", "gpt-5.5", "gpt-55", "GPT-5.5 (medium)", "gpt-55-medium", "gpt-55-high"]
+- model_id: gpt-oss-120b
+  display_name: gpt-oss-120b
+  org: OpenAI
+  license: open
+  aliases: ["gpt-oss-120b", "gpt-oss-120b (high)", "gpt-oss-120b-high", "GPT-OSS 120B"]
+- model_id: gpt-oss-20b
+  display_name: gpt-oss-20b
+  org: OpenAI
+  license: open
+  aliases: ["gpt-oss-20b", "gpt-oss-20b (high)", "gpt-oss-20b-medium", "GPT-OSS 20B"]
+
+# ===== Google =====
+- model_id: gemini-31-pro
+  display_name: Gemini 3.1 Pro
+  org: Google
+  license: closed
+  aliases: ["Gemini 3.1 Pro Preview", "gemini-3-1-pro-preview", "gemini-31-pro-preview", "Gemini 3.1 Pro", "gemini-3.1-pro", "gemini-31-pro"]
+- model_id: gemini-3-pro
+  display_name: Gemini 3 Pro
+  org: Google
+  license: closed
+  aliases: ["Gemini 3 Pro", "gemini-3-pro", "gemini-3-pro-preview", "Gemini 3 Pro Preview"]
+- model_id: gemini-37-flash
+  display_name: Gemini 3.7 Flash
+  org: Google
+  license: closed
+  aliases: ["Gemini 3.7 Flash", "gemini-3-7-flash", "gemini-37-flash", "gemini-3.7-flash-high", "Gemini 3.7 Flash (high)"]
+- model_id: gemini-3-flash
+  display_name: Gemini 3 Flash
+  org: Google
+  license: closed
+  aliases: ["Gemini 3 Flash", "gemini-3-flash", "Gemini 3 Flash (thinking)"]
+- model_id: gemini-25-pro
+  display_name: Gemini 2.5 Pro
+  org: Google
+  license: closed
+  aliases: ["Gemini 2.5 Pro", "gemini-2-5-pro", "gemini-25-pro", "Gemini 2.5 Pro Preview"]
+- model_id: gemini-25-flash
+  display_name: Gemini 2.5 Flash
+  org: Google
+  license: closed
+  aliases: ["Gemini 2.5 Flash", "gemini-2-5-flash", "gemini-25-flash"]
+
+# ===== xAI =====
+- model_id: grok-4-1
+  display_name: Grok 4.1
+  org: xAI
+  license: closed
+  aliases: ["Grok 4.1", "grok-4-1", "grok-41", "Grok 4.1 Fast", "grok-4-1-fast", "Grok 4.1 (high)", "grok-41-high"]
+- model_id: grok-4
+  display_name: Grok 4
+  org: xAI
+  license: closed
+  aliases: ["Grok 4", "grok-4", "Grok 4 Fast", "grok-4-fast"]
+
+# ===== DeepSeek =====
+- model_id: deepseek-v4
+  display_name: DeepSeek V4
+  org: DeepSeek
+  license: open
+  aliases: ["DeepSeek V4", "deepseek-v4", "deepseek-chat-v4", "deepseek-reasoner-v4", "DeepSeek V4 (high)", "deepseek-v4-high"]
+- model_id: deepseek-v31
+  display_name: DeepSeek V3.1
+  org: DeepSeek
+  license: open
+  aliases: ["DeepSeek V3.1", "deepseek-v3-1", "deepseek-v31", "DeepSeek V3.1 Terminus", "deepseek-v31-terminus"]
+- model_id: deepseek-r1
+  display_name: DeepSeek R1
+  org: DeepSeek
+  license: open
+  aliases: ["DeepSeek R1", "deepseek-r1", "deepseek-reasoner"]
+
+# ===== Alibaba (Qwen) =====
+- model_id: qwen3-max
+  display_name: Qwen3 Max
+  org: Alibaba
+  license: closed
+  aliases: ["Qwen3 Max", "qwen3-max", "Qwen3 Max Preview", "qwen3-max-preview"]
+- model_id: qwen3-coder-plus
+  display_name: Qwen3 Coder Plus
+  org: Alibaba
+  license: closed
+  aliases: ["Qwen3 Coder Plus", "qwen3-coder-plus"]
+- model_id: qwen3-coder-480b
+  display_name: Qwen3 Coder 480B
+  org: Alibaba
+  license: open
+  aliases: ["Qwen3 Coder 480B", "qwen3-coder-480b", "Qwen3 Coder 480B A35B", "qwen3-coder-480b-a35b"]
+- model_id: qwen3-235b
+  display_name: Qwen3 235B
+  org: Alibaba
+  license: open
+  aliases: ["Qwen3 235B", "qwen3-235b", "Qwen3 235B A22B", "qwen3-235b-a22b", "Qwen3 235B A22B Instruct", "Qwen3 235B A22B Thinking"]
+
+# ===== Moonshot AI (Kimi) =====
+- model_id: kimi-k3-max
+  display_name: Kimi K3 Max
+  org: Moonshot AI
+  license: closed
+  aliases: ["Kimi K3 Max", "kimi-k3-max", "Kimi K3", "kimi-k3"]
+- model_id: kimi-k2
+  display_name: Kimi K2
+  org: Moonshot AI
+  license: open
+  aliases: ["Kimi K2", "kimi-k2", "Kimi K2 Thinking", "kimi-k2-thinking", "Kimi K2 Instruct", "kimi-k2-instruct", "kimi-k2-0905"]
+
+# ===== Zhipu AI (GLM) =====
+- model_id: glm-53
+  display_name: GLM-5.3
+  org: Zhipu AI
+  license: closed
+  aliases: ["GLM-5.3", "glm-5-3", "glm-53", "GLM-5.3-Max", "glm-5.3-max", "glm53max", "GLM-5.3 (high)"]
+- model_id: glm-46
+  display_name: GLM-4.6
+  org: Zhipu AI
+  license: open
+  aliases: ["GLM-4.6", "glm-4-6", "glm-46"]
+- model_id: glm-45
+  display_name: GLM-4.5
+  org: Zhipu AI
+  license: open
+  aliases: ["GLM-4.5", "glm-4-5", "glm-45"]
+- model_id: glm-46-air
+  display_name: GLM-4.6-Air
+  org: Zhipu AI
+  license: open
+  aliases: ["GLM-4.6-Air", "glm-4-6-air", "glm46air"]
+- model_id: glm-45-air
+  display_name: GLM-4.5-Air
+  org: Zhipu AI
+  license: open
+  aliases: ["GLM-4.5-Air", "glm-4-5-air", "glm45air"]
+
+# ===== ByteDance =====
+- model_id: doubao-seed-code
+  display_name: Doubao Seed Code
+  org: ByteDance
+  license: closed
+  aliases: ["Doubao-Seed-Code", "doubao-seed-code", "Doubao Seed Code"]
+- model_id: doubao-16
+  display_name: Doubao 1.6
+  org: ByteDance
+  license: closed
+  aliases: ["Doubao 1.6", "doubao-16", "Doubao-1.6-Pro", "doubao-1-6-pro"]
+
+# ===== Meta =====
+- model_id: llama-4-maverick
+  display_name: Llama 4 Maverick
+  org: Meta
+  license: open
+  aliases: ["Llama 4 Maverick", "llama-4-maverick", "Llama-4-Maverick-17B-128E-Instruct"]
+- model_id: llama-4-scout
+  display_name: Llama 4 Scout
+  org: Meta
+  license: open
+  aliases: ["Llama 4 Scout", "llama-4-scout", "Llama-4-Scout-17B-16E-Instruct"]
+
+# ===== Mistral AI =====
+- model_id: mistral-large-3
+  display_name: Mistral Large 3
+  org: Mistral AI
+  license: open
+  aliases: ["Mistral Large 3", "mistral-large-3"]
+- model_id: mistral-small-3
+  display_name: Mistral Small 3
+  org: Mistral AI
+  license: open
+  aliases: ["Mistral Small 3", "mistral-small-3", "Mistral Small 3.2", "mistral-small-3-2"]
+- model_id: devstral-medium
+  display_name: Devstral Medium
+  org: Mistral AI
+  license: open
+  aliases: ["Devstral Medium", "devstral-medium"]
+- model_id: devstral-small
+  display_name: Devstral Small
+  org: Mistral AI
+  license: open
+  aliases: ["Devstral Small 2508", "devstral-small-2508", "Devstral Small", "devstral-small"]
+
+# ===== MiniMax =====
+- model_id: minimax-m2
+  display_name: MiniMax M2
+  org: MiniMax
+  license: open
+  aliases: ["MiniMax M2", "minimax-m2", "MiniMax-M2"]
+- model_id: minimax-m1
+  display_name: MiniMax M1
+  org: MiniMax
+  license: open
+  aliases: ["MiniMax M1", "minimax-m1", "MiniMax-M1"]

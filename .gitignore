@@ -2,3 +2,4 @@
 node_modules/
 dist/
 .env
+pipeline/fixtures/*_full.html

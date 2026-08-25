@@ -112,7 +112,7 @@ AA_API_KEY=your_key_here
 `.env`（已被 .gitignore 覆盖，不入库）：
 
 ```
-AA_API_KEY=aa_nMbZoWCdyLNOhfJrPVadeiWewCegIxMa
+AA_API_KEY=<见 .env，不入库>
 ```
 
 同时把 `.gitignore` 补充为：

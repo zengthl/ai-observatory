@@ -273,6 +273,7 @@ export default function RankTable({
                   className="rt-tr"
                   onClick={() => onToggleExpand(row.model_id)}
                   onKeyDown={(ev) => {
+                    if (ev.target !== ev.currentTarget) return; // 行内控件（复选框）按键不触发行展开
                     if (ev.key === 'Enter' || ev.key === ' ') {
                       ev.preventDefault();
                       onToggleExpand(row.model_id);
@@ -305,6 +306,7 @@ export default function RankTable({
             className="rt-card"
             onClick={() => onToggleExpand(row.model_id)}
             onKeyDown={(ev) => {
+              if (ev.target !== ev.currentTarget) return; // 行内控件（复选框）按键不触发卡片展开
               if (ev.key === 'Enter' || ev.key === ' ') {
                 ev.preventDefault();
                 onToggleExpand(row.model_id);

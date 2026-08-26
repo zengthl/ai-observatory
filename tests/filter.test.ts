@@ -27,4 +27,9 @@ describe('applyFilters', () => {
   it('combined query + license', () => {
     expect(applyFilters(entries, models, { query: 'model', org: '', license: 'closed' }).map((e) => e.model_id)).toEqual(['m1']);
   });
+  it('unknown model_id kept only without query', () => {
+    const withUnknown = [...entries, { model_id: 'ghost', score: 50 }];
+    expect(applyFilters(withUnknown, models, { query: '', org: '', license: 'all' })).toHaveLength(3);
+    expect(applyFilters(withUnknown, models, { query: 'model', org: '', license: 'all' }).map((e) => e.model_id)).toEqual(['m1']);
+  });
 });

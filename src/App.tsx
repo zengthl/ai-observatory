@@ -69,9 +69,15 @@ export default function App() {
     setExpandedId((prev) => (prev === model_id ? null : model_id));
   }, []);
 
+  // 切子榜时重置 org 筛选（新榜单可能不含当前 org，避免 0 行空白）；query/license 保留
+  const changeSub = (s: SubTab) => {
+    setFilter((f) => ({ ...f, org: '' }));
+    setSub(s);
+  };
+
   const changeBoard = (b: BoardTab) => {
     setBoard(b);
-    setSub(b === 'llm' ? 'arena' : 'swe');
+    changeSub(b === 'llm' ? 'arena' : 'swe'); // 换主榜同样换子榜，org 一并重置
   };
 
   // 当前子榜单数据 + useFilters（各榜单独立筛选状态由 key 重挂载保证）
@@ -101,7 +107,7 @@ export default function App() {
             board={board}
             sub={sub}
             onBoardChange={changeBoard}
-            onSubChange={setSub}
+            onSubChange={changeSub}
             filtered={filteredAny}
             orgs={orgs}
             filter={filter}

@@ -2,7 +2,7 @@
 // 用法：npm run fetch（GitHub Actions 每日定时 + 本地手动）
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import type {
   History,
   LatestFile,
@@ -54,7 +54,7 @@ function readJson<T>(file: string): T | null {
 
 function writeJson(file: string, data: unknown): void {
   fs.mkdirSync(path.dirname(path.join(DATA_DIR, file)), { recursive: true });
-  fs.writeFileSync(path.join(DATA_DIR, file), JSON.stringify(data, null, 1));
+  fs.writeFileSync(path.join(DATA_DIR, file), `${JSON.stringify(data, null, 1)}\n`);
 }
 
 /** 源失败时：若旧 latest 里该源是 ok，则 last_ok 记为旧 latest 的日期 */
@@ -170,7 +170,13 @@ async function main(): Promise<void> {
   if (failed.length) console.warn(`degraded sources: ${failed.map(([k]) => k).join(', ')}`);
 }
 
-main().catch((err) => {
-  console.error('fetch failed:', err instanceof Error ? err.message : String(err));
-  process.exit(1);
-});
+// 仅在直接执行（npm run fetch / node run.ts）时启动管道；
+// 被 import（如 vitest 加载本文件测纯函数）时不得有副作用
+const isDirectRun =
+  process.argv[1] != null && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href;
+if (isDirectRun) {
+  main().catch((err) => {
+    console.error('fetch failed:', err instanceof Error ? err.message : String(err));
+    process.exit(1);
+  });
+}

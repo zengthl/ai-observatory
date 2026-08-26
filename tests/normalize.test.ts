@@ -67,19 +67,27 @@ describe('withRanks', () => {
 });
 
 describe('buildHistory', () => {
-  it('appends today point and overwrites same-day rerun', () => {
-    const snap = (score: number): Snapshot =>
-      ({
-        date: '2026-08-25',
-        sources: {} as any,
-        llm: { arena_elo: [{ model_id: 'a', score, rank_prev: null, delta_score: null }], aa_index: [] },
-        agent: { swebench_verified: [], terminal_bench: [] },
-      }) as Snapshot;
+  const snap = (date: string, score: number): Snapshot =>
+    ({
+      date,
+      sources: {} as any,
+      llm: { arena_elo: [{ model_id: 'a', score, rank_prev: null, delta_score: null }], aa_index: [] },
+      agent: { swebench_verified: [], terminal_bench: [] },
+    }) as Snapshot;
 
-    const h1: History = buildHistory({}, snap(100));
+  it('appends today point and overwrites same-day rerun', () => {
+    const h1: History = buildHistory({}, snap('2026-08-25', 100));
     expect(h1['a'].arena_elo).toEqual([['2026-08-25', 100]]);
 
-    const h2 = buildHistory(h1, snap(102));
+    const h2 = buildHistory(h1, snap('2026-08-25', 102));
     expect(h2['a'].arena_elo).toEqual([['2026-08-25', 102]]);
+  });
+  it('keeps yesterday point and appends next-day point', () => {
+    const h1: History = buildHistory({}, snap('2026-08-25', 100));
+    const h2 = buildHistory(h1, snap('2026-08-26', 105));
+    expect(h2['a'].arena_elo).toEqual([
+      ['2026-08-25', 100],
+      ['2026-08-26', 105],
+    ]);
   });
 });

@@ -10,6 +10,7 @@ import type {
   SweEntry,
   TBenchEntry,
 } from './types';
+import { addToFifoSelection } from './lib/compare';
 import TopBar from './components/TopBar';
 import HeroChampions from './components/HeroChampions';
 import BoardTabs from './components/BoardTabs';
@@ -68,19 +69,18 @@ export default function App() {
   }, [latest]);
 
   /**
-   * 勾选第三个时 FIFO 替换最早的那个（selection 始终 ≤2 且保插入序）；
-   * Set 迭代序即插入序，第一个元素即「最早勾选」。
+   * 复选框语义：再点已勾选者取消勾选；勾第三个时 FIFO 替换最早的那个
+   * （selection 始终 ≤2 且保插入序）。替换规则在 lib/compare.ts 的
+   * addToFifoSelection（纯函数，有单测），此处仅负责取消勾选与数组 → Set 的状态包装。
    */
   const onToggleCompare = useCallback((model_id: string) => {
     setCompareSelection((prev) => {
-      const next = new Set(prev);
-      if (next.has(model_id)) {
+      if (prev.has(model_id)) {
+        const next = new Set(prev);
         next.delete(model_id);
-      } else {
-        if (next.size >= 2) next.delete(next.values().next().value!); // 弹出最早勾选者
-        next.add(model_id);
+        return next;
       }
-      return next;
+      return new Set(addToFifoSelection([...prev], model_id));
     });
   }, []);
 

@@ -7,6 +7,7 @@ import type { EChartsCoreOption, EChartsType } from 'echarts/core';
 import type { ScatterSeriesOption } from 'echarts/charts';
 import type { AAIndexEntry, ModelMeta } from '../types';
 import { getChartColors } from '../design/chartTheme';
+import { bubbleSize } from '../lib/compare';
 
 // 按需注册（模块级一次即可，重复 use 幂等）
 echarts.use([ScatterChart, GridComponent, TooltipComponent, LegendComponent, CanvasRenderer]);
@@ -29,12 +30,7 @@ interface ScatterPoint {
   index: number; // AA 智能指数（tooltip 用）
 }
 
-/** 指数 → 气泡大小 8–28px 线性映射 */
-function bubbleSize(index: number, min: number, max: number): number {
-  if (max <= min) return 18; // 全场同值时取中档
-  const t = (index - min) / (max - min);
-  return Math.round(8 + t * (28 - 8));
-}
+/** 指数 → 气泡大小 8–28px 线性映射（实现见 lib/compare.ts，有单测） */
 
 /** tooltip 以 innerHTML 渲染，模型名来自外部数据，插入前须转义 */
 const ESC_MAP: Record<string, string> = {
@@ -66,14 +62,17 @@ export default function ScatterView({ aaEntries, models, onSelect }: ScatterView
   // 点点击后的 aria 反馈（live region 文本）；state 变更不会重建图表（effect 只依赖 seriesData）
   const [lastSelected, setLastSelected] = useState('');
 
-  // 参与绘图的数据（过滤 + 分系列 + 尺寸映射），useMemo 保持引用稳定
+  // 参与绘图的数据（过滤 + 分系列 + 尺寸映射），useMemo 保持引用稳定。
+  // models 里查不到 license 的条目跳过不画（无法可靠归入闭源/开源任一系列），
+  // 计数 caption 与图例口径一致。
   const seriesData = useMemo(() => {
     const valid = aaEntries.filter(
       (e) =>
         e.price_blin_per_m != null &&
         e.price_blin_per_m > 0 &&
         e.output_speed_tps != null &&
-        e.output_speed_tps > 0,
+        e.output_speed_tps > 0 &&
+        models[e.model_id] != null,
     );
     const idxMin = Math.min(...valid.map((e) => e.index));
     const idxMax = Math.max(...valid.map((e) => e.index));
@@ -85,8 +84,8 @@ export default function ScatterView({ aaEntries, models, onSelect }: ScatterView
       symbolSize: bubbleSize(e.index, idxMin, idxMax),
     });
     return {
-      closed: valid.filter((e) => models[e.model_id]?.license !== 'open').map(toPoint),
-      open: valid.filter((e) => models[e.model_id]?.license === 'open').map(toPoint),
+      closed: valid.filter((e) => models[e.model_id].license !== 'open').map(toPoint),
+      open: valid.filter((e) => models[e.model_id].license === 'open').map(toPoint),
       count: valid.length,
     };
   }, [aaEntries, models]);

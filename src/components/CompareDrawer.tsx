@@ -1,5 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import type { LatestFile } from '../types';
+import { formatPrice, leadSide } from '../lib/compare';
+import type { CompareSide } from '../lib/compare';
 
 export interface CompareDrawerProps {
   /** 左侧模型 model_id（先勾选者） */
@@ -54,19 +56,17 @@ const METRICS: MetricDef[] = [
     label: '混合价格 $/M',
     extract: (l, id) => l.llm.aa_index.find((e) => e.model_id === id)?.price_blin_per_m ?? null,
     higherBetter: false,
-    format: (v) => `$${String(v)}`,
+    format: (v) => `$${formatPrice(v)}`,
   },
 ];
 
-/**
- * 单指标行：label 居左，mono 数值在两端，中间双向条按 v1/(v1+v2) 相对比例伸展。
+/** 单指标行：label 居左，mono 数值在两端，中间双向条按 v1/(v1+v2) 相对比例伸展。
  * 领先侧（higherBetter 取大者 / lowerBetter 取小者）橙色加粗；任一侧缺数据不画条。
- */
+ * 领先判定在 lib/compare.ts 的 leadSide（纯函数，有单测）。 */
 function MetricRow({ def, v1, v2 }: { def: MetricDef; v1: number | null; v2: number | null }) {
-  let lead: 'l' | 'r' | null = null;
-  if (v1 != null && v2 != null && v1 !== v2) {
-    const lWins = def.higherBetter ? v1 > v2 : v1 < v2;
-    lead = lWins ? 'l' : 'r';
+  let lead: CompareSide | null = null;
+  if (v1 != null && v2 != null) {
+    lead = leadSide(v1, v2, def.higherBetter);
   }
   // 双向条宽度：v1/(v1+v2)；除零（全零）或任一侧缺数据时整行不渲染条
   const total = v1 != null && v2 != null ? v1 + v2 : 0;

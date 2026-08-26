@@ -490,6 +490,8 @@
   right: 0;
   bottom: 0;
   z-index: 50;
+  max-height: 88vh; /* 短视口（横屏手机）下留出页面可见区，超出可滚动 */
+  overflow-y: auto;
   background: var(--surface);
   border-top: 3px solid var(--ink); /* 顶部墨黑粗边 */
   box-shadow: 0 -8px 24px rgba(22, 24, 29, 0.12);

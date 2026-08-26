@@ -28,6 +28,19 @@ interface TrendPanelProps {
 
 const WINDOW_DAYS = 90;
 
+/** tooltip 以 innerHTML 渲染，seriesName 来自外部数据，插入前须转义 */
+const ESC_MAP: Record<string, string> = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;',
+};
+
+function escapeHtml(s: string): string {
+  return s.replace(/[&<>"']/g, (c) => ESC_MAP[c] ?? c);
+}
+
 /** 近 90 天子序列：以序列最后一个日期为终点向前取窗口 */
 function sliceWindow(points: Array<[string, number]>): Array<[string, number]> {
   if (points.length === 0) return [];
@@ -72,128 +85,144 @@ export default function TrendPanel({ modelId, board, history, top3Refs }: TrendP
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
-    if (el.clientWidth === 0 || el.clientHeight === 0) return; // 容器折叠中，跳过初始化
 
     const colors = getChartColors();
-    const mainPoints = sliceWindow(history[modelId]?.[board] ?? []);
     const reduceMotion =
       typeof window.matchMedia === 'function' &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // X 轴类目：所有序列日期并集排序（缺失处 null 断开，不伪造连线）
-    const dateSet = new Set<string>();
-    for (const [d] of mainPoints) dateSet.add(d);
-    for (const r of refSeries) for (const [d] of r.points) dateSet.add(d);
-    const dates = [...dateSet].sort();
-    const at = (pts: Array<[string, number]>, d: string): number | null => {
-      for (const [pd, pv] of pts) if (pd === d) return pv;
-      return null;
+    /** 组装 option（惰性：首次建图时才计算，避免隐藏副本白算一遍） */
+    let option: EChartsCoreOption | null = null;
+    const buildOption = (): EChartsCoreOption => {
+      if (option) return option;
+
+      const mainPoints = sliceWindow(history[modelId]?.[board] ?? []);
+
+      // X 轴类目：所有序列日期并集排序（缺失处 null 断开，不伪造连线）
+      const dateSet = new Set<string>();
+      for (const [d] of mainPoints) dateSet.add(d);
+      for (const r of refSeries) for (const [d] of r.points) dateSet.add(d);
+      const dates = [...dateSet].sort();
+      const at = (pts: Array<[string, number]>, d: string): number | null => {
+        for (const [pd, pv] of pts) if (pd === d) return pv;
+        return null;
+      };
+
+      const toData = (pts: Array<[string, number]>): Array<number | null> =>
+        dates.map((d) => at(pts, d));
+
+      const series: LineSeriesOption[] = [
+        {
+          name: BOARD_LABELS[board],
+          type: 'line',
+          data: toData(mainPoints),
+          lineStyle: { color: colors.orange, width: 2, type: 'solid' },
+          itemStyle: { color: colors.orange },
+          symbol: 'circle',
+          symbolSize: 5,
+          connectNulls: false,
+          emphasis: { disabled: true },
+          z: 3,
+        },
+        ...refSeries.map<LineSeriesOption>((r, i) => ({
+          name: `#${i + 1} ${r.modelId}`,
+          type: 'line',
+          data: toData(r.points),
+          lineStyle: { color: colors.soft, width: 1, type: 'dashed', opacity: 0.75 },
+          itemStyle: { color: colors.soft },
+          symbol: 'circle',
+          symbolSize: 3,
+          connectNulls: false,
+          emphasis: { disabled: true },
+          z: 2,
+        })),
+      ];
+
+      option = {
+        animation: !reduceMotion,
+        grid: { left: 44, right: 12, top: 12, bottom: 22, containLabel: false },
+        xAxis: {
+          type: 'category',
+          data: dates,
+          axisLine: { lineStyle: { color: '#E4E4DB' } },
+          axisTick: { show: false },
+          axisLabel: {
+            show: true,
+            fontFamily: 'IBM Plex Mono, ui-monospace, monospace',
+            fontSize: 10,
+            color: colors.soft,
+            formatter: (value: string) => value.slice(5), // MM-DD
+            interval: dates.length > 6 ? Math.ceil(dates.length / 6) : 0,
+          },
+        },
+        yAxis: {
+          type: 'value',
+          scale: true,
+          splitLine: { lineStyle: { color: 'rgba(22,24,29,0.08)' } },
+          axisLine: { show: false },
+          axisTick: { show: false },
+          axisLabel: {
+            fontFamily: 'IBM Plex Mono, ui-monospace, monospace',
+            fontSize: 10,
+            color: colors.soft,
+          },
+        },
+        tooltip: {
+          trigger: 'axis',
+          confine: true,
+          backgroundColor: '#FFFFFF',
+          borderColor: '#E4E4DB',
+          borderWidth: 1,
+          padding: [6, 10],
+          textStyle: {
+            color: colors.ink,
+            fontFamily: 'IBM Plex Mono, ui-monospace, monospace',
+            fontSize: 11,
+          },
+          formatter: (params: unknown): string => {
+            const list = params as Array<{ axisValue: string; seriesName: string; value: number | null; marker: string }>;
+            const rows = list
+              .filter((p) => p.value != null)
+              .map((p) => `<div>${p.marker} ${escapeHtml(p.seriesName)}&nbsp;&nbsp;<b>${p.value}</b></div>`)
+              .join('');
+            return [`<div style="color:${colors.soft}">${list[0]?.axisValue ?? ''}</div>`, rows].join('');
+          },
+        },
+        series,
+      };
+      return option;
     };
 
-    const toData = (pts: Array<[string, number]>): Array<number | null> =>
-      dates.map((d) => at(pts, d));
-
-    const series: LineSeriesOption[] = [
-      {
-        name: BOARD_LABELS[board],
-        type: 'line',
-        data: toData(mainPoints),
-        lineStyle: { color: colors.orange, width: 2, type: 'solid' },
-        itemStyle: { color: colors.orange },
-        symbol: 'circle',
-        symbolSize: 5,
-        connectNulls: false,
-        emphasis: { disabled: true },
-        z: 3,
-      },
-      ...refSeries.map<LineSeriesOption>((r, i) => ({
-        name: `#${i + 1} ${r.modelId}`,
-        type: 'line',
-        data: toData(r.points),
-        lineStyle: { color: colors.soft, width: 1, type: 'dashed', opacity: 0.75 },
-        itemStyle: { color: colors.soft },
-        symbol: 'circle',
-        symbolSize: 3,
-        connectNulls: false,
-        emphasis: { disabled: true },
-        z: 2,
-      })),
-    ];
-
-    const option: EChartsCoreOption = {
-      animation: !reduceMotion,
-      grid: { left: 44, right: 12, top: 12, bottom: 22, containLabel: false },
-      xAxis: {
-        type: 'category',
-        data: dates,
-        axisLine: { lineStyle: { color: '#E4E4DB' } },
-        axisTick: { show: false },
-        axisLabel: {
-          show: true,
-          fontFamily: 'IBM Plex Mono, ui-monospace, monospace',
-          fontSize: 10,
-          color: colors.soft,
-          formatter: (value: string) => value.slice(5), // MM-DD
-          interval: dates.length > 6 ? Math.ceil(dates.length / 6) : 0,
-        },
-      },
-      yAxis: {
-        type: 'value',
-        scale: true,
-        splitLine: { lineStyle: { color: 'rgba(22,24,29,0.08)' } },
-        axisLine: { show: false },
-        axisTick: { show: false },
-        axisLabel: {
-          fontFamily: 'IBM Plex Mono, ui-monospace, monospace',
-          fontSize: 10,
-          color: colors.soft,
-        },
-      },
-      tooltip: {
-        trigger: 'axis',
-        confine: true,
-        backgroundColor: '#FFFFFF',
-        borderColor: '#E4E4DB',
-        borderWidth: 1,
-        padding: [6, 10],
-        textStyle: {
-          color: colors.ink,
-          fontFamily: 'IBM Plex Mono, ui-monospace, monospace',
-          fontSize: 11,
-        },
-        formatter: (params: unknown): string => {
-          const list = params as Array<{ axisValue: string; seriesName: string; value: number | null; marker: string }>;
-          const rows = list
-            .filter((p) => p.value != null)
-            .map((p) => `<div>${p.marker} ${p.seriesName}&nbsp;&nbsp;<b>${p.value}</b></div>`)
-            .join('');
-          return [`<div style="color:${colors.soft}">${list[0]?.axisValue ?? ''}</div>`, rows].join('');
-        },
-      },
-      series,
-    };
-
-    chartRef.current?.dispose();
-    const chart = echarts.init(el);
-    chart.setOption(option);
-    chartRef.current = chart;
-
-    // 容器从折叠到展开（或窗口缩放）时自适应；首次拿到非零尺寸才初始化
+    /**
+     * RO-first 惰性 init：
+     * - 移动/桌面双视图常驻 DOM（media query 切 display），隐藏时 clientWidth 为 0，
+     *   早退会永久错过尺寸变化 → 跨断点后空白。因此 RO 在 effect 内恒注册，
+     *   由回调判断「有实例则 resize / 无实例且可见才首次建图」。
+     * - 实例统一走 chartRef，cleanup 只认 chartRef（RO 回调里建的实例也能被 dispose）。
+     */
     const ro = new ResizeObserver(() => {
       if (!chartRef.current && el.clientWidth > 0 && el.clientHeight > 0) {
         const c = echarts.init(el);
-        c.setOption(option);
+        c.setOption(buildOption());
         chartRef.current = c;
       } else if (chartRef.current) {
-        chartRef.current.resize();
+        // 零尺寸时 resize 会告警/产生 1px 画布，仅在容器可见时同步
+        if (el.clientWidth > 0 && el.clientHeight > 0) chartRef.current.resize();
       }
     });
     ro.observe(el);
 
+    // 立即尝试一次：容器已可见（桌面展开等场景）无需等 RO 首帧
+    if (el.clientWidth > 0 && el.clientHeight > 0) {
+      const chart = echarts.init(el);
+      chart.setOption(buildOption());
+      chartRef.current = chart;
+    }
+
     return () => {
       ro.disconnect();
-      chart.dispose();
-      if (chartRef.current === chart) chartRef.current = null;
+      chartRef.current?.dispose();
+      chartRef.current = null;
     };
   }, [modelId, board, history, refSeries]);
 

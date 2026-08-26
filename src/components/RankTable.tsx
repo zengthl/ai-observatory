@@ -223,7 +223,10 @@ export default function RankTable({
   onToggleExpand,
 }: RankTableProps) {
   const cols = COLUMNS[kind];
-  const rows = normalizeRows(kind, entries, models);
+  // rows 引用稳定化：normalizeRows 每 render 裸调用会产生新数组，
+  // 使 top3Refs useMemo 每次失效 → TrendPanel effect 重跑（图表整体销毁重建）。
+  // 勾选对比复选框等无关 state 变更不应触发图表重建。
+  const rows = useMemo(() => normalizeRows(kind, entries, models), [kind, entries, models]);
 
   // 展开趋势图的前三参照（当前榜前 3 名；TrendPanel 内部再排除主模型自己）
   const top3Refs = useMemo<Top3Ref[]>(

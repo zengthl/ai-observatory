@@ -1,0 +1,1445 @@
+{
+ "name": "Verified",
+ "results": [
+  {
+   "model_display": "Claude 4.5 Opus",
+   "model_org": "Anthropic",
+   "resolved": 79.2,
+   "agent": "live-SWE-agent",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 4.5 Opus",
+   "model_org": "Anthropic",
+   "resolved": 79.2,
+   "agent": "Sonar Foundation Agent",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Doubao-Seed-Code",
+   "model_org": "ByteDance",
+   "resolved": 78.8,
+   "agent": "TRAE",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Gemini 3 Pro Preview",
+   "model_org": "Google DeepMind",
+   "resolved": 77.4,
+   "agent": "live-SWE-agent",
+   "instance_cost": null,
+   "checked": "false (See README.md for info on how to get your results verified)"
+  },
+  {
+   "model_display": "Multiple",
+   "model_org": "Anthropic",
+   "resolved": 76.8,
+   "agent": "Atlassian Rovo Dev",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 4 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 76.8,
+   "agent": "EPAM AI/Run Developer Agent",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 4.5 Opus",
+   "model_org": "Anthropic",
+   "resolved": 76.8,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.753907997,
+   "checked": null
+  },
+  {
+   "model_display": "Multiple",
+   "model_org": "Anthropic",
+   "resolved": 76.4,
+   "agent": "ACoder",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Gemini 3 Flash",
+   "model_org": "Google DeepMind",
+   "resolved": 75.8,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.35596413079999994,
+   "checked": null
+  },
+  {
+   "model_display": "MiniMax M2.5",
+   "model_org": "Minimax",
+   "resolved": 75.8,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.073289987844,
+   "checked": null
+  },
+  {
+   "model_display": "Multiple",
+   "model_org": "OpenAI",
+   "resolved": 75.6,
+   "agent": "Warp",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 4.6 Opus",
+   "model_org": "Anthropic",
+   "resolved": 75.6,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.5515226445,
+   "checked": null
+  },
+  {
+   "model_display": "Multiple",
+   "model_org": "Anthropic",
+   "resolved": 75.2,
+   "agent": "TRAE",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude Sonnet 4",
+   "model_org": "Anthropic",
+   "resolved": 74.8,
+   "agent": "Harness AI",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 4.5 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 74.8,
+   "agent": "Sonar Foundation Agent",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 4 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 74.6,
+   "agent": "Lingxi-v1.5",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Multiple",
+   "model_org": "Anthropic",
+   "resolved": 74.6,
+   "agent": "JoyCode",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Multiple",
+   "model_org": "Anthropic",
+   "resolved": 74.4,
+   "agent": "Refact.ai Agent",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "GPT-5",
+   "model_org": "OpenAI",
+   "resolved": 74.4,
+   "agent": "Prometheus-v1.2.1",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 4.5 Opus",
+   "model_org": "Anthropic",
+   "resolved": 74.4,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.721244997,
+   "checked": true
+  },
+  {
+   "model_display": "Gemini 3 Pro Preview",
+   "model_org": "Google DeepMind",
+   "resolved": 74.2,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.45995751895000003,
+   "checked": true
+  },
+  {
+   "model_display": "Multiple",
+   "model_org": "Anthropic",
+   "resolved": 73.8,
+   "agent": "Salesforce AI Research SAGE",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 4 Opus",
+   "model_org": "Anthropic",
+   "resolved": 73.2,
+   "agent": "Tools",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Multiple",
+   "model_org": "Anthropic",
+   "resolved": 73,
+   "agent": "Salesforce AI Research SAGE",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "GPT 5.2 Codex",
+   "model_org": "OpenAI",
+   "resolved": 72.8,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.4494238987,
+   "checked": null
+  },
+  {
+   "model_display": "GLM 5",
+   "model_org": "Z-AI",
+   "resolved": 72.8,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.53438913622,
+   "checked": null
+  },
+  {
+   "model_display": "GPT 5.2",
+   "model_org": "OpenAI",
+   "resolved": 72.8,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.4735670177,
+   "checked": null
+  },
+  {
+   "model_display": "Claude 4 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 72.4,
+   "agent": "Tools",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "GPT-5",
+   "model_org": "OpenAI",
+   "resolved": 71.8,
+   "agent": "OpenHands",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "GPT 5.2",
+   "model_org": "OpenAI",
+   "resolved": 71.8,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.5202590036,
+   "checked": null
+  },
+  {
+   "model_display": "Claude 4.5 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 71.4,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.6578964984000001,
+   "checked": null
+  },
+  {
+   "model_display": "GPT-5",
+   "model_org": "OpenAI",
+   "resolved": 71.2,
+   "agent": "Prometheus-v1.2",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Multiple",
+   "model_org": "Anthropic",
+   "resolved": 71.2,
+   "agent": "Qodo Command",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 4 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 71.2,
+   "agent": "Bloop",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Kimi K2",
+   "model_org": "Moonshot AI",
+   "resolved": 71.2,
+   "agent": "Lingxi v1.5",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Multiple",
+   "model_org": "Anthropic",
+   "resolved": 71,
+   "agent": "Warp",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 4 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 70.8,
+   "agent": "Moatless Tools",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "Kimi K2.5",
+   "model_org": "Moonshot AI",
+   "resolved": 70.8,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.14655374074400002,
+   "checked": null
+  },
+  {
+   "model_display": "Undisclosed",
+   "model_org": null,
+   "resolved": 70.6,
+   "agent": "TRAE",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 4.5 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 70.6,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.5583347409,
+   "checked": true
+  },
+  {
+   "model_display": "Multiple",
+   "model_org": "Anthropic",
+   "resolved": 70.4,
+   "agent": "Refact.ai Agent",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 4 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 70.4,
+   "agent": "OpenHands",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "Undisclosed",
+   "model_org": null,
+   "resolved": 70.4,
+   "agent": "Augment Agent v1",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Multiple",
+   "model_org": "Anthropic",
+   "resolved": 70.2,
+   "agent": "devlo",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Multiple",
+   "model_org": "Anthropic",
+   "resolved": 70,
+   "agent": "Zencoder",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "DeepSeek V3.2",
+   "model_org": "DeepSeek",
+   "resolved": 70,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.4478464965,
+   "checked": null
+  },
+  {
+   "model_display": "Qwen3-Coder-480B-A35B-Instruct",
+   "model_org": "Qwen",
+   "resolved": 69.6,
+   "agent": "OpenHands",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Gemini 3 Pro",
+   "model_org": "Google DeepMind",
+   "resolved": 69.6,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.9600198564,
+   "checked": null
+  },
+  {
+   "model_display": "GPT 5.2",
+   "model_org": "OpenAI",
+   "resolved": 69,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.2696674974,
+   "checked": null
+  },
+  {
+   "model_display": "Multiple",
+   "model_org": "OpenAI",
+   "resolved": 68.2,
+   "agent": "Nemotron-CORTEXA",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "GLM-4.6",
+   "model_org": "Z.ai",
+   "resolved": 68.2,
+   "agent": "Undisclosed",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 4 Opus",
+   "model_org": "Anthropic",
+   "resolved": 67.6,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 1.131270447,
+   "checked": true
+  },
+  {
+   "model_display": "Claude 4 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 66.6,
+   "agent": "SWE-agent",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "Claude 4.5 Haiku",
+   "model_org": "Anthropic",
+   "resolved": 66.6,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.33092443610000005,
+   "checked": null
+  },
+  {
+   "model_display": "Claude 3.7 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 66.4,
+   "agent": "Aime-coder v1",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "GPT 5.1 Codex",
+   "model_org": "OpenAI",
+   "resolved": 66,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.5888823500000001,
+   "checked": null
+  },
+  {
+   "model_display": "GPT 5.1",
+   "model_org": "OpenAI",
+   "resolved": 66,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.3061554725,
+   "checked": null
+  },
+  {
+   "model_display": "Undisclosed",
+   "model_org": null,
+   "resolved": 65.8,
+   "agent": "OpenHands",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "Undisclosed",
+   "model_org": null,
+   "resolved": 65.4,
+   "agent": "Augment Agent v0",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Undisclosed",
+   "model_org": null,
+   "resolved": 65.4,
+   "agent": "Amazon Q Developer Agent",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Kimi K2",
+   "model_org": "Moonshot AI",
+   "resolved": 65.4,
+   "agent": "OpenHands",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "GPT 5",
+   "model_org": "OpenAI",
+   "resolved": 65,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.2803830175,
+   "checked": true
+  },
+  {
+   "model_display": "Claude 4 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 64.93,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.37145316780000004,
+   "checked": true
+  },
+  {
+   "model_display": "o1-preview",
+   "model_org": "OpenAI",
+   "resolved": 64.6,
+   "agent": "W&B Programmer O1 crosscheck5",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "o4-mini",
+   "model_org": "OpenAI",
+   "resolved": 64.6,
+   "agent": "PatchPilot-v1.1",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "GLM-4.5",
+   "model_org": "Z.ai",
+   "resolved": 64.2,
+   "agent": "Undisclosed",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 3.5 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 63.4,
+   "agent": "AgentScope",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Kimi K2 Thinking",
+   "model_org": "Moonshot AI",
+   "resolved": 63.4,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.4383072354,
+   "checked": true
+  },
+  {
+   "model_display": "Claude 3.7 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 63.2,
+   "agent": "Tools",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Undisclosed",
+   "model_org": null,
+   "resolved": 62.8,
+   "agent": "Blackbox AI Agent",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 3.5 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 62.8,
+   "agent": "EPAM AI/Run Developer Agent",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 3.7 Sonnet w/ Review Heavy",
+   "model_org": "Anthropic",
+   "resolved": 62.4,
+   "agent": "SWE-agent",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "swe-search",
+   "model_org": "Anthropic",
+   "resolved": 62.2,
+   "agent": "CodeStory Midwit Agent",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "MiniMax M2",
+   "model_org": "Minimax",
+   "resolved": 61,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.42825617729,
+   "checked": true
+  },
+  {
+   "model_display": "4x Scaled",
+   "model_org": null,
+   "resolved": 60.8,
+   "agent": "OpenHands",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "Qwen3-Coder-30B-A3B-Instruct",
+   "model_org": "Qwen",
+   "resolved": 60.4,
+   "agent": "EntroPO + R2E",
+   "instance_cost": null,
+   "checked": "false (See README.md for info on how to get your results verified)"
+  },
+  {
+   "model_display": "Claude 3.5 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 60.2,
+   "agent": "Learn-by-interact",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "DeepSeek V3.2 Reasoner",
+   "model_org": "deepseek",
+   "resolved": 60,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.0280763028,
+   "checked": true
+  },
+  {
+   "model_display": "GPT 5 mini",
+   "model_org": "OpenAI",
+   "resolved": 59.8,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.035477067300000005,
+   "checked": true
+  },
+  {
+   "model_display": "TTS(Bo16)",
+   "model_org": "OpenAI",
+   "resolved": 58.8,
+   "agent": "DeepSWE-Preview",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "o3",
+   "model_org": "OpenAI",
+   "resolved": 58.4,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.333652748,
+   "checked": true
+  },
+  {
+   "model_display": "Multiple",
+   "model_org": "Anthropic",
+   "resolved": 58.2,
+   "agent": "Nemotron-CORTEXA",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "Undisclosed",
+   "model_org": null,
+   "resolved": 58.2,
+   "agent": "devlo",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Multiple",
+   "model_org": "Anthropic",
+   "resolved": 57.2,
+   "agent": "Emergent E1",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Undisclosed",
+   "model_org": null,
+   "resolved": 57,
+   "agent": "Gru",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude Sonnet 4",
+   "model_org": "Anthropic",
+   "resolved": 57,
+   "agent": "Artemis Agent v2",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Undisclosed",
+   "model_org": null,
+   "resolved": 56.6,
+   "agent": "SWE-Rizzo",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Devstral Small (2512)",
+   "model_org": "mistral",
+   "resolved": 56.4,
+   "agent": "mini-SWE-agent",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "GPT 5 mini",
+   "model_org": "OpenAI",
+   "resolved": 56.2,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.0472012191,
+   "checked": null
+  },
+  {
+   "model_display": "Claude 3.5 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 55.4,
+   "agent": "EPAM AI/Run Developer Agent",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Qwen3-Coder 480B/A35B Instruct",
+   "model_org": "Qwen",
+   "resolved": 55.4,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.247927108,
+   "checked": true
+  },
+  {
+   "model_display": "GLM 4.6",
+   "model_org": "Z.ai",
+   "resolved": 55.4,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.09661007519999999,
+   "checked": true
+  },
+  {
+   "model_display": "Undisclosed",
+   "model_org": null,
+   "resolved": 55,
+   "agent": "Amazon Q Developer Agent",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 3.5 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 54.2,
+   "agent": "devlo",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "GLM 4.5",
+   "model_org": "Z.ai",
+   "resolved": 54.2,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.2971903488,
+   "checked": true
+  },
+  {
+   "model_display": "Devstral (2512)",
+   "model_org": "mistral",
+   "resolved": 53.8,
+   "agent": "mini-SWE-agent",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "Frogboss 32B 2510",
+   "model_org": null,
+   "resolved": 53.6,
+   "agent": "FrogBoss-32B-2510",
+   "instance_cost": null,
+   "checked": "false (See README.md for info on how to get your results verified)"
+  },
+  {
+   "model_display": "Gemini 2.5 Pro",
+   "model_org": "Google DeepMind",
+   "resolved": 53.6,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.28837209562500005,
+   "checked": true
+  },
+  {
+   "model_display": "Kimi K2 Instruct",
+   "model_org": "Moonshot AI",
+   "resolved": 53.4,
+   "agent": "CodeSweep - SWE-agent",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Undisclosed",
+   "model_org": null,
+   "resolved": 53.2,
+   "agent": "Bracket.sh",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "CodeAct v2.1 (claude-3-5-sonnet-20241022)",
+   "model_org": "Anthropic",
+   "resolved": 53,
+   "agent": "OpenHands",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "Claude 3.7 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 52.8,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.3546154482,
+   "checked": true
+  },
+  {
+   "model_display": "Qwen3-Coder-30B-A3B-Instruct",
+   "model_org": "Qwen",
+   "resolved": 52.2,
+   "agent": "EntroPO + R2E",
+   "instance_cost": null,
+   "checked": "false (See README.md for info on how to get your results verified)"
+  },
+  {
+   "model_display": "Gemini 2.0 Flash (v20241212-experimental)",
+   "model_org": "Google DeepMind",
+   "resolved": 52.2,
+   "agent": "Google Jules",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 3.5 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 51.8,
+   "agent": "Engine Labs",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 3.5-Sonnet-20241022",
+   "model_org": "Anthropic",
+   "resolved": 51.6,
+   "agent": "AutoCodeRover-v2.1",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Qwen3-Coder-30B-A3B-Instruct",
+   "model_org": "Qwen",
+   "resolved": 51.6,
+   "agent": "OpenHands",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 3.5 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 50.8,
+   "agent": "Agentless-1.5",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Undisclosed",
+   "model_org": null,
+   "resolved": 50,
+   "agent": "Solver",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Undisclosed",
+   "model_org": null,
+   "resolved": 50,
+   "agent": "Bytedance MarsCode Agent",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Multiple",
+   "model_org": "Anthropic",
+   "resolved": 49.2,
+   "agent": "nFactorial",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 3.5 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 49,
+   "agent": "Tools",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Multiple",
+   "model_org": "Anthropic",
+   "resolved": 48.6,
+   "agent": "Composio SWE-Kit",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "Multiple",
+   "model_org": "Anthropic",
+   "resolved": 47.2,
+   "agent": "AppMap Navie v2",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "TTS(Bo8)",
+   "model_org": "Qwen",
+   "resolved": 47,
+   "agent": "Skywork-SWE-32B",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "DevStral Small 2505",
+   "model_org": "Mistral",
+   "resolved": 46.8,
+   "agent": "OpenHands",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "Multiple",
+   "model_org": "Anthropic",
+   "resolved": 46.6,
+   "agent": "Emergent E1",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 3.5-Sonnet-20241022",
+   "model_org": "Anthropic",
+   "resolved": 46.2,
+   "agent": "AutoCodeRover-v2.0",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Co-PatcheR",
+   "model_org": null,
+   "resolved": 46,
+   "agent": "PatchPilot",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Undisclosed",
+   "model_org": null,
+   "resolved": 45.4,
+   "agent": "Solver",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Undisclosed",
+   "model_org": null,
+   "resolved": 45.2,
+   "agent": "Gru",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Frogmini 14B 2510",
+   "model_org": null,
+   "resolved": 45,
+   "agent": "FrogMini-14B-2510",
+   "instance_cost": null,
+   "checked": "false (See README.md for info on how to get your results verified)"
+  },
+  {
+   "model_display": "o4-mini",
+   "model_org": "OpenAI",
+   "resolved": 45,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.2099733328,
+   "checked": true
+  },
+  {
+   "model_display": "Gemini 2.0 Flash (Experimental)",
+   "model_org": "Google DeepMind",
+   "resolved": 44.2,
+   "agent": "CodeShellAgent",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Kimi K2 Instruct",
+   "model_org": "Moonshot AI",
+   "resolved": 43.8,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.531593366,
+   "checked": true
+  },
+  {
+   "model_display": "Undisclosed",
+   "model_org": null,
+   "resolved": 43.6,
+   "agent": "Solver",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Amazon.nova Premier v1:0",
+   "model_org": null,
+   "resolved": 42.4,
+   "agent": "Amazon Nova Premier 1.0",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "O3 Mini",
+   "model_org": "OpenAI",
+   "resolved": 42.4,
+   "agent": "Agentless Lite",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "DeepSWE-Preview",
+   "model_org": null,
+   "resolved": 42.2,
+   "agent": "R2E-Gym",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "DeepSeek V3 0324",
+   "model_org": "DeepSeek",
+   "resolved": 42,
+   "agent": "SWE-Exp",
+   "instance_cost": null,
+   "checked": "false (See README.md for info on how to get your results verified)"
+  },
+  {
+   "model_display": "Undisclosed",
+   "model_org": null,
+   "resolved": 41.6,
+   "agent": "ugaiforge",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Multiple",
+   "model_org": "Anthropic",
+   "resolved": 41.6,
+   "agent": "nFactorial",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Llama3-SWE-RL-70B",
+   "model_org": "Meta",
+   "resolved": 41.2,
+   "agent": "Agentless Mini",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Multiple",
+   "model_org": "Meta",
+   "resolved": 40.6,
+   "agent": "Nebius AI",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 3.5 Haiku",
+   "model_org": "Anthropic",
+   "resolved": 40.6,
+   "agent": "Tools",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Undisclosed",
+   "model_org": null,
+   "resolved": 40.6,
+   "agent": "Honeycomb",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 3.5 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 40.6,
+   "agent": "Composio SWEkit",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "SWE-agent-LM-32B",
+   "model_org": "Qwen",
+   "resolved": 40.2,
+   "agent": "SWE-agent",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "Claude 3.5 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 39.6,
+   "agent": "EPAM AI/Run Developer Agent",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "GPT 4.1",
+   "model_org": "OpenAI",
+   "resolved": 39.58,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.146313124,
+   "checked": true
+  },
+  {
+   "model_display": "Undisclosed",
+   "model_org": null,
+   "resolved": 38.8,
+   "agent": "Amazon Q Developer Agent",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "GPT-4o",
+   "model_org": "OpenAI",
+   "resolved": 38.8,
+   "agent": "Agentless-1.5",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "GPT-4o",
+   "model_org": "OpenAI",
+   "resolved": 38.4,
+   "agent": "AutoCodeRover",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Qwen2.5 Coder 32B Instruct",
+   "model_org": "Qwen",
+   "resolved": 38,
+   "agent": "Skywork-SWE-32B",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "DevStral Small 2507",
+   "model_org": "Mistral",
+   "resolved": 38,
+   "agent": "SWE-agent",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "Undisclosed",
+   "model_org": null,
+   "resolved": 37,
+   "agent": "Factory Code Droid",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "GPT 5 nano",
+   "model_org": "OpenAI",
+   "resolved": 34.8,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.03807518078,
+   "checked": true
+  },
+  {
+   "model_display": "Claude 3.5 Sonnet",
+   "model_org": "Anthropic",
+   "resolved": 33.6,
+   "agent": "SWE-agent",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "Qwen2.5 (7B + 72B)",
+   "model_org": "Qwen",
+   "resolved": 32.8,
+   "agent": "SWE-Fixer",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "GPT-4o",
+   "model_org": "OpenAI",
+   "resolved": 32.6,
+   "agent": "MASAI",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Undisclosed",
+   "model_org": null,
+   "resolved": 32,
+   "agent": "Artemis Agent v1",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Undisclosed",
+   "model_org": null,
+   "resolved": 31.6,
+   "agent": "nFactorial",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Qwen2.5 (7B + 72B)",
+   "model_org": "Qwen",
+   "resolved": 30.2,
+   "agent": "SWE-Fixer",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Lingma SWE-GPT 72b (v0925)",
+   "model_org": "OpenAI",
+   "resolved": 28.8,
+   "agent": "Lingma Agent",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Gemini 2.5 Flash",
+   "model_org": "Google DeepMind",
+   "resolved": 28.73,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.13388571835,
+   "checked": true
+  },
+  {
+   "model_display": "GPT-4o",
+   "model_org": "OpenAI",
+   "resolved": 27,
+   "agent": "EPAM AI/Run Developer Agent",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "GPT-4o",
+   "model_org": "OpenAI",
+   "resolved": 26.2,
+   "agent": "AppMap Navie",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "gpt-oss-120b",
+   "model_org": "OpenAI",
+   "resolved": 26,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.05711905579999999,
+   "checked": true
+  },
+  {
+   "model_display": "Undisclosed",
+   "model_org": null,
+   "resolved": 25.8,
+   "agent": "nFactorial",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Undisclosed",
+   "model_org": null,
+   "resolved": 25.6,
+   "agent": "Amazon Q Developer Agent",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Lingma SWE-GPT 72b (v0918)",
+   "model_org": "OpenAI",
+   "resolved": 25,
+   "agent": "Lingma Agent",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "GPT-4o",
+   "model_org": "OpenAI",
+   "resolved": 24,
+   "agent": "EPAM AI/Run Developer Agent",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "GPT 4.1 mini",
+   "model_org": "OpenAI",
+   "resolved": 23.94,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.43515415279999997,
+   "checked": true
+  },
+  {
+   "model_display": "MCTS Refine 7B",
+   "model_org": null,
+   "resolved": 23.2,
+   "agent": "MCTS-Refine-7B",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "GPT-4o",
+   "model_org": "OpenAI",
+   "resolved": 23.2,
+   "agent": "SWE-agent",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "GPT-4 (1106)",
+   "model_org": "OpenAI",
+   "resolved": 22.4,
+   "agent": "SWE-agent",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "GPT 4o",
+   "model_org": "OpenAI",
+   "resolved": 21.62,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 1.531148125,
+   "checked": true
+  },
+  {
+   "model_display": "Llama 4 Maverick Instruct",
+   "model_org": "Meta",
+   "resolved": 21.04,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.31370609759999996,
+   "checked": true
+  },
+  {
+   "model_display": "Lingma SWE-GPT 7b (v0925)",
+   "model_org": "OpenAI",
+   "resolved": 18.2,
+   "agent": "Lingma Agent",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Claude 3 Opus",
+   "model_org": "Anthropic",
+   "resolved": 15.8,
+   "agent": "SWE-agent",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "Gemini 2.0 Flash",
+   "model_org": "Google DeepMind",
+   "resolved": 13.52,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0,
+   "checked": true
+  },
+  {
+   "model_display": "Lingma SWE-GPT 7b (v0918)",
+   "model_org": "OpenAI",
+   "resolved": 10.2,
+   "agent": "Lingma Agent",
+   "instance_cost": null,
+   "checked": false
+  },
+  {
+   "model_display": "Llama 4 Scout Instruct",
+   "model_org": "Meta",
+   "resolved": 9.06,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.115631523,
+   "checked": true
+  },
+  {
+   "model_display": "Qwen2.5-Coder 32B Instruct",
+   "model_org": "Qwen",
+   "resolved": 9,
+   "agent": "mini-SWE-agent",
+   "instance_cost": 0.06811614065999999,
+   "checked": true
+  },
+  {
+   "model_display": "Claude 3 Opus",
+   "model_org": "Anthropic",
+   "resolved": 7,
+   "agent": "RAG baseline",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "Claude 2",
+   "model_org": "Anthropic",
+   "resolved": 4.4,
+   "agent": "RAG baseline",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "GPT-4 (1106)",
+   "model_org": "OpenAI",
+   "resolved": 2.8,
+   "agent": "RAG baseline",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "SWE-Llama 7B",
+   "model_org": "Meta",
+   "resolved": 1.4,
+   "agent": "RAG baseline",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "SWE-Llama 13B",
+   "model_org": "Meta",
+   "resolved": 1.2,
+   "agent": "RAG baseline",
+   "instance_cost": null,
+   "checked": true
+  },
+  {
+   "model_display": "GPT-3.5",
+   "model_org": "OpenAI",
+   "resolved": 0.4,
+   "agent": "RAG baseline",
+   "instance_cost": null,
+   "checked": true
+  }
+ ]
+}

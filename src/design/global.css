@@ -265,3 +265,300 @@
   background: var(--orange);
   border-color: var(--orange);
 }
+
+/* ===== FilterBar ===== */
+
+.filterbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.filterbar input:focus,
+.filterbar select:focus {
+  outline: 2px solid var(--orange);
+  outline-offset: -1px;
+}
+
+/* ===== 二级子榜切换（SubTabs，与 BoardTabs 同款小一号）===== */
+
+.subtabs {
+  display: inline-flex;
+  border: 1px solid var(--rule-light);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-top: 22px;
+}
+
+.subtabs__tab {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  padding: 6px 16px;
+  cursor: pointer;
+}
+
+.subtabs__tab + .subtabs__tab {
+  border-left: 1px solid var(--rule-light);
+}
+
+.subtabs__tab[aria-selected='true'] {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.subtabs__tab:not([aria-selected='true']):hover {
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+}
+
+/* ===== RankTable ===== */
+
+.rt {
+  margin-top: 14px;
+  background: var(--surface);
+  border: 1px solid var(--rule-light);
+  border-radius: var(--radius);
+}
+
+.rt__empty {
+  padding: 40px;
+  text-align: center;
+}
+
+.rt__tablewrap {
+  overflow-x: auto;
+}
+
+.rt-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.rt-th {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--ink);
+  text-align: left;
+  padding: 12px 12px;
+  white-space: nowrap;
+  border-bottom: 2px solid var(--ink); /* 表头墨黑底线 */
+}
+
+.rt-th--num,
+.rt-td--num {
+  text-align: right;
+}
+
+.rt-th--check,
+.rt-td--check {
+  width: 36px;
+  padding-left: 14px;
+  padding-right: 4px;
+}
+
+.rt-td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--rule-light);
+  vertical-align: middle;
+  font-size: 13px;
+}
+
+.rt-tr {
+  cursor: pointer;
+}
+
+.rt-tr:hover,
+.rt-card:hover {
+  background: color-mix(in srgb, var(--ink) 3%, transparent); /* 行 hover 微亮 */
+}
+
+.rt-tr:focus-visible,
+.rt-card:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: -2px;
+}
+
+/* 名次列：橙 mono 700 */
+.rt__rank {
+  color: var(--orange);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+/* OSS 徽标（开源模型名旁，钢蓝）*/
+.oss-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  border-radius: var(--radius);
+  padding: 0 5px;
+  margin-left: 8px;
+  vertical-align: 2px;
+  line-height: 1.6;
+  user-select: none;
+}
+
+.rt__name {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  min-width: 0;
+}
+
+.rt__score {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rt__score-num {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.rt__ci {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--ink-soft);
+}
+
+.rt__cats {
+  display: inline-flex;
+  gap: 14px;
+}
+
+.rt__cat {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.rt__cat-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+}
+
+.rt__cat-val {
+  font-size: 12px;
+}
+
+.rt__agent {
+  font-size: 12px;
+}
+
+/* 展开区：max-height 过渡容器（Task 10 挂 TrendPanel）*/
+.rt__expand td {
+  padding: 0 !important;
+  border-bottom: none;
+}
+.rt__expand:not(.rt__expand--open) .rt__expand-inner {
+  max-height: 0;
+}
+.rt__expand--open .rt__expand-inner {
+  max-height: 420px; /* Task 10 TrendPanel 高度上限 */
+  border-bottom: 1px solid var(--rule-light);
+}
+.rt__expand-inner {
+  overflow: hidden;
+  transition: max-height 0.28s ease, border-color 0.28s ease;
+}
+.rt__expand-content {
+  min-height: 8px;
+}
+
+/* ===== 移动端卡片视图 ===== */
+
+.rt__cards {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .rt__tablewrap {
+    display: none;
+  }
+  .rt__cards {
+    display: block;
+    padding: 8px;
+  }
+  .rt-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 10px;
+    border-bottom: 1px solid var(--rule-light);
+    cursor: pointer;
+  }
+  .rt-card:last-child {
+    border-bottom: none;
+  }
+  /* 名次大 mono 数字 */
+  .rt-card__rank {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 26px;
+    color: var(--orange);
+    min-width: 34px;
+    text-align: right;
+  }
+  .rt-card__body {
+    flex: 1;
+    min-width: 0;
+  }
+  .rt-card__title {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  .rt-card__org {
+    margin-top: 1px;
+  }
+  .rt-card__score-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+  }
+  .rt-card__score {
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .rt-card__check {
+    align-self: flex-start;
+  }
+  .rt-card__expand {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.28s ease;
+  }
+  .rt-card[aria-expanded='true'] .rt-card__expand {
+    max-height: 360px;
+    width: 100%;
+    position: absolute; /* 不挤压行高；Task 10 改为常规流内展开 */
+    top: 100%;
+    left: 0;
+    background: var(--surface);
+    z-index: 2;
+    border-bottom: 1px solid var(--rule-light);
+  }
+  .rt-card__expand-content {
+    min-height: 8px;
+  }
+}

@@ -1,10 +1,27 @@
-import { Fragment } from 'react';
+import { Fragment, useMemo } from 'react';
 import type { CSSProperties, ReactNode } from 'react';
-import type { AAIndexEntry, ArenaEloEntry, ModelMeta, SweEntry, TBenchEntry } from '../types';
+import type {
+  AAIndexEntry,
+  ArenaEloEntry,
+  History,
+  ModelMeta,
+  SweEntry,
+  TBenchEntry,
+} from '../types';
 import DeltaBadge from './DeltaBadge';
 import TickRail from './TickRail';
+import TrendPanel from './TrendPanel';
+import type { Top3Ref, TrendBoard } from './TrendPanel';
 
 export type RankKind = 'arena' | 'aa' | 'swe' | 'tbench';
+
+/** 榜单 kind → history 序列键 */
+const BOARD_OF: Record<RankKind, TrendBoard> = {
+  arena: 'arena_elo',
+  aa: 'aa_index',
+  swe: 'swebench_verified',
+  tbench: 'terminal_bench',
+};
 
 type AnyEntries =
   | ArenaEloEntry[]
@@ -17,6 +34,7 @@ export interface RankTableProps {
   kind: RankKind;
   entries: AnyEntries;
   models: Record<string, ModelMeta>;
+  history: History | null;
   compareSelection: Set<string>;
   onToggleCompare: (model_id: string) => void;
   expandedId: string | null;
@@ -198,6 +216,7 @@ export default function RankTable({
   kind,
   entries,
   models,
+  history,
   compareSelection,
   onToggleCompare,
   expandedId,
@@ -205,6 +224,27 @@ export default function RankTable({
 }: RankTableProps) {
   const cols = COLUMNS[kind];
   const rows = normalizeRows(kind, entries, models);
+
+  // 展开趋势图的前三参照（当前榜前 3 名；TrendPanel 内部再排除主模型自己）
+  const top3Refs = useMemo<Top3Ref[]>(
+    () =>
+      rows.slice(0, 3).map((r) => ({
+        modelId: r.model_id,
+        score: Number(r.scoreText.replace(/[%±].*/g, '')) || 0,
+      })),
+    [rows],
+  );
+  const board: TrendBoard = BOARD_OF[kind];
+
+  /** 展开内容：仅展开的行真正挂载 TrendPanel（避免 50 行同时建 echarts 实例） */
+  const expandContent = (row: RowModel): ReactNode => {
+    if (expandedId !== row.model_id) return null;
+    return history ? (
+      <TrendPanel modelId={row.model_id} board={board} history={history} top3Refs={top3Refs} />
+    ) : (
+      <p className="trend-panel__empty">暂无历史数据</p>
+    );
+  };
 
   const checkboxStyle: CSSProperties = {
     accentColor: 'var(--orange)',
@@ -228,9 +268,8 @@ export default function RankTable({
   const expandRow = (row: RowModel): ReactNode => (
     <tr className={`rt__expand${expandedId === row.model_id ? ' rt__expand--open' : ''}`} aria-hidden={expandedId !== row.model_id}>
       <td colSpan={cols.length + 1}>
-        {/* Task 10 在此挂 TrendPanel；先渲染 max-height 过渡空占位 */}
         <div className="rt__expand-inner">
-          <div className="rt__expand-content" />
+          <div className="rt__expand-content">{expandContent(row)}</div>
         </div>
       </td>
     </tr>
@@ -341,8 +380,8 @@ export default function RankTable({
               {checkbox(row)}
             </label>
             <div className="rt-card__expand">
-              {/* Task 10 在此挂 TrendPanel 占位 */}
-              <div className="rt-card__expand-content" />
+              {/* 常规文档流展开：推开后续卡片（max-height 过渡） */}
+              <div className="rt-card__expand-content">{expandContent(row)}</div>
             </div>
           </div>
         ))}

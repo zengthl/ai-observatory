@@ -482,6 +482,26 @@
   min-height: 8px;
 }
 
+/* TrendPanel 展开内容 */
+.trend-panel {
+  padding: 10px 12px 6px;
+}
+.trend-panel__caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.trend-panel__empty {
+  margin: 0;
+  padding: 18px 0;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+}
+
 /* ===== 移动端卡片视图 ===== */
 
 .rt__cards {
@@ -543,19 +563,20 @@
   .rt-card__check {
     align-self: flex-start;
   }
+  .rt-card[aria-expanded='true'] {
+    flex-wrap: wrap; /* 展开时允许换行，让 expand 容器独占一行 */
+  }
   .rt-card__expand {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.28s ease;
+    /* 常规文档流：展开时推开后续卡片而非遮盖 */
+    flex-basis: 100%;
+    width: 100%;
   }
   .rt-card[aria-expanded='true'] .rt-card__expand {
-    max-height: 360px;
-    width: 100%;
-    position: absolute; /* 不挤压行高；Task 10 改为常规流内展开 */
-    top: 100%;
-    left: 0;
-    background: var(--surface);
-    z-index: 2;
+    max-height: 420px;
+    order: 1; /* 排到卡片主体之后 */
     border-bottom: 1px solid var(--rule-light);
   }
   .rt-card__expand-content {

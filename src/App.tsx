@@ -1,7 +1,15 @@
 import { useCallback, useMemo, useState } from 'react';
 import { useBoardData } from './hooks/useBoardData';
 import { useFilters } from './hooks/useFilters';
-import type { AAIndexEntry, ArenaEloEntry, LatestFile, ModelMeta, SweEntry, TBenchEntry } from './types';
+import type {
+  AAIndexEntry,
+  ArenaEloEntry,
+  History,
+  LatestFile,
+  ModelMeta,
+  SweEntry,
+  TBenchEntry,
+} from './types';
 import TopBar from './components/TopBar';
 import HeroChampions from './components/HeroChampions';
 import BoardTabs from './components/BoardTabs';
@@ -48,7 +56,6 @@ export default function App() {
   const [sub, setSub] = useState<SubTab>('arena');
   const [compareSelection, setCompareSelection] = useState<Set<string>>(new Set());
   const [expandedId, setExpandedId] = useState<string | null>(null);
-  void history; // Task 10 时间序列消费
 
   const modelsById = useMemo(() => {
     const map: Record<string, ModelMeta> = {};
@@ -104,6 +111,7 @@ export default function App() {
         ) : (
           <BoardBody
             latest={latest}
+            history={history}
             board={board}
             sub={sub}
             onBoardChange={changeBoard}
@@ -125,6 +133,7 @@ export default function App() {
 
 interface BoardBodyProps {
   latest: LatestFile;
+  history: History | null;
   board: BoardTab;
   sub: SubTab;
   onBoardChange: (b: BoardTab) => void;
@@ -141,6 +150,7 @@ interface BoardBodyProps {
 
 function BoardBody({
   latest,
+  history,
   board,
   sub,
   onBoardChange,
@@ -172,6 +182,7 @@ function BoardBody({
         kind={sub}
         entries={filtered}
         models={modelsById}
+        history={history}
         compareSelection={compareSelection}
         onToggleCompare={onToggleCompare}
         expandedId={expandedId}

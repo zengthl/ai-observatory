@@ -44,6 +44,12 @@
   org: Anthropic
   license: closed
   aliases: ["Claude Haiku 4.5", "claude-haiku-4.5", "claude-haiku-4-5", "Claude 4.5 Haiku"]
+# Claude Sonnet 4 是独立版本（SWE-bench 榜常见写法 "Claude 4 Sonnet"），不与 4.5/4.6 合并
+- model_id: claude-sonnet-4
+  display_name: Claude Sonnet 4
+  org: Anthropic
+  license: closed
+  aliases: ["Claude 4 Sonnet", "claude-4-sonnet", "Claude Sonnet 4", "claude-sonnet-4"]
 
 # ===== OpenAI =====
 - model_id: claude-opus-5
@@ -66,6 +72,12 @@
   org: OpenAI
   license: closed
   aliases: ["GPT-5 Pro", "gpt-5-pro", "gpt-5-pro (high)", "gpt-5-pro-high", "chatgpt-5-pro", "GPT-5 Pro Codex", "gpt-5-pro-codex"]
+# 基础 GPT-5（SWE-bench 榜写法 GPT-5 / GPT 5），不与 5.x 系列合并
+- model_id: gpt-5
+  display_name: GPT-5
+  org: OpenAI
+  license: closed
+  aliases: ["GPT-5", "gpt-5", "GPT 5", "GPT 5 mini", "gpt-5-mini", "GPT 5 nano", "gpt-5-nano"]
 - model_id: gpt-56-sol
   display_name: GPT-5.6 Sol
   org: OpenAI
@@ -187,6 +199,11 @@
   org: DeepSeek
   license: open
   aliases: ["DeepSeek V3.1", "deepseek-v3-1", "deepseek-v31", "DeepSeek V3.1 Terminus", "deepseek-v31-terminus"]
+- model_id: deepseek-v3-2
+  display_name: DeepSeek V3.2
+  org: DeepSeek
+  license: open
+  aliases: ["DeepSeek V3.2", "deepseek-v3-2", "deepseek-v32", "DeepSeek V3.2 Reasoner", "deepseek-v3-2-reasoner", "DeepSeek V3.2 Exp", "deepseek-v3-2-exp"]
 - model_id: deepseek-r1
   display_name: DeepSeek R1
   org: DeepSeek
@@ -223,7 +240,7 @@
   display_name: Qwen3 Coder 480B
   org: Alibaba
   license: open
-  aliases: ["Qwen3 Coder 480B", "qwen3-coder-480b", "Qwen3 Coder 480B A35B", "qwen3-coder-480b-a35b"]
+  aliases: ["Qwen3 Coder 480B", "qwen3-coder-480b", "Qwen3 Coder 480B A35B", "qwen3-coder-480b-a35b", "Qwen3-Coder-480B-A35B-Instruct", "qwen3-coder-480b-a35b-instruct", "Qwen3-Coder 480B/A35B Instruct"]
 - model_id: qwen3-235b
   display_name: Qwen3 235B
   org: Alibaba
@@ -246,6 +263,11 @@
   org: Moonshot AI
   license: open
   aliases: ["Kimi K2", "kimi-k2", "Kimi K2 Thinking", "kimi-k2-thinking", "Kimi K2 Instruct", "kimi-k2-instruct", "kimi-k2-0905"]
+- model_id: kimi-k2-5
+  display_name: Kimi K2.5
+  org: Moonshot AI
+  license: open
+  aliases: ["Kimi K2.5", "kimi-k2-5"]
 
 # ===== Zhipu AI (GLM) =====
 - model_id: glm-53
@@ -253,6 +275,12 @@
   org: Zhipu AI
   license: closed
   aliases: ["GLM-5.3", "glm-5-3", "glm-53", "GLM-5.3-Max", "glm-5.3-max", "glm53max", "GLM-5.3 (high)", "GLM-5.3 (max)", "glm-5-3-max"]
+# 基础 GLM-5（SWE-bench 榜写法 "GLM 5"），不与 5.x 系列合并
+- model_id: glm-5
+  display_name: GLM-5
+  org: Zhipu AI
+  license: open
+  aliases: ["GLM 5", "glm-5", "GLM-5"]
 - model_id: glm-52
   display_name: GLM-5.2
   org: Zhipu AI
@@ -296,7 +324,7 @@
   display_name: Llama 4 Maverick
   org: Meta
   license: open
-  aliases: ["Llama 4 Maverick", "llama-4-maverick", "Llama-4-Maverick-17B-128E-Instruct"]
+  aliases: ["Llama 4 Maverick", "llama-4-maverick", "Llama-4-Maverick-17B-128E-Instruct", "Llama 4 Maverick Instruct", "llama-4-maverick-instruct"]
 - model_id: llama-4-scout
   display_name: Llama 4 Scout
   org: Meta
@@ -331,6 +359,11 @@
   org: MiniMax
   license: open
   aliases: ["MiniMax M2", "minimax-m2", "MiniMax-M2"]
+- model_id: minimax-m2-5
+  display_name: MiniMax M2.5
+  org: MiniMax
+  license: open
+  aliases: ["MiniMax M2.5", "minimax-m2-5", "MiniMax-M2.5"]
 - model_id: minimax-m3
   display_name: MiniMax M3
   org: MiniMax

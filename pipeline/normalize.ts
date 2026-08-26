@@ -35,19 +35,20 @@ export function resolveModelId(
   return null;
 }
 
-function entryScore(e: { score?: number; resolved_pct?: number }): number | undefined {
-  return e.score ?? e.resolved_pct;
+function entryScore(e: { score?: number; resolved_pct?: number; index?: number }): number | undefined {
+  // 四榜主分字段不同：arena/tbench=score、swe=resolved_pct、aa=index
+  return e.score ?? e.resolved_pct ?? e.index;
 }
 
 export function withRanks<T extends { model_id: string }>(
   entries: T[],
-  prev?: { model_id: string; score?: number; resolved_pct?: number }[],
+  prev?: { model_id: string; score?: number; resolved_pct?: number; index?: number }[],
 ): (T & { rank: number; rank_prev: number | null; delta_score: number | null })[] {
   return entries.map((e, i) => {
     const prevIdx = prev ? prev.findIndex((p) => p.model_id === e.model_id) : -1;
     const prevScore =
       prevIdx >= 0 && prev ? entryScore(prev[prevIdx]) : undefined;
-    const curScore = entryScore(e as { score?: number; resolved_pct?: number });
+    const curScore = entryScore(e as { score?: number; resolved_pct?: number; index?: number });
     return {
       ...e,
       rank: i + 1,

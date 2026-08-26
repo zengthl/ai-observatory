@@ -98,4 +98,6 @@ export type History = Record<string, HistoryModel>;
 export interface PendingFile {
   date: string;
   names: string[];
+  /** names 被截断时的全量总数；截断上限 100 */
+  total?: number;
 }

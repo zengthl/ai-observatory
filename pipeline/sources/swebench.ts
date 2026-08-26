@@ -69,7 +69,7 @@ export async function fetchSwebench(): Promise<
   { ok: true; parsed: ReturnType<typeof parseSwe> } | { ok: false; error: string }
 > {
   try {
-    const res = await fetch(SOURCE_URL);
+    const res = await fetch(SOURCE_URL, { signal: AbortSignal.timeout(60_000) });
     if (!res.ok) {
       return { ok: false, error: `SWE-bench HTTP ${res.status}` };
     }

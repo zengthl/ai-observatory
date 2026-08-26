@@ -92,6 +92,7 @@ export async function fetchAA(
   try {
     const res = await fetch(AA_URL, {
       headers: { 'x-api-key': apiKey },
+      signal: AbortSignal.timeout(60_000),
     });
     if (!res.ok) {
       return {

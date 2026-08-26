@@ -53,6 +53,17 @@ describe('withRanks', () => {
     const r = withRanks(today, undefined);
     expect(r.every((e) => e.rank_prev === null && e.delta_score === null)).toBe(true);
   });
+  it('aa_index shape falls back to index field for score/delta', () => {
+    // aa_index 板块主分数字段是 index 而非 score（Task 2 审查移交）
+    const todayAA = [
+      { model_id: 'x', index: 71.2, rank_prev: null, delta_score: null },
+      { model_id: 'y', index: 68.5, rank_prev: null, delta_score: null },
+    ];
+    const yesterdayAA = [{ model_id: 'x', index: 70.0 }];
+    const r = withRanks(todayAA, yesterdayAA);
+    expect(r[0]).toMatchObject({ model_id: 'x', rank: 1, rank_prev: 1, delta_score: 1.2 });
+    expect(r[1]).toMatchObject({ model_id: 'y', rank: 2, rank_prev: null, delta_score: null });
+  });
 });
 
 describe('buildHistory', () => {

@@ -31,11 +31,21 @@ describe('parseSwe', () => {
     expect(top.resolved_pct).toBe(79.2);
     expect(top.agent).toBe('live-SWE-agent');
   });
-  it('resolves 14 models from the full Verified board', () => {
-    // 180 行原始记录去重后命中 models.yaml 的模型数（2026-08-26 实测）
-    expect(out.entries.length).toBe(14);
+  it('resolves the full Verified board with no unresolved high-rank gaps', () => {
+    // 180 行原始记录去重后命中 models.yaml 的模型数
+    // （2026-08-26 实测 14；Task 6 补表登记 GPT-5/Claude Sonnet 4/MiniMax M2.5/GLM-5/
+    //   Kimi K2.5/DeepSeek V3.2/Qwen3-Coder-480B/Llama 4 Maverick 后升至 22）
+    expect(out.entries.length).toBe(22);
     expect(out.entries).toContainEqual(expect.objectContaining({ model_id: 'gemini-3-pro' }));
     expect(out.entries).toContainEqual(expect.objectContaining({ model_id: 'minimax-m2' }));
+    expect(out.entries).toContainEqual(expect.objectContaining({ model_id: 'gpt-5' }));
+    expect(out.entries).toContainEqual(expect.objectContaining({ model_id: 'claude-sonnet-4' }));
+    expect(out.entries).toContainEqual(expect.objectContaining({ model_id: 'minimax-m2-5' }));
+    expect(out.entries).toContainEqual(expect.objectContaining({ model_id: 'glm-5' }));
+    expect(out.entries).toContainEqual(expect.objectContaining({ model_id: 'kimi-k2-5' }));
+    expect(out.entries).toContainEqual(expect.objectContaining({ model_id: 'deepseek-v3-2' }));
+    expect(out.entries).toContainEqual(expect.objectContaining({ model_id: 'qwen3-coder-480b' }));
+    expect(out.entries).toContainEqual(expect.objectContaining({ model_id: 'llama-4-maverick' }));
   });
   it('multi-run dedup keeps the highest resolved run per model', () => {
     const claude45 = out.entries.find((e) => e.model_id === 'claude-opus-4-5');
@@ -47,9 +57,9 @@ describe('parseSwe', () => {
     expect(out.pending.every((n) => !/^(multiple|undisclosed)$/i.test(n))).toBe(true);
   });
   it('unknown model names land in pending', () => {
-    // 榜上真实存在但未登记 models.yaml 的名字
-    expect(out.pending).toContain('GPT-5');
-    expect(out.pending).toContain('MiniMax M2.5');
+    // 榜上真实存在但未登记 models.yaml 的名字（GPT-5/MiniMax M2.5 已于 Task 6 补表转正）
+    expect(out.pending).toContain('Claude 4 Opus');
+    expect(out.pending).toContain('GPT 5.2');
     expect(Array.isArray(out.pending)).toBe(true);
   });
 });

@@ -121,7 +121,10 @@ export async function fetchArena(): Promise<
     const cats: ArenaCategory[] = ['text', 'coding', 'webdev'];
     const results = await Promise.all(
       cats.map(async (c) => {
-        const res = await fetch(URLS[c], { headers: { 'User-Agent': UA } });
+        const res = await fetch(URLS[c], {
+          headers: { 'User-Agent': UA },
+          signal: AbortSignal.timeout(60_000),
+        });
         if (!res.ok) throw new Error(`LMArena ${c} HTTP ${res.status}`);
         return parseArena(await res.text(), c);
       }),

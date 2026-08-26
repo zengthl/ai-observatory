@@ -7,10 +7,11 @@ export type ArenaCategory = 'text' | 'coding' | 'webdev';
 const UA =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';
 
+// 2026-08-26 实测：lmarena.ai 已 301 到 arena.ai；WebDev 榜挂在 code 分类下
 const URLS: Record<ArenaCategory, string> = {
   text: 'https://lmarena.ai/leaderboard/text',
   coding: 'https://lmarena.ai/leaderboard/text/coding',
-  webdev: 'https://lmarena.ai/leaderboard/text/webdev',
+  webdev: 'https://lmarena.ai/leaderboard/code/webdev',
 };
 
 // 每个模型行的固定形态：<span class="max-w-full truncate" title="模型名">
@@ -73,8 +74,10 @@ export function parseArena(
       const s = afterCells[i];
       if (isInt(s) && parseInt(s, 10) >= 100 && parseInt(s, 10) <= 2000) {
         elo = parseInt(s, 10);
-        // 相邻 ±N 格是 CI 半宽
-        const pm = afterCells[i + 1]?.match(/^±(\d+)$/);
+        // 相邻 CI 格：text/coding 榜是 ±N，webdev 榜是 +N/-N
+        const pm =
+          afterCells[i + 1]?.match(/^±(\d+)$/) ??
+          afterCells[i + 1]?.match(/^\+(\d+)\/-(\d+)$/);
         if (pm) ciHalf = parseInt(pm[1], 10);
         for (let j = i + 1; j < Math.min(i + 5, afterCells.length); j++) {
           if (isVotes(afterCells[j])) {

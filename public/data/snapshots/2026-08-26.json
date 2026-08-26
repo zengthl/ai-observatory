@@ -3,15 +3,15 @@
  "sources": {
   "artificial_analysis": {
    "status": "ok",
-   "fetched_at": "2026-08-26T05:11:14.940Z"
+   "fetched_at": "2026-08-26T10:34:38.783Z"
   },
   "lmarena": {
    "status": "ok",
-   "fetched_at": "2026-08-26T05:11:14.940Z"
+   "fetched_at": "2026-08-26T10:34:38.783Z"
   },
   "swebench": {
    "status": "ok",
-   "fetched_at": "2026-08-26T05:11:14.940Z"
+   "fetched_at": "2026-08-26T10:34:38.783Z"
   }
  },
  "llm": {

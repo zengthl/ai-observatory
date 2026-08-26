@@ -78,6 +78,13 @@
   }
 }
 
+/* 窄屏下日期与快照链接放不下会撑出横向滚动；日期在页脚「数据截至」仍有展示 */
+@media (max-width: 600px) {
+  .topbar__date {
+    display: none;
+  }
+}
+
 /* ===== HeroChampions ===== */
 
 .hero {
@@ -701,6 +708,79 @@
   .scatter__chart {
     height: 300px;
   }
+}
+
+/* ===== BoardUnavailable 数据源暂缺占位卡 ===== */
+
+.board-unavailable {
+  margin-top: 14px;
+  border: 1px dashed var(--ink-soft);
+  border-radius: var(--radius);
+  padding: 48px 32px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.board-unavailable__title {
+  margin: 0;
+  font-weight: 900;
+  font-size: 18px;
+}
+
+.board-unavailable__date {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+}
+
+/* ===== Footer 数据来源与方法（#methodology 锚点目标）===== */
+
+.footer {
+  margin-top: 56px;
+  border-top: 2px solid var(--ink);
+  background: var(--surface);
+}
+
+.footer__inner {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 28px 24px 40px;
+}
+
+.footer__heading {
+  color: var(--ink);
+  margin: 0 0 12px;
+}
+
+.footer__text {
+  margin: 0 0 10px;
+  max-width: 76ch;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.footer__link {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.footer__link:hover {
+  color: var(--orange);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer__pending {
+  color: var(--ink-soft);
+}
+
+.footer__meta {
+  margin-top: 18px;
+  white-space: normal;
 }
 
 /* TrendPanel 展开内容 */

@@ -9,6 +9,7 @@ import type {
   ModelMeta,
   SweEntry,
   TBenchEntry,
+  SourceName,
 } from './types';
 import { addToFifoSelection } from './lib/compare';
 import TopBar from './components/TopBar';
@@ -19,6 +20,8 @@ import RankTable from './components/RankTable';
 import ErrorState from './components/ErrorState';
 import CompareDrawer from './components/CompareDrawer';
 import ScatterView from './components/ScatterView';
+import BoardUnavailable from './components/BoardUnavailable';
+import Footer from './components/Footer';
 
 type BoardTab = 'llm' | 'agent';
 type LlmSub = 'arena' | 'aa' | 'scatter';
@@ -31,6 +34,15 @@ const SUB_LABELS: Record<SubTab, string> = {
   scatter: '速度 × 价格',
   swe: 'SWE-bench',
   tbench: 'Terminal-Bench',
+};
+
+/** 子榜 → 上游数据源（unavailable 时该子榜渲染占位卡） */
+const SUB_SOURCE: Record<Exclude<SubTab, 'scatter'>, SourceName> = {
+  arena: 'lmarena',
+  aa: 'artificial_analysis',
+  swe: 'swebench',
+  // Terminal-Bench 数据取自 AA API 响应的 terminalbench_v2_1 字段
+  tbench: 'artificial_analysis',
 };
 
 /** 二级子榜切换（与 BoardTabs 同款样式，小一号） */
@@ -55,18 +67,12 @@ function SubTabs({ board, tab, onChange }: { board: BoardTab; tab: SubTab; onCha
 }
 
 export default function App() {
-  const { loading, error, retry, latest, history } = useBoardData();
+  const { loading, error, retry, latest, history, pendingCount, pendingTotal } = useBoardData();
   const [board, setBoard] = useState<BoardTab>('llm');
   const [sub, setSub] = useState<SubTab>('arena');
   // 对比选择（最多 2 个，Set 保序：先勾的在前）
   const [compareSelection, setCompareSelection] = useState<Set<string>>(new Set());
   const [expandedId, setExpandedId] = useState<string | null>(null);
-
-  const modelsById = useMemo(() => {
-    const map: Record<string, ModelMeta> = {};
-    for (const m of latest?.models ?? []) map[m.model_id] = m;
-    return map;
-  }, [latest]);
 
   /**
    * 复选框语义：再点已勾选者取消勾选；勾第三个时 FIFO 替换最早的那个
@@ -111,7 +117,10 @@ export default function App() {
     else if (sub === 'tbench') entries = latest.agent.terminal_bench;
     // sub === 'scatter' 时 entries 为空数组（FilterBar 隐藏、RankTable 不渲染）
   }
-  const { filtered, orgs, filter, setFilter } = useFilters(entries, modelsById);
+  // model_id 索引全站唯一构建处；useMemo 保持引用稳定，
+  // 否则 useFilters/RankTable 内部 useMemo 每次 render 失效 → 趋势图无谓重建
+  const models = useMemo(() => modelsById(latest), [latest]);
+  const { filtered, orgs, filter, setFilter } = useFilters(entries, models);
   const filteredAny = filtered as Array<ArenaEloEntry | AAIndexEntry | SweEntry | TBenchEntry>;
 
   // 勾满两个自动弹出抽屉：left=先勾的，right=后勾的（Set 保插入序）
@@ -144,6 +153,7 @@ export default function App() {
             onToggleCompare={onToggleCompare}
             expandedId={expandedId}
             onToggleExpand={onToggleExpand}
+            models={models}
           />
         )}
       </main>
@@ -151,8 +161,16 @@ export default function App() {
       {comparePair && (
         <CompareDrawer left={comparePair[0]} right={comparePair[1]} latest={latest!} onClose={closeCompare} />
       )}
+      {latest && <Footer latest={latest} pendingCount={pendingCount} pendingTotal={pendingTotal} />}
     </>
   );
+}
+
+/** models 列表 → model_id 索引（全站唯一构建处） */
+function modelsById(latest: LatestFile | null): Record<string, ModelMeta> {
+  const map: Record<string, ModelMeta> = {};
+  for (const m of latest?.models ?? []) map[m.model_id] = m;
+  return map;
 }
 
 interface BoardBodyProps {
@@ -170,6 +188,7 @@ interface BoardBodyProps {
   onToggleCompare: (model_id: string) => void;
   expandedId: string | null;
   onToggleExpand: (model_id: string) => void;
+  models: Record<string, ModelMeta>;
 }
 
 function BoardBody({
@@ -187,12 +206,10 @@ function BoardBody({
   onToggleCompare,
   expandedId,
   onToggleExpand,
+  models,
 }: BoardBodyProps) {
-  const modelsById = useMemo(() => {
-    const map: Record<string, ModelMeta> = {};
-    for (const m of latest.models) map[m.model_id] = m;
-    return map;
-  }, [latest]);
+  const unavailable =
+    sub !== 'scatter' ? latest.sources[SUB_SOURCE[sub]]?.status === 'unavailable' : false;
 
   return (
     <>
@@ -200,14 +217,14 @@ function BoardBody({
       <BoardTabs tab={board} onChange={onBoardChange} />
       {/* 二级切换：LLM → Arena Elo / AA 指数 / 速度×价格散点；Agent → SWE-bench / Terminal-Bench */}
       <SubTabs board={board} tab={sub} onChange={onSubChange} />
-      {sub !== 'scatter' && (
+      {sub !== 'scatter' && !unavailable && (
         <>
           <FilterBar orgs={orgs} filter={filter} setFilter={onFilterChange} count={filtered.length} />
           <RankTable
             key={sub}
             kind={sub as 'arena' | 'aa' | 'swe' | 'tbench'}
             entries={filtered}
-            models={modelsById}
+            models={models}
             history={history}
             compareSelection={compareSelection}
             onToggleCompare={onToggleCompare}
@@ -216,9 +233,21 @@ function BoardBody({
           />
         </>
       )}
-      {sub === 'scatter' && (
-        <ScatterView aaEntries={latest.llm.aa_index} models={modelsById} onSelect={() => {}} />
+      {sub !== 'scatter' && unavailable && (
+        <BoardUnavailable
+          name={SUB_LABELS[sub]}
+          lastOk={latest.sources[SUB_SOURCE[sub]]?.last_ok}
+        />
       )}
+      {sub === 'scatter' &&
+        (latest.sources.artificial_analysis.status === 'unavailable' ? (
+          <BoardUnavailable
+            name={SUB_LABELS.scatter}
+            lastOk={latest.sources.artificial_analysis.last_ok}
+          />
+        ) : (
+          <ScatterView aaEntries={latest.llm.aa_index} models={models} onSelect={() => {}} />
+        ))}
     </>
   );
 }

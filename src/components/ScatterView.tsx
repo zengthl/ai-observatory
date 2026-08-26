@@ -30,8 +30,6 @@ interface ScatterPoint {
   index: number; // AA 智能指数（tooltip 用）
 }
 
-/** 指数 → 气泡大小 8–28px 线性映射（实现见 lib/compare.ts，有单测） */
-
 /** tooltip 以 innerHTML 渲染，模型名来自外部数据，插入前须转义 */
 const ESC_MAP: Record<string, string> = {
   '&': '&amp;',

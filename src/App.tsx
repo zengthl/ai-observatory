@@ -16,22 +16,25 @@ import BoardTabs from './components/BoardTabs';
 import FilterBar from './components/FilterBar';
 import RankTable from './components/RankTable';
 import ErrorState from './components/ErrorState';
+import CompareDrawer from './components/CompareDrawer';
+import ScatterView from './components/ScatterView';
 
 type BoardTab = 'llm' | 'agent';
-type LlmSub = 'arena' | 'aa';
+type LlmSub = 'arena' | 'aa' | 'scatter';
 type AgentSub = 'swe' | 'tbench';
 type SubTab = LlmSub | AgentSub;
 
 const SUB_LABELS: Record<SubTab, string> = {
   arena: 'Arena Elo',
   aa: 'AA 指数',
+  scatter: '速度 × 价格',
   swe: 'SWE-bench',
   tbench: 'Terminal-Bench',
 };
 
 /** 二级子榜切换（与 BoardTabs 同款样式，小一号） */
 function SubTabs({ board, tab, onChange }: { board: BoardTab; tab: SubTab; onChange: (t: SubTab) => void }) {
-  const keys: SubTab[] = board === 'llm' ? ['arena', 'aa'] : ['swe', 'tbench'];
+  const keys: SubTab[] = board === 'llm' ? ['arena', 'aa', 'scatter'] : ['swe', 'tbench'];
   return (
     <div className="subtabs" role="tablist" aria-label="子榜单切换">
       {keys.map((k) => (
@@ -54,6 +57,7 @@ export default function App() {
   const { loading, error, retry, latest, history } = useBoardData();
   const [board, setBoard] = useState<BoardTab>('llm');
   const [sub, setSub] = useState<SubTab>('arena');
+  // 对比选择（最多 2 个，Set 保序：先勾的在前）
   const [compareSelection, setCompareSelection] = useState<Set<string>>(new Set());
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
@@ -63,11 +67,19 @@ export default function App() {
     return map;
   }, [latest]);
 
+  /**
+   * 勾选第三个时 FIFO 替换最早的那个（selection 始终 ≤2 且保插入序）；
+   * Set 迭代序即插入序，第一个元素即「最早勾选」。
+   */
   const onToggleCompare = useCallback((model_id: string) => {
     setCompareSelection((prev) => {
       const next = new Set(prev);
-      if (next.has(model_id)) next.delete(model_id);
-      else next.add(model_id); // 勾满 2 个的对比行为 Task 11 处理
+      if (next.has(model_id)) {
+        next.delete(model_id);
+      } else {
+        if (next.size >= 2) next.delete(next.values().next().value!); // 弹出最早勾选者
+        next.add(model_id);
+      }
       return next;
     });
   }, []);
@@ -75,6 +87,9 @@ export default function App() {
   const onToggleExpand = useCallback((model_id: string) => {
     setExpandedId((prev) => (prev === model_id ? null : model_id));
   }, []);
+
+  /** 关闭对比抽屉并清空勾选，让复选框状态与抽屉一致 */
+  const closeCompare = useCallback(() => setCompareSelection(new Set()), []);
 
   // 切子榜时重置 org 筛选（新榜单可能不含当前 org，避免 0 行空白）；query/license 保留
   const changeSub = (s: SubTab) => {
@@ -93,10 +108,15 @@ export default function App() {
     if (sub === 'arena') entries = latest.llm.arena_elo;
     else if (sub === 'aa') entries = latest.llm.aa_index;
     else if (sub === 'swe') entries = latest.agent.swebench_verified;
-    else entries = latest.agent.terminal_bench;
+    else if (sub === 'tbench') entries = latest.agent.terminal_bench;
+    // sub === 'scatter' 时 entries 为空数组（FilterBar 隐藏、RankTable 不渲染）
   }
   const { filtered, orgs, filter, setFilter } = useFilters(entries, modelsById);
   const filteredAny = filtered as Array<ArenaEloEntry | AAIndexEntry | SweEntry | TBenchEntry>;
+
+  // 勾满两个自动弹出抽屉：left=先勾的，right=后勾的（Set 保插入序）
+  const comparePair =
+    latest && compareSelection.size === 2 ? [...compareSelection] : null;
 
   return (
     <>
@@ -127,6 +147,10 @@ export default function App() {
           />
         )}
       </main>
+      {/* 对比抽屉挂在页面底部，独立于 BoardBody 的加载分支 */}
+      {comparePair && (
+        <CompareDrawer left={comparePair[0]} right={comparePair[1]} latest={latest!} onClose={closeCompare} />
+      )}
     </>
   );
 }
@@ -174,20 +198,27 @@ function BoardBody({
     <>
       <HeroChampions latest={latest} />
       <BoardTabs tab={board} onChange={onBoardChange} />
-      {/* 二级切换：LLM → Arena Elo / AA 指数；Agent → SWE-bench / Terminal-Bench */}
+      {/* 二级切换：LLM → Arena Elo / AA 指数 / 速度×价格散点；Agent → SWE-bench / Terminal-Bench */}
       <SubTabs board={board} tab={sub} onChange={onSubChange} />
-      <FilterBar orgs={orgs} filter={filter} setFilter={onFilterChange} count={filtered.length} />
-      <RankTable
-        key={sub}
-        kind={sub}
-        entries={filtered}
-        models={modelsById}
-        history={history}
-        compareSelection={compareSelection}
-        onToggleCompare={onToggleCompare}
-        expandedId={expandedId}
-        onToggleExpand={onToggleExpand}
-      />
+      {sub !== 'scatter' && (
+        <>
+          <FilterBar orgs={orgs} filter={filter} setFilter={onFilterChange} count={filtered.length} />
+          <RankTable
+            key={sub}
+            kind={sub as 'arena' | 'aa' | 'swe' | 'tbench'}
+            entries={filtered}
+            models={modelsById}
+            history={history}
+            compareSelection={compareSelection}
+            onToggleCompare={onToggleCompare}
+            expandedId={expandedId}
+            onToggleExpand={onToggleExpand}
+          />
+        </>
+      )}
+      {sub === 'scatter' && (
+        <ScatterView aaEntries={latest.llm.aa_index} models={modelsById} onSelect={() => {}} />
+      )}
     </>
   );
 }

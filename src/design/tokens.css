@@ -1,0 +1,65 @@
+:root {
+  /* 精密计量局 · 色彩 */
+  --paper: #fafaf6;
+  --ink: #16181d;
+  --ink-soft: #6b6d64;
+  --rule-light: #e4e4db;
+  --grid-line: rgba(22, 24, 29, 0.045);
+  --orange: #ff4d00;
+  --blue: #2563eb;
+  --up: #0a7d33;
+  --down: #c62828;
+  --surface: #ffffff;
+
+  /* 字体 */
+  --font-body: 'Noto Sans SC', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* 形状 */
+  --radius: 2px;
+  --grid-size: 22px;
+  --page-max: 1200px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 通用工具类 */
+.mono {
+  font-family: var(--font-mono);
+}
+.label-caps {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

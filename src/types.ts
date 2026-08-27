@@ -1,6 +1,6 @@
 // ===== 快照结构 =====
 
-export type SourceName = 'artificial_analysis' | 'lmarena' | 'swebench';
+export type SourceName = 'artificial_analysis' | 'lmarena' | 'swebench' | 'livebench';
 
 export type SourceStatus = 'ok' | 'unavailable';
 
@@ -35,6 +35,19 @@ export interface AAIndexEntry {
   delta_score: number | null;
 }
 
+/**
+ * 通用 LLM 榜条目：AA 6 个新子榜 + LiveBench 3/6 个子榜都用此形态。
+ * 字段约定：
+ * - score：归一化到 0–100 区间的"分"。AA 原始评测多为 0–1 比例，解析时 ×100
+ * - rank_prev / delta_score：每日重算，由 withRanks 注入
+ */
+export interface GenericLLMEntry {
+  model_id: string;
+  score: number;
+  rank_prev: number | null;
+  delta_score: number | null;
+}
+
 export interface SweEntry {
   model_id: string;
   resolved_pct: number;
@@ -57,6 +70,21 @@ export interface Snapshot {
   llm: {
     arena_elo: ArenaEloEntry[];
     aa_index: AAIndexEntry[];
+    // AA 深挖 6 子榜（来自 evaluations.* 字段 ×100 归一）
+    aa_mmlu_pro: GenericLLMEntry[];
+    aa_gpqa: GenericLLMEntry[];
+    aa_hle: GenericLLMEntry[];
+    aa_livecodebench: GenericLLMEntry[];
+    aa_ifeval: GenericLLMEntry[];
+    aa_lcr: GenericLLMEntry[];
+    // LiveBench 6 个子榜（parquet 现仅含 coding/instruction_following/language；
+    //  其余 3 个空数组，schema/UI 都保留，扩展时无需改字段）
+    livebench_coding: GenericLLMEntry[];
+    livebench_math: GenericLLMEntry[];
+    livebench_reasoning: GenericLLMEntry[];
+    livebench_language: GenericLLMEntry[];
+    livebench_data_analysis: GenericLLMEntry[];
+    livebench_instruction_following: GenericLLMEntry[];
   };
   agent: {
     swebench_verified: SweEntry[];
@@ -89,6 +117,18 @@ export interface HistoryModel {
   aa_index?: HistoryPoint[];
   swebench_verified?: HistoryPoint[];
   terminal_bench?: HistoryPoint[];
+  aa_mmlu_pro?: HistoryPoint[];
+  aa_gpqa?: HistoryPoint[];
+  aa_hle?: HistoryPoint[];
+  aa_livecodebench?: HistoryPoint[];
+  aa_ifeval?: HistoryPoint[];
+  aa_lcr?: HistoryPoint[];
+  livebench_coding?: HistoryPoint[];
+  livebench_math?: HistoryPoint[];
+  livebench_reasoning?: HistoryPoint[];
+  livebench_language?: HistoryPoint[];
+  livebench_data_analysis?: HistoryPoint[];
+  livebench_instruction_following?: HistoryPoint[];
 }
 
 export type History = Record<string, HistoryModel>;

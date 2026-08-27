@@ -292,11 +292,13 @@
 /* ===== 二级子榜切换（SubTabs，与 BoardTabs 同款小一号）===== */
 
 .subtabs {
-  display: inline-flex;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
   border: 1px solid var(--rule-light);
   border-radius: var(--radius);
-  overflow: hidden;
   margin-top: 22px;
+  scrollbar-width: thin;
 }
 
 .subtabs__tab {
@@ -310,10 +312,12 @@
   letter-spacing: 0.08em;
   padding: 6px 16px;
   cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .subtabs__tab + .subtabs__tab {
-  border-left: 1px solid var(--rule-light);
+  position: relative;
 }
 
 .subtabs__tab[aria-selected='true'] {
@@ -324,6 +328,20 @@
 
 .subtabs__tab:not([aria-selected='true']):hover {
   background: color-mix(in srgb, var(--ink) 6%, transparent);
+}
+
+/* 单 tab 间分隔：用 after 伪元素，不让 overflow 滚动裁掉左 border */
+.subtabs__tab + .subtabs__tab {
+  position: relative;
+}
+.subtabs__tab + .subtabs__tab::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--rule-light);
 }
 
 /* ===== RankTable ===== */

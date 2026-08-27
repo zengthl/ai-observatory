@@ -1,4 +1,4 @@
-// pipeline/run.ts —— 管道编排：抓三源 → 归一化 → zod 校验 → 快照落盘
+// pipeline/run.ts —— 管道编排：抓四源 → 归一化 → zod 校验 → 快照落盘
 // 用法：npm run fetch（GitHub Actions 每日定时 + 本地手动）
 import fs from 'node:fs';
 import path from 'node:path';
@@ -12,10 +12,11 @@ import type {
   SourceName,
 } from '../src/types';
 import { historySchema, snapshotSchema } from './schema';
-import { buildHistory, loadModels, withRanks } from './normalize';
+import { buildHistory, loadModels, withRanks, withRanksGeneric } from './normalize';
 import { fetchAA } from './sources/aa';
 import { fetchArena } from './sources/arena';
 import { fetchSwebench } from './sources/swebench';
+import { fetchLivebench } from './sources/livebench';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = path.resolve(__dirname, '..', 'public', 'data');
@@ -75,10 +76,11 @@ async function main(): Promise<void> {
   const fetchedAt = now.toISOString();
 
   console.log(`[${date}] fetching sources...`);
-  const [aaRes, arenaRes, sweRes] = await Promise.all([
+  const [aaRes, arenaRes, sweRes, lbRes] = await Promise.all([
     fetchAA(apiKey),
     fetchArena(),
     fetchSwebench(),
+    fetchLivebench(),
   ]);
 
   const prevLatest = readJson<Snapshot>('latest.json');
@@ -92,14 +94,18 @@ async function main(): Promise<void> {
     swebench: sweRes.ok
       ? { status: 'ok', fetched_at: fetchedAt }
       : { status: 'unavailable', fetched_at: fetchedAt, last_ok: lastOkFrom(prevLatest, 'swebench') },
+    livebench: lbRes.ok
+      ? { status: 'ok', fetched_at: fetchedAt }
+      : { status: 'unavailable', fetched_at: fetchedAt, last_ok: lastOkFrom(prevLatest, 'livebench') },
   };
 
-  if (!aaRes.ok && !arenaRes.ok && !sweRes.ok) {
+  if (!aaRes.ok && !arenaRes.ok && !sweRes.ok && !lbRes.ok) {
     console.error('ALL SOURCES FAILED — aborting, no snapshot written');
     console.error(
       `  artificial_analysis: ${'error' in aaRes ? aaRes.error : ''}\n` +
         `  lmarena: ${'error' in arenaRes ? arenaRes.error : ''}\n` +
-        `  swebench: ${'error' in sweRes ? sweRes.error : ''}`,
+        `  swebench: ${'error' in sweRes ? sweRes.error : ''}\n` +
+        `  livebench: ${'error' in lbRes ? lbRes.error : ''}`,
     );
     process.exit(1);
   }
@@ -107,6 +113,7 @@ async function main(): Promise<void> {
     ['artificial_analysis', aaRes],
     ['lmarena', arenaRes],
     ['swebench', sweRes],
+    ['livebench', lbRes],
   ] as const) {
     if (!res.ok) console.warn(`[${date}] ${name} unavailable: ${(res as { error: string }).error}`);
   }
@@ -122,18 +129,38 @@ async function main(): Promise<void> {
   console.log(`[${date}] baseline snapshot: ${baselineDate ?? 'none (first run)'}`);
   const prevHistory = readJson<History>('history.json') ?? {};
 
-  // 组装四榜（失败源产出空数组，快照里标 unavailable）
+  // 组装各榜（失败源产出空数组，快照里标 unavailable）
   const aaEntries = aaRes.ok ? aaRes.parsed.entries : [];
   const tbEntries = aaRes.ok ? aaRes.parsed.terminal_bench : [];
   const arenaEntries = arenaRes.ok ? arenaRes.entries : [];
   const sweEntries = sweRes.ok ? sweRes.parsed.entries : [];
 
+  // AA 6 子榜：失败/无数据时落空数组
+  const aaP = aaRes.ok ? aaRes.parsed : null;
+  const lbP = lbRes.ok ? lbRes.parsed : null;
+  const prevLlm = baseline?.llm;
+
   const snapshot: LatestFile = {
     date,
     sources,
     llm: {
-      arena_elo: withRanks(arenaEntries, baseline?.llm.arena_elo),
-      aa_index: withRanks(aaEntries, baseline?.llm.aa_index),
+      arena_elo: withRanks(arenaEntries, prevLlm?.arena_elo),
+      aa_index: withRanks(aaEntries, prevLlm?.aa_index),
+      aa_mmlu_pro: withRanksGeneric(aaP?.aa_mmlu_pro ?? [], prevLlm?.aa_mmlu_pro),
+      aa_gpqa: withRanksGeneric(aaP?.aa_gpqa ?? [], prevLlm?.aa_gpqa),
+      aa_hle: withRanksGeneric(aaP?.aa_hle ?? [], prevLlm?.aa_hle),
+      aa_livecodebench: withRanksGeneric(aaP?.aa_livecodebench ?? [], prevLlm?.aa_livecodebench),
+      aa_ifeval: withRanksGeneric(aaP?.aa_ifeval ?? [], prevLlm?.aa_ifeval),
+      aa_lcr: withRanksGeneric(aaP?.aa_lcr ?? [], prevLlm?.aa_lcr),
+      livebench_coding: withRanksGeneric(lbP?.livebench_coding ?? [], prevLlm?.livebench_coding),
+      livebench_math: withRanksGeneric(lbP?.livebench_math ?? [], prevLlm?.livebench_math),
+      livebench_reasoning: withRanksGeneric(lbP?.livebench_reasoning ?? [], prevLlm?.livebench_reasoning),
+      livebench_language: withRanksGeneric(lbP?.livebench_language ?? [], prevLlm?.livebench_language),
+      livebench_data_analysis: withRanksGeneric(lbP?.livebench_data_analysis ?? [], prevLlm?.livebench_data_analysis),
+      livebench_instruction_following: withRanksGeneric(
+        lbP?.livebench_instruction_following ?? [],
+        prevLlm?.livebench_instruction_following,
+      ),
     },
     agent: {
       swebench_verified: withRanks(sweEntries, baseline?.agent.swebench_verified),
@@ -149,6 +176,7 @@ async function main(): Promise<void> {
     ...(aaRes.ok ? [aaRes.parsed.pending] : []),
     ...(arenaRes.ok ? [arenaRes.pending] : []),
     ...(sweRes.ok ? [sweRes.parsed.pending] : []),
+    ...(lbRes.ok ? [lbRes.parsed.pending] : []),
   );
   const pending: PendingFile =
     pendingAll.length > PENDING_LIMIT
@@ -162,6 +190,12 @@ async function main(): Promise<void> {
 
   console.log(
     `[${date}] done. arena:${validated.llm.arena_elo.length} aa:${validated.llm.aa_index.length} ` +
+      `aa_mmlu:${validated.llm.aa_mmlu_pro.length} aa_gpqa:${validated.llm.aa_gpqa.length} ` +
+      `aa_hle:${validated.llm.aa_hle.length} aa_lcb:${validated.llm.aa_livecodebench.length} ` +
+      `aa_if:${validated.llm.aa_ifeval.length} aa_lcr:${validated.llm.aa_lcr.length} ` +
+      `lb_cod:${validated.llm.livebench_coding.length} lb_math:${validated.llm.livebench_math.length} ` +
+      `lb_rea:${validated.llm.livebench_reasoning.length} lb_lang:${validated.llm.livebench_language.length} ` +
+      `lb_data:${validated.llm.livebench_data_analysis.length} lb_if:${validated.llm.livebench_instruction_following.length} ` +
       `swe:${validated.agent.swebench_verified.length} tb:${validated.agent.terminal_bench.length} ` +
       `pending:${pending.names.length}${pending.total != null ? `/${pending.total} (truncated)` : ''} ` +
       `history:${Object.keys(history).length} models`,

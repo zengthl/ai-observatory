@@ -35,9 +35,14 @@ export function resolveModelId(
   return null;
 }
 
+/** 主分字段：多数条目用 score；swe 用 resolved_pct；aa 用 index */
 function entryScore(e: { score?: number; resolved_pct?: number; index?: number }): number | undefined {
-  // 四榜主分字段不同：arena/tbench=score、swe=resolved_pct、aa=index
   return e.score ?? e.resolved_pct ?? e.index;
+}
+
+/** GenericLLMEntry 主分是 score（兼容 aa_index 用 index） */
+function genericEntryScore(e: { score?: number; index?: number }): number | undefined {
+  return e.score ?? e.index;
 }
 
 export function withRanks<T extends { model_id: string }>(
@@ -61,6 +66,49 @@ export function withRanks<T extends { model_id: string }>(
   });
 }
 
+/** 通用 LLM 榜的 withRanks：主分一律是 score，AA 智能指数用 index */
+export function withRanksGeneric<T extends { model_id: string; score: number }>(
+  entries: T[],
+  prev?: { model_id: string; score?: number }[],
+): (T & { rank: number; rank_prev: number | null; delta_score: number | null })[] {
+  return entries.map((e, i) => {
+    const prevIdx = prev ? prev.findIndex((p) => p.model_id === e.model_id) : -1;
+    const prevScore = prevIdx >= 0 && prev ? genericEntryScore(prev[prevIdx]) : undefined;
+    return {
+      ...e,
+      rank: i + 1,
+      rank_prev: prevIdx >= 0 ? prevIdx + 1 : null,
+      delta_score:
+        prevScore != null ? Math.round((e.score - prevScore) * 10) / 10 : null,
+    };
+  });
+}
+
+/** Snapshot 中每个 (boardKey, historyKey) 的元组；用于 buildHistory 通用化 */
+type BoardKeys = {
+  snapshotPath: keyof Snapshot['llm'] | keyof Snapshot['agent'];
+  historyKey: keyof HistoryModel;
+  /** 提取当日 score（llm.* → score/resolved_pct/index，agent.* → 各自主分） */
+  getScore: (e: { score?: number; resolved_pct?: number; index?: number }) => number | undefined;
+}[];
+
+const BOARD_KEYS: BoardKeys = [
+  { snapshotPath: 'arena_elo', historyKey: 'arena_elo', getScore: (e) => e.score },
+  { snapshotPath: 'aa_index', historyKey: 'aa_index', getScore: (e) => e.index },
+  { snapshotPath: 'aa_mmlu_pro', historyKey: 'aa_mmlu_pro', getScore: (e) => e.score },
+  { snapshotPath: 'aa_gpqa', historyKey: 'aa_gpqa', getScore: (e) => e.score },
+  { snapshotPath: 'aa_hle', historyKey: 'aa_hle', getScore: (e) => e.score },
+  { snapshotPath: 'aa_livecodebench', historyKey: 'aa_livecodebench', getScore: (e) => e.score },
+  { snapshotPath: 'aa_ifeval', historyKey: 'aa_ifeval', getScore: (e) => e.score },
+  { snapshotPath: 'aa_lcr', historyKey: 'aa_lcr', getScore: (e) => e.score },
+  { snapshotPath: 'livebench_coding', historyKey: 'livebench_coding', getScore: (e) => e.score },
+  { snapshotPath: 'livebench_math', historyKey: 'livebench_math', getScore: (e) => e.score },
+  { snapshotPath: 'livebench_reasoning', historyKey: 'livebench_reasoning', getScore: (e) => e.score },
+  { snapshotPath: 'livebench_language', historyKey: 'livebench_language', getScore: (e) => e.score },
+  { snapshotPath: 'livebench_data_analysis', historyKey: 'livebench_data_analysis', getScore: (e) => e.score },
+  { snapshotPath: 'livebench_instruction_following', historyKey: 'livebench_instruction_following', getScore: (e) => e.score },
+];
+
 export function buildHistory(prevHistory: History, snapshot: Snapshot): History {
   const next: History = structuredClone(prevHistory);
   const add = (
@@ -79,17 +127,24 @@ export function buildHistory(prevHistory: History, snapshot: Snapshot): History 
     next[modelId][board] = series.slice(-365); // 最多留一年
   };
 
-  snapshot.llm.arena_elo.forEach((e) =>
-    add(e.model_id, 'arena_elo', [snapshot.date, e.score]),
-  );
-  snapshot.llm.aa_index.forEach((e) =>
-    add(e.model_id, 'aa_index', [snapshot.date, e.index]),
-  );
-  snapshot.agent.swebench_verified.forEach((e) =>
-    add(e.model_id, 'swebench_verified', [snapshot.date, e.resolved_pct]),
-  );
-  snapshot.agent.terminal_bench.forEach((e) =>
-    add(e.model_id, 'terminal_bench', [snapshot.date, e.score]),
-  );
+  for (const bk of BOARD_KEYS) {
+    const list = (snapshot.llm as Record<string, unknown>)[bk.snapshotPath as string] as
+      | Array<{ model_id: string; score?: number; resolved_pct?: number; index?: number }>
+      | undefined;
+    if (!list) continue;
+    for (const e of list) {
+      const s = bk.getScore(e);
+      if (s == null) continue;
+      add(e.model_id, bk.historyKey, [snapshot.date, s]);
+    }
+  }
+  // agent.*（swebench_verified / terminal_bench）走 agent.* 而非 BOARD_KEYS
+  for (const e of snapshot.agent.swebench_verified) {
+    add(e.model_id, 'swebench_verified', [snapshot.date, e.resolved_pct]);
+  }
+  for (const e of snapshot.agent.terminal_bench) {
+    add(e.model_id, 'terminal_bench', [snapshot.date, e.score]);
+  }
+
   return next;
 }

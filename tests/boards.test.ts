@@ -1,8 +1,10 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { findDimension, getDimensions, DIMENSIONS } from '../src/lib/boards';
+import { findDimension, getDimensions, DIMENSIONS, splitDimKey } from '../src/lib/boards';
 import type { ArenaEloEntry, AAIndexEntry, SweEntry, TBenchEntry } from '../src/types';
 import type { BoardEntryOf } from '../src/lib/boards';
+// DIMENSIONS 引用：保证类型注册 + 防止纯 unused-import 警告
+void Object.keys(DIMENSIONS).length;
 
 const latest = JSON.parse(readFileSync('public/data/latest.json', 'utf8'));
 const sampleArena: ArenaEloEntry = latest.llm.arena_elo[0];
@@ -14,9 +16,58 @@ describe('DIMENSIONS structure', () => {
     expect(getDimensions('arena').map((d) => d.id)).toEqual(['overall', 'code', 'webdev']);
   });
 
-  it('aa has 3 dimensions (overall / coding / math)', () => {
-    expect(getDimensions('aa').length).toBe(3);
-    expect(getDimensions('aa').map((d) => d.id)).toEqual(['overall', 'coding', 'math']);
+  it('aa has 9 dimensions (overall / coding / math + 6 new)', () => {
+    expect(getDimensions('aa').length).toBe(9);
+    expect(getDimensions('aa').slice(0, 3).map((d) => d.id)).toEqual(['overall', 'coding', 'math']);
+    // 6 个新子榜
+    const ids = getDimensions('aa').map((d) => d.id);
+    expect(ids).toContain('mmlu_pro');
+    expect(ids).toContain('gpqa');
+    expect(ids).toContain('hle');
+    expect(ids).toContain('livecodebench');
+    expect(ids).toContain('ifeval');
+    expect(ids).toContain('lcr');
+  });
+
+  it('livebench kind has 6 dimensions (coding/math/reasoning/language/data_analysis/instruction_following)', () => {
+    expect(getDimensions('livebench').length).toBe(6);
+    expect(getDimensions('livebench').map((d) => d.id)).toEqual([
+      'coding',
+      'math',
+      'reasoning',
+      'language',
+      'data_analysis',
+      'instruction_following',
+    ]);
+  });
+
+  it('DIMENSIONS flat index has 20 entries (3+9+6+1+1)', () => {
+    // 3 (arena) + 9 (aa = 3 总 + 6 新) + 6 (livebench) + 1 (swe) + 1 (tbench) = 20
+    const keys = Object.keys(DIMENSIONS);
+    expect(keys.length).toBe(20);
+  });
+
+  it('aa.hle rail upper bound is 50 (HLE narrower than other AA boards)', () => {
+    const d = findDimension('aa', 'hle')!;
+    expect(d.getRail().max).toBe(50);
+  });
+
+  it('aa.mmlu_pro is not overall (no subBadges)', () => {
+    const d = findDimension('aa', 'mmlu_pro')!;
+    expect(d.isOverall).toBe(false);
+    expect(d.subBadges).toBeUndefined();
+  });
+
+  it('livebench coding dimension returns score 0-100 from GenericLLMEntry', () => {
+    const d = findDimension('livebench', 'coding')!;
+    expect(d.getRail().max).toBe(100);
+    const e = { model_id: 'x', score: 65.4, rank_prev: null, delta_score: null };
+    expect(d.getScore(e as any)).toBe(65.4);
+  });
+
+  it('splitDimKey parses aa_mmlu_pro correctly', () => {
+    const sp = splitDimKey('aa_mmlu_pro');
+    expect(sp).toEqual({ kind: 'aa', id: 'mmlu_pro' });
   });
 
   it('swe has 1 dimension (overall only)', () => {
@@ -31,19 +82,20 @@ describe('DIMENSIONS structure', () => {
 
   it('each kind has exactly one overall dimension', () => {
     for (const k of ['arena', 'aa', 'swe', 'tbench'] as const) {
-      const overalls = DIMENSIONS[k].filter((d) => d.isOverall);
+      const dims = getDimensions(k);
+      const overalls = dims.filter((d) => d.isOverall);
       expect(overalls.length, `${k} should have one overall`).toBe(1);
     }
   });
 
   it('subBadges only present on overall dimensions that have sub-data', () => {
     for (const k of ['arena', 'aa', 'swe', 'tbench'] as const) {
-      for (const d of DIMENSIONS[k]) {
+      const dims = getDimensions(k);
+      for (const d of dims) {
         if (!d.isOverall) {
           expect(d.subBadges, `${k}.${d.id} sub should not have subBadges`).toBeUndefined();
         }
-        // overall 维若有 sub-dimension（kind 有 >1 个 dimension），则必有 subBadges
-        const hasSubs = DIMENSIONS[k].length > 1;
+        const hasSubs = dims.length > 1;
         if (d.isOverall && hasSubs) {
           expect(d.subBadges, `${k}.${d.id} overall with subs should have subBadges`).toBeDefined();
         }

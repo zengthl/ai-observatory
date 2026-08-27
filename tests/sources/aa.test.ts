@@ -42,4 +42,64 @@ describe('parseAA', () => {
     expect(out.pending.some((n) => n.startsWith('Muse Spark'))).toBe(true);
     expect(out.pending).toContain('Motif 3');
   });
+
+  // ---- Phase 1 阶段：6 个新子榜存在性 + 形态 ----
+  it('returns 6 new sub-arrays', () => {
+    expect(Array.isArray(out.aa_mmlu_pro)).toBe(true);
+    expect(Array.isArray(out.aa_gpqa)).toBe(true);
+    expect(Array.isArray(out.aa_hle)).toBe(true);
+    expect(Array.isArray(out.aa_livecodebench)).toBe(true);
+    expect(Array.isArray(out.aa_ifeval)).toBe(true);
+    expect(Array.isArray(out.aa_lcr)).toBe(true);
+  });
+
+  it('gpqa / hle / lcr have many entries (AA coverage率高)', () => {
+    // fixture 中大部分 top 模型都有这些分数
+    expect(out.aa_gpqa.length).toBeGreaterThan(20);
+    expect(out.aa_hle.length).toBeGreaterThan(20);
+    expect(out.aa_lcr.length).toBeGreaterThan(20);
+  });
+
+  it('mmlu_pro / livecodebench / ifeval may have 0+ entries (AA only reports for some models)', () => {
+    // 2026-08-25 fixture 中 mmlu_pro 全为 null（API 字段缺失）→ 0 条；
+    // livecodebench / ifeval 视模型不同可能有数据。这里只断言 length 是合法非负数。
+    expect(out.aa_mmlu_pro.length).toBeGreaterThanOrEqual(0);
+    expect(out.aa_livecodebench.length).toBeGreaterThanOrEqual(0);
+    expect(out.aa_ifeval.length).toBeGreaterThanOrEqual(0);
+  });
+
+  it('all 6 new sub-arrays are sorted by score desc with scores in 0-100', () => {
+    for (const arr of [
+      out.aa_mmlu_pro,
+      out.aa_gpqa,
+      out.aa_hle,
+      out.aa_livecodebench,
+      out.aa_ifeval,
+      out.aa_lcr,
+    ]) {
+      for (let i = 1; i < arr.length; i++) {
+        expect(arr[i - 1].score).toBeGreaterThanOrEqual(arr[i].score);
+        expect(arr[i].score).toBeGreaterThanOrEqual(0);
+        expect(arr[i].score).toBeLessThanOrEqual(100);
+      }
+    }
+  });
+
+  it('every new sub entry has model_id + score + rank_prev=null + delta_score=null', () => {
+    for (const arr of [
+      out.aa_mmlu_pro,
+      out.aa_gpqa,
+      out.aa_hle,
+      out.aa_livecodebench,
+      out.aa_ifeval,
+      out.aa_lcr,
+    ]) {
+      for (const e of arr) {
+        expect(typeof e.model_id).toBe('string');
+        expect(typeof e.score).toBe('number');
+        expect(e.rank_prev).toBeNull();
+        expect(e.delta_score).toBeNull();
+      }
+    }
+  });
 });

@@ -3,6 +3,7 @@ import type { CSSProperties, ReactNode } from 'react';
 import type {
   AAIndexEntry,
   ArenaEloEntry,
+  GenericLLMEntry,
   History,
   ModelMeta,
   SweEntry,
@@ -17,20 +18,44 @@ import { findDimension } from '../lib/boards';
 
 export type RankKind = Kind;
 
-/** 榜单 kind → history 序列键 */
+/** 榜单 kind → history 序列键。AA 6 新子榜用对应 board，LiveBench 6 个用对应 board。 */
 const BOARD_OF: Record<RankKind, TrendBoard> = {
   arena: 'arena_elo',
   aa: 'aa_index',
+  livebench: 'livebench_coding', // 实际由 dimension 决定（见 LiveBench BOARD_OF_BY_DIM）
   swe: 'swebench_verified',
   tbench: 'terminal_bench',
+};
+
+/** LiveBench 不同 dimension 映射不同 TrendBoard */
+const LIVEBENCH_BOARD_BY_DIM: Record<string, TrendBoard> = {
+  coding: 'livebench_coding',
+  math: 'livebench_math',
+  reasoning: 'livebench_reasoning',
+  language: 'livebench_language',
+  data_analysis: 'livebench_data_analysis',
+  instruction_following: 'livebench_instruction_following',
+};
+
+const AA_BOARD_BY_DIM: Record<string, TrendBoard> = {
+  overall: 'aa_index',
+  coding: 'aa_index', // 暂用主榜占位（数学用主榜）
+  math: 'aa_index',
+  mmlu_pro: 'aa_mmlu_pro',
+  gpqa: 'aa_gpqa',
+  hle: 'aa_hle',
+  livecodebench: 'aa_livecodebench',
+  ifeval: 'aa_ifeval',
+  lcr: 'aa_lcr',
 };
 
 type AnyEntries =
   | ArenaEloEntry[]
   | AAIndexEntry[]
+  | GenericLLMEntry[]
   | SweEntry[]
   | TBenchEntry[]
-  | Array<ArenaEloEntry | AAIndexEntry | SweEntry | TBenchEntry>;
+  | Array<ArenaEloEntry | AAIndexEntry | GenericLLMEntry | SweEntry | TBenchEntry>;
 
 export interface RankTableProps {
   kind: RankKind;
@@ -74,6 +99,7 @@ const fmt1 = (n: number): string => n.toFixed(1);
 function fmtScore(n: number, kind: RankKind): string {
   if (kind === 'aa') return fmt1(n);
   if (kind === 'swe' || kind === 'tbench') return `${fmt1(n)}%`;
+  if (kind === 'livebench') return `${fmt1(n)}%`; // 百分制
   return String(n);
 }
 
@@ -151,6 +177,15 @@ function normalizeRows<K extends RankKind>(
         rail: { value: score, ...railBase },
         agent: s.agent ?? '—',
         costUsd: s.cost_usd_per_instance ?? null,
+      });
+      return;
+    }
+    if (kind === 'livebench') {
+      // GenericLLMEntry：单分项，无附加列
+      out.push({
+        ...base,
+        scoreText,
+        rail: { value: score, ...railBase },
       });
       return;
     }
@@ -261,7 +296,8 @@ const COLUMNS: Record<RankKind, ColDef[]> = {
     { header: '#', width: 48, render: rankCell },
     { header: '模型', render: (r) => <NameCell row={r} /> },
     { header: '厂商', render: (r) => r.org },
-    { header: '智能指数', width: 210, render: (r) => <ScoreCell row={r} /> },
+    // 智能指数列 header 由组件内运行时基于 dimension 动态覆盖（COLUMNS 仅保留壳）
+    { header: '__SCORE__', width: 210, render: (r) => <ScoreCell row={r} /> },
     { header: '速度 TOK/S', width: 96, variant: 'num', render: (r) => (r.speedTps != null ? <span className="mono">{fmt1(r.speedTps)}</span> : dash) },
     { header: '价格 $/M', width: 84, variant: 'num', render: (r) => (r.priceBlin != null ? <span className="mono">${r.priceBlin}</span> : dash) },
     { header: 'Δ', width: 96, render: (r) => <DeltaBadge rankPrev={r.rankPrev} deltaScore={r.deltaScore} /> },
@@ -276,6 +312,13 @@ const COLUMNS: Record<RankKind, ColDef[]> = {
     { header: 'Δ', width: 96, render: (r) => <DeltaBadge rankPrev={r.rankPrev} deltaScore={r.deltaScore} /> },
   ],
   tbench: [
+    { header: '#', width: 48, render: rankCell },
+    { header: '模型', render: (r) => <NameCell row={r} /> },
+    { header: '厂商', render: (r) => r.org },
+    { header: '得分 %', width: 210, render: (r) => <ScoreCell row={r} /> },
+    { header: 'Δ', width: 96, render: (r) => <DeltaBadge rankPrev={r.rankPrev} deltaScore={r.deltaScore} /> },
+  ],
+  livebench: [
     { header: '#', width: 48, render: rankCell },
     { header: '模型', render: (r) => <NameCell row={r} /> },
     { header: '厂商', render: (r) => r.org },
@@ -323,7 +366,24 @@ export default function RankTable({
       })),
     [rows],
   );
-  const board: TrendBoard = BOARD_OF[kind];
+  // 不同 kind / dimension 映射到对应的历史序列：
+  // - arena/aa_overall/aa_coding/aa_math：主榜
+  // - AA 6 新子榜：各自独立序列
+  // - LiveBench 6 个：各自独立序列
+  const board: TrendBoard =
+    kind === 'aa'
+      ? (AA_BOARD_BY_DIM[dimension] ?? 'aa_index')
+      : kind === 'livebench'
+        ? (LIVEBENCH_BOARD_BY_DIM[dimension] ?? 'livebench_coding')
+        : BOARD_OF[kind];
+
+  // AA 维度的"主分列"header：基于 dimDef.label 动态取名
+  //   overall/coding/math → "智能指数 / Coding 指数 / Math 指数"（保持原命名习惯）
+  //   6 个新子榜 → "{LABEL}"（如 HLE 50 区间）
+  const aaScoreHeader =
+    kind === 'aa'
+      ? (dimension === 'overall' ? '智能指数' : dimension === 'coding' ? 'Coding 指数' : dimension === 'math' ? 'Math 指数' : dimDef.label)
+      : null;
 
   /** 展开内容：仅展开的行真正挂载 TrendPanel（避免 50 行同时建 echarts 实例） */
   const expandContent = (row: RowModel): ReactNode => {
@@ -388,16 +448,19 @@ export default function RankTable({
               <th className="rt-th rt-th--check" scope="col">
                 <span className="visually-hidden">对比</span>
               </th>
-              {cols.map((c) => (
-                <th
-                  key={c.header}
-                  className={`rt-th${c.variant === 'num' ? ' rt-th--num' : ''}`}
-                  style={c.width ? { width: c.width } : undefined}
-                  scope="col"
-                >
-                  {c.header}
-                </th>
-              ))}
+              {cols.map((c) => {
+                const display = c.header === '__SCORE__' ? (aaScoreHeader ?? '分数') : c.header;
+                return (
+                  <th
+                    key={display}
+                    className={`rt-th${c.variant === 'num' ? ' rt-th--num' : ''}`}
+                    style={c.width ? { width: c.width } : undefined}
+                    scope="col"
+                  >
+                    {display}
+                  </th>
+                );
+              })}
             </tr>
           </thead>
           <tbody>

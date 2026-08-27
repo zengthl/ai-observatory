@@ -1,7 +1,7 @@
 // tests/normalize.test.ts
 import { describe, it, expect } from 'vitest';
-import { resolveModelId, withRanks, buildHistory } from '../pipeline/normalize';
-import type { ModelMeta, ArenaEloEntry, History, Snapshot } from '../src/types';
+import { resolveModelId, withRanks, withRanksGeneric, buildHistory } from '../pipeline/normalize';
+import type { ModelMeta, ArenaEloEntry, GenericLLMEntry, History, Snapshot } from '../src/types';
 
 const MODELS: ModelMeta[] = [
   {
@@ -66,14 +66,50 @@ describe('withRanks', () => {
   });
 });
 
+describe('withRanksGeneric', () => {
+  const today: GenericLLMEntry[] = [
+    { model_id: 'a', score: 90, rank_prev: null, delta_score: null },
+    { model_id: 'b', score: 80, rank_prev: null, delta_score: null },
+  ];
+  const yesterday: { model_id: string; score: number }[] = [
+    { model_id: 'a', score: 88 },
+  ];
+
+  it('assigns current rank by array order and computes prev/delta', () => {
+    const r = withRanksGeneric(today, yesterday);
+    expect(r[0]).toMatchObject({ model_id: 'a', rank: 1, rank_prev: 1, delta_score: 2 });
+    expect(r[1]).toMatchObject({ model_id: 'b', rank: 2, rank_prev: null, delta_score: null });
+  });
+
+  it('works without prev data', () => {
+    const r = withRanksGeneric(today, undefined);
+    expect(r.every((e) => e.rank_prev === null && e.delta_score === null)).toBe(true);
+  });
+});
+
 describe('buildHistory', () => {
   const snap = (date: string, score: number): Snapshot =>
     ({
       date,
       sources: {} as any,
-      llm: { arena_elo: [{ model_id: 'a', score, rank_prev: null, delta_score: null }], aa_index: [] },
+      llm: {
+        arena_elo: [{ model_id: 'a', score, rank_prev: null, delta_score: null }],
+        aa_index: [],
+        aa_mmlu_pro: [],
+        aa_gpqa: [],
+        aa_hle: [],
+        aa_livecodebench: [],
+        aa_ifeval: [],
+        aa_lcr: [],
+        livebench_coding: [],
+        livebench_math: [],
+        livebench_reasoning: [],
+        livebench_language: [],
+        livebench_data_analysis: [],
+        livebench_instruction_following: [],
+      },
       agent: { swebench_verified: [], terminal_bench: [] },
-    }) as Snapshot;
+    }) as unknown as Snapshot;
 
   it('appends today point and overwrites same-day rerun', () => {
     const h1: History = buildHistory({}, snap('2026-08-25', 100));

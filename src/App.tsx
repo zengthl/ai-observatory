@@ -4,6 +4,7 @@ import { useFilters } from './hooks/useFilters';
 import type {
   AAIndexEntry,
   ArenaEloEntry,
+  GenericLLMEntry,
   History,
   LatestFile,
   ModelMeta,
@@ -12,8 +13,8 @@ import type {
   SourceName,
 } from './types';
 import { addToFifoSelection } from './lib/compare';
-import type { DimensionId, Kind } from './lib/boards';
-import { getDimensions } from './lib/boards';
+import type { Kind } from './lib/boards';
+import { DIMENSIONS, splitDimKey } from './lib/boards';
 import TopBar from './components/TopBar';
 import HeroChampions from './components/HeroChampions';
 import BoardTabs from './components/BoardTabs';
@@ -27,76 +28,112 @@ import Footer from './components/Footer';
 
 type BoardTab = 'llm' | 'agent';
 
-/** 一级 Tab 是 LLM/Agent；二级 sub 内部按 (kind, dimension) 联合或 scatter 单列 */
-type SubTab = { kind: Kind; dimension: DimensionId } | 'scatter';
+/** Sub tab 由扁平化的 DIMENSIONS key 表达，附 'scatter' 哨兵 */
+type SubTab = string | 'scatter';
 
 const SUB_SOURCE: Record<Kind, SourceName> = {
   arena: 'lmarena',
   aa: 'artificial_analysis',
+  livebench: 'livebench',
   swe: 'swebench',
   tbench: 'artificial_analysis',
 };
 
-/** 子榜的 (kind, dimension) 元组；按 UI 平铺顺序固定 */
-const SUB_TABS: Array<{ kind: Kind; dimension: DimensionId; label: string }> = [
-  ...getDimensions('arena').map((d) => ({ kind: 'arena' as Kind, dimension: d.id, label: d.label })),
-  ...getDimensions('aa').map((d) => ({ kind: 'aa' as Kind, dimension: d.id, label: d.label })),
-  ...getDimensions('swe').map((d) => ({ kind: 'swe' as Kind, dimension: d.id, label: d.label })),
-  ...getDimensions('tbench').map((d) => ({ kind: 'tbench' as Kind, dimension: d.id, label: d.label })),
-];
+/** 一级 Tab → 可见的 sub kind 前缀 */
+const TAB_KINDS: Record<BoardTab, Kind[]> = {
+  llm: ['arena', 'aa', 'livebench'],
+  agent: ['swe', 'tbench'],
+};
+
+/** 全部 sub tabs（按 DIMENSIONS 声明顺序） */
+const SUB_TABS_ALL = Object.keys(DIMENSIONS);
+
+/** 一级 Tab 下可见的 sub tabs */
+function subTabsForTab(tab: BoardTab): string[] {
+  const kinds = new Set(TAB_KINDS[tab]);
+  return SUB_TABS_ALL.filter((k) => {
+    const sp = splitDimKey(k);
+    return sp ? kinds.has(sp.kind) : false;
+  });
+}
 
 function isBoardTabMatch(sub: SubTab, tab: BoardTab): boolean {
   if (sub === 'scatter') return tab === 'llm';
-  if (tab === 'llm') return sub.kind === 'arena' || sub.kind === 'aa';
-  return sub.kind === 'swe' || sub.kind === 'tbench';
+  const sp = splitDimKey(sub);
+  if (!sp) return false;
+  return TAB_KINDS[tab].includes(sp.kind);
 }
 
-/** 二级子榜切换（与 BoardTabs 同款样式，小一号） */
+/** kind 中文显示名（用于 sub tab 标签前缀） */
+const KIND_LABEL: Record<Kind, string> = {
+  arena: 'Arena',
+  aa: 'AA',
+  livebench: 'LB',
+  swe: 'SWE',
+  tbench: 'TBench',
+};
+
+/** 二级子榜切换（与 BoardTabs 同款样式，小一号；横向滚动） */
 function SubTabs({
   tab,
+  board,
   onChange,
 }: {
-  board?: BoardTab;
   tab: SubTab;
+  board: BoardTab;
   onChange: (t: SubTab) => void;
 }) {
+  const visible = subTabsForTab(board);
   return (
     <div className="subtabs" role="tablist" aria-label="子榜单切换">
-      {SUB_TABS.map((t) => {
-        const sub: SubTab = { kind: t.kind, dimension: t.dimension };
-        const active = tab !== 'scatter' && tab.kind === t.kind && tab.dimension === t.dimension;
+      {visible.map((k) => {
+        const sp = splitDimKey(k);
+        if (!sp) return null;
+        const def = DIMENSIONS[k];
+        const active = tab === k;
+        const label = `${KIND_LABEL[sp.kind]} · ${def.label}`;
         return (
           <button
-            key={`${t.kind}-${t.dimension}`}
+            key={k}
             type="button"
             role="tab"
             aria-selected={active}
             className="subtabs__tab"
-            data-kind={t.kind}
-            data-dimension={t.dimension}
-            onClick={() => onChange(sub)}
+            data-kind={sp.kind}
+            data-dimension={sp.id}
+            onClick={() => onChange(k)}
           >
-            {t.label}
+            {label}
           </button>
         );
       })}
-      <button
-        type="button"
-        role="tab"
-        aria-selected={tab === 'scatter'}
-        className="subtabs__tab"
-        onClick={() => onChange('scatter')}
-      >
-        速度 × 价格
-      </button>
+      {board === 'llm' && (
+        <button
+          type="button"
+          role="tab"
+          aria-selected={tab === 'scatter'}
+          className="subtabs__tab"
+          onClick={() => onChange('scatter')}
+        >
+          速度 × 价格
+        </button>
+      )}
     </div>
   );
+}
+
+/** 把 SubTab 拆出 (kind, dimension)；'scatter' 返回 null */
+function subToPair(sub: SubTab): { kind: Kind; dimension: string } | null {
+  if (sub === 'scatter') return null;
+  const sp = splitDimKey(sub);
+  if (!sp) return null;
+  return { kind: sp.kind, dimension: sp.id };
 }
 
 export default function App() {
   const { loading, error, retry, latest, history, pendingCount, pendingTotal } = useBoardData();
   const [board, setBoard] = useState<BoardTab>('llm');
-  const [sub, setSub] = useState<SubTab>({ kind: 'arena', dimension: 'overall' });
+  const [sub, setSub] = useState<SubTab>('arena_overall');
   // 对比选择（最多 2 个，Set 保序：先勾的在前）
   const [compareSelection, setCompareSelection] = useState<Set<string>>(new Set());
   const [expandedId, setExpandedId] = useState<string | null>(null);
@@ -133,26 +170,40 @@ export default function App() {
   const changeBoard = (b: BoardTab) => {
     setBoard(b);
     // 换主榜时把子榜重置到该榜的第一个 dimension
-    const fallback: SubTab = b === 'llm'
-      ? { kind: 'arena', dimension: 'overall' }
-      : { kind: 'swe', dimension: 'overall' };
+    const fallback: SubTab = b === 'llm' ? 'arena_overall' : 'swe_overall';
     setSub(fallback);
     setFilter((f) => ({ ...f, org: '' }));
   };
 
   // 当前子榜单数据 + useFilters（各榜单独立筛选状态由 key 重挂载保证）
-  let entries: Array<ArenaEloEntry | AAIndexEntry | SweEntry | TBenchEntry> = [];
+  let entries: Array<ArenaEloEntry | AAIndexEntry | SweEntry | TBenchEntry | GenericLLMEntry> = [];
   if (latest && sub !== 'scatter') {
-    if (sub.kind === 'arena') entries = latest.llm.arena_elo;
-    else if (sub.kind === 'aa') entries = latest.llm.aa_index;
-    else if (sub.kind === 'swe') entries = latest.agent.swebench_verified;
-    else if (sub.kind === 'tbench') entries = latest.agent.terminal_bench;
+    const pair = subToPair(sub);
+    if (pair) {
+      if (pair.kind === 'arena') entries = latest.llm.arena_elo;
+      else if (pair.kind === 'aa') {
+        // AA 总/coding/math 用 AAIndexEntry（主榜 entries），6 个新子榜用 GenericLLMEntry
+        const AA_OVERALL_IDS = new Set(['overall', 'coding', 'math']);
+        if (AA_OVERALL_IDS.has(pair.dimension)) {
+          entries = latest.llm.aa_index;
+        } else {
+          const k = `aa_${pair.dimension}` as keyof LatestFile['llm'];
+          entries = ((latest.llm as Record<string, unknown>)[k] as GenericLLMEntry[] | undefined) ?? [];
+        }
+      }
+      else if (pair.kind === 'livebench') {
+        const k = `livebench_${pair.dimension}` as keyof LatestFile['llm'];
+        entries = ((latest.llm as Record<string, unknown>)[k] as GenericLLMEntry[] | undefined) ?? [];
+      }
+      else if (pair.kind === 'swe') entries = latest.agent.swebench_verified;
+      else if (pair.kind === 'tbench') entries = latest.agent.terminal_bench;
+    }
   }
   // model_id 索引全站唯一构建处；useMemo 保持引用稳定，
   // 否则 useFilters/RankTable 内部 useMemo 每次 render 失效 → 趋势图无谓重建
   const models = useMemo(() => modelsById(latest), [latest]);
   const { filtered, orgs, filter, setFilter } = useFilters(entries, models);
-  const filteredAny = filtered as Array<ArenaEloEntry | AAIndexEntry | SweEntry | TBenchEntry>;
+  const filteredAny = filtered as Array<ArenaEloEntry | AAIndexEntry | SweEntry | TBenchEntry | GenericLLMEntry>;
 
   // 勾满两个自动弹出抽屉：left=先勾的，right=后勾的（Set 保插入序）
   const comparePair =
@@ -211,7 +262,7 @@ interface BoardBodyProps {
   sub: SubTab;
   onBoardChange: (b: BoardTab) => void;
   onSubChange: (s: SubTab) => void;
-  filtered: Array<ArenaEloEntry | AAIndexEntry | SweEntry | TBenchEntry>;
+  filtered: Array<ArenaEloEntry | AAIndexEntry | SweEntry | TBenchEntry | GenericLLMEntry>;
   orgs: string[];
   filter: ReturnType<typeof useFilters>['filter'];
   onFilterChange: ReturnType<typeof useFilters>['setFilter'];
@@ -239,7 +290,8 @@ function BoardBody({
   onToggleExpand,
   models,
 }: BoardBodyProps) {
-  const subKind: Kind | null = sub === 'scatter' ? null : sub.kind;
+  const pair = subToPair(sub);
+  const subKind: Kind | null = pair ? pair.kind : null;
   const unavailable =
     subKind !== null ? latest.sources[SUB_SOURCE[subKind]]?.status === 'unavailable' : false;
   const isBoardMatch = isBoardTabMatch(sub, board);
@@ -247,23 +299,22 @@ function BoardBody({
   const subLabel =
     sub === 'scatter'
       ? '速度 × 价格'
-      : sub.dimension === 'overall'
-        ? (sub.kind === 'arena' ? 'Arena Elo' : sub.kind === 'aa' ? 'AA 指数' : sub.kind === 'swe' ? 'SWE-bench' : 'Terminal-Bench')
-        : `${sub.kind === 'arena' ? 'Arena' : sub.kind === 'aa' ? 'AA' : sub.kind === 'swe' ? 'SWE' : 'TBench'} · ${sub.dimension}`;
+      : pair
+        ? `${KIND_LABEL[pair.kind]} · ${DIMENSIONS[sub]?.label ?? sub}`
+        : sub;
 
   return (
     <>
       <HeroChampions latest={latest} />
       <BoardTabs tab={board} onChange={onBoardChange} />
-      {/* 二级切换：8 个 kind×dimension Tab + 散点（单列最右） */}
-      <SubTabs tab={sub} onChange={onSubChange} />
-      {sub !== 'scatter' && !unavailable && isBoardMatch && (
+      <SubTabs tab={sub} board={board} onChange={onSubChange} />
+      {sub !== 'scatter' && !unavailable && isBoardMatch && pair && (
         <>
           <FilterBar orgs={orgs} filter={filter} setFilter={onFilterChange} count={filtered.length} />
           <RankTable
-            key={`${sub.kind}-${sub.dimension}`}
-            kind={sub.kind}
-            dimension={sub.dimension}
+            key={sub}
+            kind={pair.kind}
+            dimension={pair.dimension}
             entries={filtered}
             models={models}
             history={history}

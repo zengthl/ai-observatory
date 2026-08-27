@@ -12,7 +12,23 @@ import type { BoardEntry, DimensionDef } from '../lib/boards';
 // 按需注册（模块级一次即可，重复 use 幂等）
 echarts.use([LineChart, GridComponent, TooltipComponent, CanvasRenderer]);
 
-export type TrendBoard = 'arena_elo' | 'aa_index' | 'swebench_verified' | 'terminal_bench';
+export type TrendBoard =
+  | 'arena_elo'
+  | 'aa_index'
+  | 'swebench_verified'
+  | 'terminal_bench'
+  | 'aa_mmlu_pro'
+  | 'aa_gpqa'
+  | 'aa_hle'
+  | 'aa_livecodebench'
+  | 'aa_ifeval'
+  | 'aa_lcr'
+  | 'livebench_coding'
+  | 'livebench_math'
+  | 'livebench_reasoning'
+  | 'livebench_language'
+  | 'livebench_data_analysis'
+  | 'livebench_instruction_following';
 
 export interface Top3Ref {
   modelId: string;
@@ -64,6 +80,18 @@ const BOARD_LABELS: Record<TrendBoard, string> = {
   aa_index: 'AA 指数',
   swebench_verified: 'SWE-bench 解决率',
   terminal_bench: 'Terminal-Bench 得分',
+  aa_mmlu_pro: 'AA MMLU-Pro',
+  aa_gpqa: 'AA GPQA',
+  aa_hle: 'AA HLE',
+  aa_livecodebench: 'AA LiveCodeBench',
+  aa_ifeval: 'AA IFEval',
+  aa_lcr: 'AA 长上下文检索',
+  livebench_coding: 'LiveBench 代码',
+  livebench_math: 'LiveBench 数学',
+  livebench_reasoning: 'LiveBench 推理',
+  livebench_language: 'LiveBench 语言',
+  livebench_data_analysis: 'LiveBench 数据分析',
+  livebench_instruction_following: 'LiveBench 指令遵循',
 };
 
 /** 单系列 key → 该模型在 history 中的 series 名。
@@ -77,7 +105,7 @@ const BOARD_LABELS: Record<TrendBoard, string> = {
  */
 function historySeriesFor(
   board: TrendBoard,
-  trendKey: 'overall' | 'code' | 'webdev' | 'coding' | 'math',
+  trendKey: string,
 ): string | null {
   if (trendKey === 'overall') return board;
   return `${board}_${trendKey}`;

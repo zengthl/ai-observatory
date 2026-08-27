@@ -3,15 +3,19 @@
  "sources": {
   "artificial_analysis": {
    "status": "ok",
-   "fetched_at": "2026-08-27T02:00:33.113Z"
+   "fetched_at": "2026-08-27T05:12:39.157Z"
   },
   "lmarena": {
    "status": "ok",
-   "fetched_at": "2026-08-27T02:00:33.113Z"
+   "fetched_at": "2026-08-27T05:12:39.157Z"
   },
   "swebench": {
    "status": "ok",
-   "fetched_at": "2026-08-27T02:00:33.113Z"
+   "fetched_at": "2026-08-27T05:12:39.157Z"
+  },
+  "livebench": {
+   "status": "ok",
+   "fetched_at": "2026-08-27T05:12:39.157Z"
   }
  },
  "llm": {
@@ -1392,6 +1396,1293 @@
     "tbench_v21_pct": 3.7,
     "rank_prev": 46,
     "delta_score": 0
+   }
+  ],
+  "aa_mmlu_pro": [
+   {
+    "model_id": "claude-sonnet-4-5",
+    "score": 87.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "grok-4",
+    "score": 86.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemini-25-pro",
+    "score": 86.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "doubao-seed-code",
+    "score": 85.4,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "kimi-k2",
+    "score": 84.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen3-max",
+    "score": 84.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "minimax-m2",
+    "score": 82,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "glm-45-air",
+    "score": 81.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-4-maverick",
+    "score": 80.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-oss-120b",
+    "score": 80.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-large-3",
+    "score": 80.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen3-coder-480b",
+    "score": 78.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-4-scout",
+    "score": 75.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-oss-20b",
+    "score": 74.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "devstral-medium",
+    "score": 70.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-small-3",
+    "score": 68.1,
+    "rank_prev": null,
+    "delta_score": null
+   }
+  ],
+  "aa_gpqa": [
+   {
+    "model_id": "grok-4-6",
+    "score": 94.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemini-37-flash",
+    "score": 94.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-56-sol",
+    "score": 94.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemini-31-pro",
+    "score": 94.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-opus-5",
+    "score": 93.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "kimi-k3-max",
+    "score": 93.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen38-max",
+    "score": 93.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-55",
+    "score": 93.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "grok-4-5",
+    "score": 93.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "minimax-m3",
+    "score": 92.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemini-36-flash",
+    "score": 92.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "deepseek-v4",
+    "score": 92.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-fable-5",
+    "score": 92.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-56-terra",
+    "score": 92.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen37-max",
+    "score": 92.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemini-35-flash",
+    "score": 92.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-54",
+    "score": 92,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-opus-4-8",
+    "score": 92,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "glm-53",
+    "score": 91.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-53-codex",
+    "score": 91.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-opus-4-7",
+    "score": 91.4,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-56-luna",
+    "score": 91.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-sonnet-5",
+    "score": 91.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "kimi-k2-6",
+    "score": 91.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "deepseek-v4-flash",
+    "score": 90.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen38-27b",
+    "score": 90.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-opus-4-6",
+    "score": 89.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "glm-52",
+    "score": 89.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "grok-4",
+    "score": 87.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-sonnet-4-6",
+    "score": 87.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "minimax-m2-5",
+    "score": 84.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemini-25-pro",
+    "score": 84.4,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "kimi-k2",
+    "score": 83.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-sonnet-4-5",
+    "score": 83.4,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-oss-120b",
+    "score": 78.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "minimax-m2",
+    "score": 77.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "doubao-seed-code",
+    "score": 76.4,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen3-max",
+    "score": 76.4,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "glm-45-air",
+    "score": 73.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-oss-20b",
+    "score": 68.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-large-3",
+    "score": 68,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-4-maverick",
+    "score": 67.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen3-coder-480b",
+    "score": 61.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-4-scout",
+    "score": 58.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-small-3",
+    "score": 50.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "devstral-medium",
+    "score": 49.2,
+    "rank_prev": null,
+    "delta_score": null
+   }
+  ],
+  "aa_hle": [
+   {
+    "model_id": "claude-fable-5",
+    "score": 55.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-opus-5",
+    "score": 54.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-56-sol",
+    "score": 49.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-opus-4-8",
+    "score": 48.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemini-37-flash",
+    "score": 47.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemini-31-pro",
+    "score": 47,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "kimi-k3-max",
+    "score": 46.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-55",
+    "score": 45.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "grok-4-6",
+    "score": 44.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-54",
+    "score": 43.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen38-max",
+    "score": 43,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-56-terra",
+    "score": 42.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemini-35-flash",
+    "score": 42.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "grok-4-5",
+    "score": 42.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-53-codex",
+    "score": 42.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "glm-53",
+    "score": 42.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-opus-4-7",
+    "score": 42.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-sonnet-5",
+    "score": 41.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "glm-52",
+    "score": 41.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "deepseek-v4",
+    "score": 41,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemini-36-flash",
+    "score": 40.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen37-max",
+    "score": 40.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-opus-4-6",
+    "score": 39.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-56-luna",
+    "score": 39.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "minimax-m3",
+    "score": 39,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "deepseek-v4-flash",
+    "score": 38.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "kimi-k2-6",
+    "score": 37.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen38-27b",
+    "score": 33.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-sonnet-4-6",
+    "score": 33.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "grok-4",
+    "score": 26.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "kimi-k2",
+    "score": 23.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemini-25-pro",
+    "score": 22.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "minimax-m2-5",
+    "score": 20.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-oss-120b",
+    "score": 19.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-sonnet-4-5",
+    "score": 17.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "doubao-seed-code",
+    "score": 14.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "minimax-m2",
+    "score": 13.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen3-max",
+    "score": 11.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-oss-20b",
+    "score": 11,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "glm-45-air",
+    "score": 7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-4-maverick",
+    "score": 4.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen3-coder-480b",
+    "score": 4.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-small-3",
+    "score": 4.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-large-3",
+    "score": 4.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-4-scout",
+    "score": 3.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "devstral-medium",
+    "score": 3.8,
+    "rank_prev": null,
+    "delta_score": null
+   }
+  ],
+  "aa_livecodebench": [
+   {
+    "model_id": "gpt-oss-120b",
+    "score": 87.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "kimi-k2",
+    "score": 85.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "minimax-m2",
+    "score": 82.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "grok-4",
+    "score": 81.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemini-25-pro",
+    "score": 80.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-oss-20b",
+    "score": 77.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen3-max",
+    "score": 76.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "doubao-seed-code",
+    "score": 76.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-sonnet-4-5",
+    "score": 71.4,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "glm-45-air",
+    "score": 68.4,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen3-coder-480b",
+    "score": 58.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-large-3",
+    "score": 46.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-4-maverick",
+    "score": 39.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "devstral-medium",
+    "score": 33.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-4-scout",
+    "score": 29.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-small-3",
+    "score": 27.5,
+    "rank_prev": null,
+    "delta_score": null
+   }
+  ],
+  "aa_ifeval": [
+   {
+    "model_id": "minimax-m3",
+    "score": 82.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen37-max",
+    "score": 80.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "deepseek-v4-flash",
+    "score": 79.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemini-31-pro",
+    "score": 77.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "deepseek-v4",
+    "score": 76.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemini-35-flash",
+    "score": 76.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "kimi-k2-6",
+    "score": 76,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-55",
+    "score": 75.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-53-codex",
+    "score": 75.4,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-54",
+    "score": 73.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "glm-52",
+    "score": 73.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-56-sol",
+    "score": 72.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "minimax-m2",
+    "score": 72.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "minimax-m2-5",
+    "score": 71.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-56-terra",
+    "score": 71.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-oss-120b",
+    "score": 69,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "kimi-k2",
+    "score": 68.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-oss-20b",
+    "score": 65.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-fable-5",
+    "score": 63.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-opus-4-8",
+    "score": 62.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-opus-4-7",
+    "score": 58.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-sonnet-4-5",
+    "score": 57.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-sonnet-4-6",
+    "score": 56.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "grok-4",
+    "score": 53.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-opus-4-6",
+    "score": 53.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "doubao-seed-code",
+    "score": 51.4,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemini-25-pro",
+    "score": 48.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen3-max",
+    "score": 48,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-4-maverick",
+    "score": 43,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen3-coder-480b",
+    "score": 40.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-4-scout",
+    "score": 39.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "glm-45-air",
+    "score": 37.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-large-3",
+    "score": 36.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-small-3",
+    "score": 33.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "devstral-medium",
+    "score": 29.9,
+    "rank_prev": null,
+    "delta_score": null
+   }
+  ],
+  "aa_lcr": [
+   {
+    "model_id": "kimi-k3-max",
+    "score": 82.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemini-35-flash",
+    "score": 81,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemini-37-flash",
+    "score": 81,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "minimax-m3",
+    "score": 80.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-56-terra",
+    "score": 79.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemini-36-flash",
+    "score": 79,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemini-31-pro",
+    "score": 79,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-55",
+    "score": 79,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-opus-5",
+    "score": 78.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "grok-4-6",
+    "score": 78.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-56-luna",
+    "score": 78.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-53-codex",
+    "score": 78.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-56-sol",
+    "score": 77.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-54",
+    "score": 77.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen38-27b",
+    "score": 77.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-sonnet-5",
+    "score": 77,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-fable-5",
+    "score": 76.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "glm-52",
+    "score": 76.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "kimi-k2-6",
+    "score": 76.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "glm-53",
+    "score": 76.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "deepseek-v4",
+    "score": 75.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen38-max",
+    "score": 75.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-opus-4-7",
+    "score": 75.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen37-max",
+    "score": 74.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "deepseek-v4-flash",
+    "score": 74.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-opus-4-6",
+    "score": 74.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "grok-4-5",
+    "score": 74,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-sonnet-4-6",
+    "score": 74,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-opus-4-8",
+    "score": 73,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "minimax-m2-5",
+    "score": 72,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "kimi-k2",
+    "score": 70.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "doubao-seed-code",
+    "score": 69.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-sonnet-4-5",
+    "score": 68.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "grok-4",
+    "score": 67,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemini-25-pro",
+    "score": 66,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "minimax-m2",
+    "score": 65,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-oss-120b",
+    "score": 51,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-4-maverick",
+    "score": 50,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen3-max",
+    "score": 48.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "glm-45-air",
+    "score": 45.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen3-coder-480b",
+    "score": 45.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-large-3",
+    "score": 34.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-oss-20b",
+    "score": 33.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "devstral-medium",
+    "score": 31.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-4-scout",
+    "score": 30.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-small-3",
+    "score": 18.7,
+    "rank_prev": null,
+    "delta_score": null
+   }
+  ],
+  "livebench_coding": [
+   {
+    "model_id": "deepseek-r1",
+    "score": 0,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-4-maverick",
+    "score": 0,
+    "rank_prev": null,
+    "delta_score": null
+   }
+  ],
+  "livebench_math": [],
+  "livebench_reasoning": [],
+  "livebench_language": [
+   {
+    "model_id": "deepseek-r1",
+    "score": 0,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-4-maverick",
+    "score": 0,
+    "rank_prev": null,
+    "delta_score": null
+   }
+  ],
+  "livebench_data_analysis": [],
+  "livebench_instruction_following": [
+   {
+    "model_id": "llama-4-maverick",
+    "score": 100,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "deepseek-r1",
+    "score": 33.3,
+    "rank_prev": null,
+    "delta_score": null
    }
   ]
  },

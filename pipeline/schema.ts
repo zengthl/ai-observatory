@@ -33,6 +33,14 @@ const aaEntrySchema = z.object({
   delta_score: z.number().nullable(),
 });
 
+/** 通用 LLM 榜条目（AA 6 个新子榜 + LiveBench 6 个子榜都用此形态） */
+const genericLLMEntrySchema = z.object({
+  model_id: z.string(),
+  score: z.number(),
+  rank_prev: z.number().nullable(),
+  delta_score: z.number().nullable(),
+});
+
 const sweEntrySchema = z.object({
   model_id: z.string(),
   resolved_pct: z.number(),
@@ -63,6 +71,18 @@ export const snapshotSchema = z.object({
   llm: z.object({
     arena_elo: z.array(arenaEntrySchema),
     aa_index: z.array(aaEntrySchema),
+    aa_mmlu_pro: z.array(genericLLMEntrySchema),
+    aa_gpqa: z.array(genericLLMEntrySchema),
+    aa_hle: z.array(genericLLMEntrySchema),
+    aa_livecodebench: z.array(genericLLMEntrySchema),
+    aa_ifeval: z.array(genericLLMEntrySchema),
+    aa_lcr: z.array(genericLLMEntrySchema),
+    livebench_coding: z.array(genericLLMEntrySchema),
+    livebench_math: z.array(genericLLMEntrySchema),
+    livebench_reasoning: z.array(genericLLMEntrySchema),
+    livebench_language: z.array(genericLLMEntrySchema),
+    livebench_data_analysis: z.array(genericLLMEntrySchema),
+    livebench_instruction_following: z.array(genericLLMEntrySchema),
   }),
   agent: z.object({
     swebench_verified: z.array(sweEntrySchema),
@@ -78,5 +98,17 @@ export const historySchema = z.record(
     aa_index: z.array(z.tuple([z.string(), z.number()])).optional(),
     swebench_verified: z.array(z.tuple([z.string(), z.number()])).optional(),
     terminal_bench: z.array(z.tuple([z.string(), z.number()])).optional(),
+    aa_mmlu_pro: z.array(z.tuple([z.string(), z.number()])).optional(),
+    aa_gpqa: z.array(z.tuple([z.string(), z.number()])).optional(),
+    aa_hle: z.array(z.tuple([z.string(), z.number()])).optional(),
+    aa_livecodebench: z.array(z.tuple([z.string(), z.number()])).optional(),
+    aa_ifeval: z.array(z.tuple([z.string(), z.number()])).optional(),
+    aa_lcr: z.array(z.tuple([z.string(), z.number()])).optional(),
+    livebench_coding: z.array(z.tuple([z.string(), z.number()])).optional(),
+    livebench_math: z.array(z.tuple([z.string(), z.number()])).optional(),
+    livebench_reasoning: z.array(z.tuple([z.string(), z.number()])).optional(),
+    livebench_language: z.array(z.tuple([z.string(), z.number()])).optional(),
+    livebench_data_analysis: z.array(z.tuple([z.string(), z.number()])).optional(),
+    livebench_instruction_following: z.array(z.tuple([z.string(), z.number()])).optional(),
   }),
 );

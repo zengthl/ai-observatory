@@ -7,6 +7,8 @@
   --grid-line: rgba(22, 24, 29, 0.045);
   --orange: #ff4d00;
   --blue: #2563eb;
+  --violet: #7c3aed;       /* Math / WebDev 分项色 */
+  --violet-soft: #c4b5fd;  /* 趋势图参照线弱化 */
   --up: #0a7d33;
   --down: #c62828;
   --surface: #ffffff;

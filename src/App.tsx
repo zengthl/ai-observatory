@@ -12,6 +12,8 @@ import type {
   SourceName,
 } from './types';
 import { addToFifoSelection } from './lib/compare';
+import type { DimensionId, Kind } from './lib/boards';
+import { getDimensions } from './lib/boards';
 import TopBar from './components/TopBar';
 import HeroChampions from './components/HeroChampions';
 import BoardTabs from './components/BoardTabs';
@@ -24,44 +26,69 @@ import BoardUnavailable from './components/BoardUnavailable';
 import Footer from './components/Footer';
 
 type BoardTab = 'llm' | 'agent';
-type LlmSub = 'arena' | 'aa' | 'scatter';
-type AgentSub = 'swe' | 'tbench';
-type SubTab = LlmSub | AgentSub;
 
-const SUB_LABELS: Record<SubTab, string> = {
-  arena: 'Arena Elo',
-  aa: 'AA 指数',
-  scatter: '速度 × 价格',
-  swe: 'SWE-bench',
-  tbench: 'Terminal-Bench',
-};
+/** 一级 Tab 是 LLM/Agent；二级 sub 内部按 (kind, dimension) 联合或 scatter 单列 */
+type SubTab = { kind: Kind; dimension: DimensionId } | 'scatter';
 
-/** 子榜 → 上游数据源（unavailable 时该子榜渲染占位卡） */
-const SUB_SOURCE: Record<Exclude<SubTab, 'scatter'>, SourceName> = {
+const SUB_SOURCE: Record<Kind, SourceName> = {
   arena: 'lmarena',
   aa: 'artificial_analysis',
   swe: 'swebench',
-  // Terminal-Bench 数据取自 AA API 响应的 terminalbench_v2_1 字段
   tbench: 'artificial_analysis',
 };
 
+/** 子榜的 (kind, dimension) 元组；按 UI 平铺顺序固定 */
+const SUB_TABS: Array<{ kind: Kind; dimension: DimensionId; label: string }> = [
+  ...getDimensions('arena').map((d) => ({ kind: 'arena' as Kind, dimension: d.id, label: d.label })),
+  ...getDimensions('aa').map((d) => ({ kind: 'aa' as Kind, dimension: d.id, label: d.label })),
+  ...getDimensions('swe').map((d) => ({ kind: 'swe' as Kind, dimension: d.id, label: d.label })),
+  ...getDimensions('tbench').map((d) => ({ kind: 'tbench' as Kind, dimension: d.id, label: d.label })),
+];
+
+function isBoardTabMatch(sub: SubTab, tab: BoardTab): boolean {
+  if (sub === 'scatter') return tab === 'llm';
+  if (tab === 'llm') return sub.kind === 'arena' || sub.kind === 'aa';
+  return sub.kind === 'swe' || sub.kind === 'tbench';
+}
+
 /** 二级子榜切换（与 BoardTabs 同款样式，小一号） */
-function SubTabs({ board, tab, onChange }: { board: BoardTab; tab: SubTab; onChange: (t: SubTab) => void }) {
-  const keys: SubTab[] = board === 'llm' ? ['arena', 'aa', 'scatter'] : ['swe', 'tbench'];
+function SubTabs({
+  tab,
+  onChange,
+}: {
+  board?: BoardTab;
+  tab: SubTab;
+  onChange: (t: SubTab) => void;
+}) {
   return (
     <div className="subtabs" role="tablist" aria-label="子榜单切换">
-      {keys.map((k) => (
-        <button
-          key={k}
-          type="button"
-          role="tab"
-          aria-selected={tab === k}
-          className="subtabs__tab"
-          onClick={() => onChange(k)}
-        >
-          {SUB_LABELS[k]}
-        </button>
-      ))}
+      {SUB_TABS.map((t) => {
+        const sub: SubTab = { kind: t.kind, dimension: t.dimension };
+        const active = tab !== 'scatter' && tab.kind === t.kind && tab.dimension === t.dimension;
+        return (
+          <button
+            key={`${t.kind}-${t.dimension}`}
+            type="button"
+            role="tab"
+            aria-selected={active}
+            className="subtabs__tab"
+            data-kind={t.kind}
+            data-dimension={t.dimension}
+            onClick={() => onChange(sub)}
+          >
+            {t.label}
+          </button>
+        );
+      })}
+      <button
+        type="button"
+        role="tab"
+        aria-selected={tab === 'scatter'}
+        className="subtabs__tab"
+        onClick={() => onChange('scatter')}
+      >
+        速度 × 价格
+      </button>
     </div>
   );
 }
@@ -69,7 +96,7 @@ function SubTabs({ board, tab, onChange }: { board: BoardTab; tab: SubTab; onCha
 export default function App() {
   const { loading, error, retry, latest, history, pendingCount, pendingTotal } = useBoardData();
   const [board, setBoard] = useState<BoardTab>('llm');
-  const [sub, setSub] = useState<SubTab>('arena');
+  const [sub, setSub] = useState<SubTab>({ kind: 'arena', dimension: 'overall' });
   // 对比选择（最多 2 个，Set 保序：先勾的在前）
   const [compareSelection, setCompareSelection] = useState<Set<string>>(new Set());
   const [expandedId, setExpandedId] = useState<string | null>(null);
@@ -105,17 +132,21 @@ export default function App() {
 
   const changeBoard = (b: BoardTab) => {
     setBoard(b);
-    changeSub(b === 'llm' ? 'arena' : 'swe'); // 换主榜同样换子榜，org 一并重置
+    // 换主榜时把子榜重置到该榜的第一个 dimension
+    const fallback: SubTab = b === 'llm'
+      ? { kind: 'arena', dimension: 'overall' }
+      : { kind: 'swe', dimension: 'overall' };
+    setSub(fallback);
+    setFilter((f) => ({ ...f, org: '' }));
   };
 
   // 当前子榜单数据 + useFilters（各榜单独立筛选状态由 key 重挂载保证）
   let entries: Array<ArenaEloEntry | AAIndexEntry | SweEntry | TBenchEntry> = [];
-  if (latest) {
-    if (sub === 'arena') entries = latest.llm.arena_elo;
-    else if (sub === 'aa') entries = latest.llm.aa_index;
-    else if (sub === 'swe') entries = latest.agent.swebench_verified;
-    else if (sub === 'tbench') entries = latest.agent.terminal_bench;
-    // sub === 'scatter' 时 entries 为空数组（FilterBar 隐藏、RankTable 不渲染）
+  if (latest && sub !== 'scatter') {
+    if (sub.kind === 'arena') entries = latest.llm.arena_elo;
+    else if (sub.kind === 'aa') entries = latest.llm.aa_index;
+    else if (sub.kind === 'swe') entries = latest.agent.swebench_verified;
+    else if (sub.kind === 'tbench') entries = latest.agent.terminal_bench;
   }
   // model_id 索引全站唯一构建处；useMemo 保持引用稳定，
   // 否则 useFilters/RankTable 内部 useMemo 每次 render 失效 → 趋势图无谓重建
@@ -208,21 +239,31 @@ function BoardBody({
   onToggleExpand,
   models,
 }: BoardBodyProps) {
+  const subKind: Kind | null = sub === 'scatter' ? null : sub.kind;
   const unavailable =
-    sub !== 'scatter' ? latest.sources[SUB_SOURCE[sub]]?.status === 'unavailable' : false;
+    subKind !== null ? latest.sources[SUB_SOURCE[subKind]]?.status === 'unavailable' : false;
+  const isBoardMatch = isBoardTabMatch(sub, board);
+
+  const subLabel =
+    sub === 'scatter'
+      ? '速度 × 价格'
+      : sub.dimension === 'overall'
+        ? (sub.kind === 'arena' ? 'Arena Elo' : sub.kind === 'aa' ? 'AA 指数' : sub.kind === 'swe' ? 'SWE-bench' : 'Terminal-Bench')
+        : `${sub.kind === 'arena' ? 'Arena' : sub.kind === 'aa' ? 'AA' : sub.kind === 'swe' ? 'SWE' : 'TBench'} · ${sub.dimension}`;
 
   return (
     <>
       <HeroChampions latest={latest} />
       <BoardTabs tab={board} onChange={onBoardChange} />
-      {/* 二级切换：LLM → Arena Elo / AA 指数 / 速度×价格散点；Agent → SWE-bench / Terminal-Bench */}
-      <SubTabs board={board} tab={sub} onChange={onSubChange} />
-      {sub !== 'scatter' && !unavailable && (
+      {/* 二级切换：8 个 kind×dimension Tab + 散点（单列最右） */}
+      <SubTabs tab={sub} onChange={onSubChange} />
+      {sub !== 'scatter' && !unavailable && isBoardMatch && (
         <>
           <FilterBar orgs={orgs} filter={filter} setFilter={onFilterChange} count={filtered.length} />
           <RankTable
-            key={sub}
-            kind={sub as 'arena' | 'aa' | 'swe' | 'tbench'}
+            key={`${sub.kind}-${sub.dimension}`}
+            kind={sub.kind}
+            dimension={sub.dimension}
             entries={filtered}
             models={models}
             history={history}
@@ -233,18 +274,20 @@ function BoardBody({
           />
         </>
       )}
-      {sub !== 'scatter' && unavailable && (
+      {sub !== 'scatter' && !isBoardMatch && (
+        <p className="label-caps" style={{ padding: 32 }}>
+          请在 {board === 'llm' ? '大模型榜' : 'Agent 榜'}下查看该子榜
+        </p>
+      )}
+      {sub !== 'scatter' && unavailable && isBoardMatch && subKind && (
         <BoardUnavailable
-          name={SUB_LABELS[sub]}
-          lastOk={latest.sources[SUB_SOURCE[sub]]?.last_ok}
+          name={subLabel}
+          lastOk={latest.sources[SUB_SOURCE[subKind]]?.last_ok}
         />
       )}
       {sub === 'scatter' &&
         (latest.sources.artificial_analysis.status === 'unavailable' ? (
-          <BoardUnavailable
-            name={SUB_LABELS.scatter}
-            lastOk={latest.sources.artificial_analysis.last_ok}
-          />
+          <BoardUnavailable name="速度 × 价格" lastOk={latest.sources.artificial_analysis.last_ok} />
         ) : (
           <ScatterView aaEntries={latest.llm.aa_index} models={models} onSelect={() => {}} />
         ))}

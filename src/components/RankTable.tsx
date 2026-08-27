@@ -12,8 +12,10 @@ import DeltaBadge from './DeltaBadge';
 import TickRail from './TickRail';
 import TrendPanel from './TrendPanel';
 import type { Top3Ref, TrendBoard } from './TrendPanel';
+import type { DimensionDef, DimensionId, Kind } from '../lib/boards';
+import { findDimension } from '../lib/boards';
 
-export type RankKind = 'arena' | 'aa' | 'swe' | 'tbench';
+export type RankKind = Kind;
 
 /** 榜单 kind → history 序列键 */
 const BOARD_OF: Record<RankKind, TrendBoard> = {
@@ -32,6 +34,7 @@ type AnyEntries =
 
 export interface RankTableProps {
   kind: RankKind;
+  dimension: DimensionId;
   entries: AnyEntries;
   models: Record<string, ModelMeta>;
   history: History | null;
@@ -48,7 +51,7 @@ interface RowModel {
   name: string;
   org: string;
   oss: boolean;
-  /** 主分数文本 */
+  /** 主分数文本（基于 dimDef.getScore 的输出） */
   scoreText: string;
   /** arena 置信区间半宽（±n） */
   ciHalf?: number;
@@ -62,16 +65,27 @@ interface RowModel {
   costUsd?: number | null;
   rankPrev: number | null;
   deltaScore: number | null;
+  /** 分项徽标展示数据（isOverall 时填充） */
+  subBadges?: Array<{ label: string; value: number; tooltip: string }>;
 }
-
-const AA_RAIL = { min: 40, max: 85, ticks: [40, 55, 70, 85] } as const;
-const PCT_RAIL = { min: 0, max: 100, ticks: [0, 25, 50, 75, 100] } as const;
 
 const fmt1 = (n: number): string => n.toFixed(1);
 
-function normalizeRows(kind: RankKind, entries: AnyEntries, models: Record<string, ModelMeta>): RowModel[] {
+function fmtScore(n: number, kind: RankKind): string {
+  if (kind === 'aa') return fmt1(n);
+  if (kind === 'swe' || kind === 'tbench') return `${fmt1(n)}%`;
+  return String(n);
+}
+
+function normalizeRows(
+  kind: RankKind,
+  dimDef: DimensionDef<any>,
+  entries: AnyEntries,
+  models: Record<string, ModelMeta>,
+): RowModel[] {
   const raw = entries as unknown as ReadonlyArray<Record<string, unknown>>;
-  return raw.map((e, i) => {
+  const out: RowModel[] = [];
+  raw.forEach((e, i) => {
     const model_id = e.model_id as string;
     const m = models[model_id];
     const base = {
@@ -83,34 +97,68 @@ function normalizeRows(kind: RankKind, entries: AnyEntries, models: Record<strin
       rankPrev: e.rank_prev as number | null,
       deltaScore: e.delta_score as number | null,
     };
+
+    // 主分（由 dimDef.getScore 取得；null 则整行过滤）
+    const score = dimDef.getScore(e);
+    if (score == null) return;
+
+    const scoreText = fmtScore(score, kind);
+    const subBadges: Array<{ label: string; value: number; tooltip: string }> = [];
+    if (dimDef.isOverall && dimDef.subBadges) {
+      for (const sb of dimDef.subBadges) {
+        const v = sb.getValue(e);
+        if (v != null) {
+          subBadges.push({ label: sb.label, value: v, tooltip: `${sb.tooltip} ${v}` });
+        }
+      }
+    }
+
+    const railBase = dimDef.getRail();
+
     if (kind === 'arena') {
       const a = e as unknown as ArenaEloEntry;
-      const ciHalf = a.ci95 ? Math.round((a.ci95[1] - a.ci95[0]) / 2) : undefined;
-      return { ...base, scoreText: String(a.score), ciHalf, cats: a.categories };
+      const ci = dimDef.getCi95?.(a);
+      const ciHalf = ci ? Math.round((ci[1] - ci[0]) / 2) : undefined;
+      out.push({
+        ...base,
+        scoreText,
+        ciHalf,
+        cats: a.categories,
+        subBadges: subBadges.length > 0 ? subBadges : undefined,
+        rail: { value: score, ...railBase },
+      });
+      return;
     }
     if (kind === 'aa') {
       const a = e as unknown as AAIndexEntry;
-      return {
+      out.push({
         ...base,
-        scoreText: fmt1(a.index),
-        rail: { value: a.index, ...AA_RAIL },
+        scoreText,
+        rail: { value: score, ...railBase },
         speedTps: a.output_speed_tps ?? null,
         priceBlin: a.price_blin_per_m ?? null,
-      };
+        subBadges: subBadges.length > 0 ? subBadges : undefined,
+      });
+      return;
     }
     if (kind === 'swe') {
       const s = e as unknown as SweEntry;
-      return {
+      out.push({
         ...base,
-        scoreText: `${fmt1(s.resolved_pct)}%`,
-        rail: { value: s.resolved_pct, ...PCT_RAIL },
+        scoreText,
+        rail: { value: score, ...railBase },
         agent: s.agent ?? '—',
         costUsd: s.cost_usd_per_instance ?? null,
-      };
+      });
+      return;
     }
-    const t = e as unknown as TBenchEntry;
-    return { ...base, scoreText: `${fmt1(t.score)}%`, rail: { value: t.score, ...PCT_RAIL } };
+    out.push({
+      ...base,
+      scoreText,
+      rail: { value: score, ...railBase },
+    });
   });
+  return out;
 }
 
 // ===== 列定义（集中式配置）=====
@@ -140,8 +188,19 @@ function NameCell({ row }: { row: RowModel }) {
 function ScoreCell({ row }: { row: RowModel }) {
   return (
     <span className="rt__score">
-      <span className="mono rt__score-num">{row.scoreText}</span>
-      {row.ciHalf !== undefined && <span className="rt__ci">±{row.ciHalf}</span>}
+      <span className="rt__score-main">
+        <span className="mono rt__score-num">{row.scoreText}</span>
+        {row.ciHalf !== undefined && <span className="rt__ci">±{row.ciHalf}</span>}
+      </span>
+      {row.subBadges && row.subBadges.length > 0 && (
+        <span className="rt__subbadges">
+          {row.subBadges.map((b) => (
+            <span className="sub-badge" key={b.label} title={b.tooltip}>
+              {b.label} {b.value}
+            </span>
+          ))}
+        </span>
+      )}
       {row.rail && (
         <TickRail
           value={row.rail.value}
@@ -167,6 +226,19 @@ function CatsCell({ row }: { row: RowModel }) {
         </span>
       ))}
     </span>
+  );
+}
+
+function SubBadgesCardRow({ row }: { row: RowModel }) {
+  if (!row.subBadges || row.subBadges.length === 0) return null;
+  return (
+    <div className="rt-card__subbadges" style={{ width: '100%', flexBasis: '100%' }}>
+      {row.subBadges.map((b) => (
+        <span className="sub-badge" key={b.label} title={b.tooltip}>
+          {b.label} {b.value}
+        </span>
+      ))}
+    </div>
   );
 }
 
@@ -214,6 +286,7 @@ const COLUMNS: Record<RankKind, ColDef[]> = {
 
 export default function RankTable({
   kind,
+  dimension,
   entries,
   models,
   history,
@@ -222,11 +295,22 @@ export default function RankTable({
   expandedId,
   onToggleExpand,
 }: RankTableProps) {
+  const dimDef = findDimension(kind, dimension);
+  if (!dimDef) {
+    return (
+      <div className="rt">
+        <p className="label-caps rt__empty">维度 {dimension} 不存在</p>
+      </div>
+    );
+  }
   const cols = COLUMNS[kind];
   // rows 引用稳定化：normalizeRows 每 render 裸调用会产生新数组，
   // 使 top3Refs useMemo 每次失效 → TrendPanel effect 重跑（图表整体销毁重建）。
   // 勾选对比复选框等无关 state 变更不应触发图表重建。
-  const rows = useMemo(() => normalizeRows(kind, entries, models), [kind, entries, models]);
+  const rows = useMemo(
+    () => normalizeRows(kind, dimDef, entries, models),
+    [kind, dimDef, entries, models],
+  );
 
   // 展开趋势图的前三参照（当前榜前 3 名；TrendPanel 内部再排除主模型自己）
   const top3Refs = useMemo<Top3Ref[]>(
@@ -243,7 +327,13 @@ export default function RankTable({
   const expandContent = (row: RowModel): ReactNode => {
     if (expandedId !== row.model_id) return null;
     return history ? (
-      <TrendPanel modelId={row.model_id} board={board} history={history} top3Refs={top3Refs} />
+      <TrendPanel
+        modelId={row.model_id}
+        board={board}
+        history={history}
+        top3Refs={top3Refs}
+        dimension={dimDef}
+      />
     ) : (
       <p className="trend-panel__empty">暂无历史数据</p>
     );
@@ -377,6 +467,7 @@ export default function RankTable({
                 )}
                 <DeltaBadge rankPrev={row.rankPrev} deltaScore={row.deltaScore} />
               </div>
+              <SubBadgesCardRow row={row} />
             </div>
             {/* 复选框独立于卡片点击展开 */}
             <label className="rt-card__check" onClick={(ev) => ev.stopPropagation()}>

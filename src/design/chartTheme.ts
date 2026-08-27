@@ -4,6 +4,8 @@ export interface ChartColors {
   ink: string;
   orange: string;
   blue: string;
+  violet: string;
+  violetSoft: string;
   up: string;
   down: string;
   soft: string;
@@ -17,6 +19,8 @@ export function getChartColors(): ChartColors {
     ink: v('--ink', '#16181D'),
     orange: v('--orange', '#FF4D00'),
     blue: v('--blue', '#2563EB'),
+    violet: v('--violet', '#7C3AED'),
+    violetSoft: v('--violet-soft', '#C4B5FD'),
     up: v('--up', '#0A7D33'),
     down: v('--down', '#C62828'),
     soft: v('--ink-soft', '#6B6D64'),

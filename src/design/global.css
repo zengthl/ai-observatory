@@ -465,6 +465,41 @@
   font-size: 12px;
 }
 
+/* ===== 分项徽标（sub-badge）=====
+ * 整体维表格核心分列下方一行，紧贴主分换行显示。
+ * 8.5px mono 灰底 1px 描边小方角标签；缺失值（null）不渲染。 */
+.sub-badge {
+  display: inline-block;
+  padding: 1px 4px;
+  margin-right: 4px;
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  color: var(--ink-soft);
+  background: var(--rule-light);
+  border: 1px solid var(--rule-light);
+  border-radius: 1px;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+
+.rt__score {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px 10px;
+  flex-wrap: wrap;
+}
+
+.rt__score-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rt__score-num {
+  font-weight: 600;
+  font-size: 14px;
+}
+
 .rt__agent {
   font-size: 12px;
 }
@@ -801,6 +836,27 @@
   font-size: 11px;
   letter-spacing: 0.1em;
   color: var(--ink-soft);
+}
+
+/* 多线图例（整体维趋势图分项曲线说明） */
+.trend-panel__legend {
+  display: flex;
+  gap: 14px;
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--ink-soft);
+}
+.trend-panel__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.trend-panel__legend-swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 1px;
 }
 
 /* ===== 移动端卡片视图 ===== */

@@ -7,6 +7,7 @@ import type { EChartsCoreOption, EChartsType } from 'echarts/core';
 import type { LineSeriesOption } from 'echarts/charts';
 import type { History } from '../types';
 import { getChartColors } from '../design/chartTheme';
+import type { DimensionDef } from '../lib/boards';
 
 // 按需注册（模块级一次即可，重复 use 幂等）
 echarts.use([LineChart, GridComponent, TooltipComponent, CanvasRenderer]);
@@ -24,6 +25,8 @@ interface TrendPanelProps {
   history: History;
   /** 当前榜前三参照（已排除主模型自己） */
   top3Refs: Top3Ref[];
+  /** 维度配置；驱动主线颜色与分项曲线 */
+  dimension: DimensionDef<any>;
 }
 
 const WINDOW_DAYS = 90;
@@ -62,15 +65,47 @@ const BOARD_LABELS: Record<TrendBoard, string> = {
   terminal_bench: 'Terminal-Bench 得分',
 };
 
+/** 单系列 key → 该模型在 history 中的 series 名 */
+function historySeriesFor(
+  board: TrendBoard,
+  trendKey: 'overall' | 'code' | 'webdev' | 'coding' | 'math',
+): string {
+  if (trendKey === 'overall') return board;
+  // 分项序列：暂未在 history 中独立存（首日实装时无数据），先用 board 兜底避免空数据假连线
+  return board;
+}
+
+/** 按 trendKey color 名取实际色值 */
+function colorByName(name: 'orange' | 'blue' | 'violet', c: ReturnType<typeof getChartColors>): string {
+  if (name === 'blue') return c.blue;
+  if (name === 'violet') return c.violet;
+  return c.orange;
+}
+
 /**
  * 行展开的 90 天趋势图。
  *
  * 单点序列说明：echarts 折线在只有一个数据点时线宽不可见，
  * 因此 symbolSize 恒开（主模型 5px / 参照 3px），保证首日数据也能看到点。
  */
-export default function TrendPanel({ modelId, board, history, top3Refs }: TrendPanelProps) {
+export default function TrendPanel({ modelId, board, history, top3Refs, dimension }: TrendPanelProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<EChartsType | null>(null);
+
+  const trendKeys = dimension.trendKeys;
+  const isMultiLine = trendKeys.length > 1;
+
+  // 主模型各分项序列（按 dimDef.trendKeys 顺序）
+  const mainSeries = useMemo(
+    () =>
+      trendKeys.map((tk) => {
+        const key = historySeriesFor(board, tk.key);
+        const hm = history[modelId] ?? {};
+        const pts = (hm as Record<string, Array<[string, number]> | undefined>)[key] ?? [];
+        return { ...tk, points: sliceWindow(pts), hasData: pts.length > 0 };
+      }),
+    [trendKeys, history, board, modelId],
+  );
 
   // 参照线数据：排除主模型自己
   const refSeries = useMemo(
@@ -96,11 +131,9 @@ export default function TrendPanel({ modelId, board, history, top3Refs }: TrendP
     const buildOption = (): EChartsCoreOption => {
       if (option) return option;
 
-      const mainPoints = sliceWindow(history[modelId]?.[board] ?? []);
-
       // X 轴类目：所有序列日期并集排序（缺失处 null 断开，不伪造连线）
       const dateSet = new Set<string>();
-      for (const [d] of mainPoints) dateSet.add(d);
+      for (const s of mainSeries) for (const [d] of s.points) dateSet.add(d);
       for (const r of refSeries) for (const [d] of r.points) dateSet.add(d);
       const dates = [...dateSet].sort();
       const at = (pts: Array<[string, number]>, d: string): number | null => {
@@ -111,32 +144,45 @@ export default function TrendPanel({ modelId, board, history, top3Refs }: TrendP
       const toData = (pts: Array<[string, number]>): Array<number | null> =>
         dates.map((d) => at(pts, d));
 
-      const series: LineSeriesOption[] = [
-        {
-          name: BOARD_LABELS[board],
+      // 主线序列：分项维单线（蓝色/紫罗兰），整体维多线（橙主 + 蓝/紫虚线）
+      const mainLineSeries: LineSeriesOption[] = mainSeries.map((s) => {
+        const isMain = s.key === 'overall';
+        const c = colorByName(s.color, colors);
+        return {
+          name: s.label,
           type: 'line',
-          data: toData(mainPoints),
-          lineStyle: { color: colors.orange, width: 2, type: 'solid' },
-          itemStyle: { color: colors.orange },
+          data: toData(s.points),
+          lineStyle: {
+            color: c,
+            width: isMain ? 2 : 1.5,
+            type: isMain ? 'solid' : 'dashed',
+            opacity: isMain ? 1 : 0.85,
+          },
+          itemStyle: { color: c },
           symbol: 'circle',
-          symbolSize: 5,
+          symbolSize: isMain ? 5 : 3,
           connectNulls: false,
           emphasis: { disabled: true },
           z: 3,
-        },
-        ...refSeries.map<LineSeriesOption>((r, i) => ({
-          name: `#${i + 1} ${r.modelId}`,
-          type: 'line',
-          data: toData(r.points),
-          lineStyle: { color: colors.soft, width: 1, type: 'dashed', opacity: 0.75 },
-          itemStyle: { color: colors.soft },
-          symbol: 'circle',
-          symbolSize: 3,
-          connectNulls: false,
-          emphasis: { disabled: true },
-          z: 2,
-        })),
-      ];
+        };
+      });
+
+      // 参照线：与主色一致；整体维时参照线为浅色，分项维保持同色
+      const refColor = isMultiLine ? colors.soft : colorByName(trendKeys[0].color, colors);
+      const refLineSeries: LineSeriesOption[] = refSeries.map<LineSeriesOption>((r, i) => ({
+        name: `#${i + 1} ${r.modelId}`,
+        type: 'line',
+        data: toData(r.points),
+        lineStyle: { color: refColor, width: 1, type: 'dashed', opacity: 0.55 },
+        itemStyle: { color: refColor },
+        symbol: 'circle',
+        symbolSize: 3,
+        connectNulls: false,
+        emphasis: { disabled: true },
+        z: 2,
+      }));
+
+      const series: LineSeriesOption[] = [...mainLineSeries, ...refLineSeries];
 
       option = {
         animation: !reduceMotion,
@@ -224,19 +270,63 @@ export default function TrendPanel({ modelId, board, history, top3Refs }: TrendP
       chartRef.current?.dispose();
       chartRef.current = null;
     };
-  }, [modelId, board, history, refSeries]);
+  }, [modelId, board, history, refSeries, mainSeries, isMultiLine, trendKeys]);
+
+  // 多线图例：主色块 + label；trendKeys 长度 > 1 时显
+  const renderLegend = (): React.ReactNode => {
+    if (!isMultiLine) return null;
+    const c = colorsFromDom();
+    return (
+      <div className="trend-panel__legend">
+        {trendKeys.map((tk) => {
+          const color = tk.color === 'blue' ? c.blue : tk.color === 'violet' ? c.violet : c.orange;
+          return (
+            <span className="trend-panel__legend-item" key={tk.key}>
+              <span className="trend-panel__legend-swatch" style={{ background: color }} />
+              <span className="trend-panel__legend-label">{tk.label}</span>
+            </span>
+          );
+        })}
+      </div>
+    );
+  };
 
   return (
     <div className="trend-panel">
       <div className="label-caps trend-panel__caption">
-        <span>{BOARD_LABELS[board]} · 近 90 天</span>
+        <span>
+          {BOARD_LABELS[board]} · 近 90 天
+          {dimension.axisLabel && ` · ${dimension.axisLabel}`}
+        </span>
         {refSeries.length > 0 && <span>虚线为当前榜前三参照</span>}
       </div>
       {history[modelId]?.[board]?.length ? (
-        <div ref={containerRef} style={{ height: 240 }} />
+        <>
+          <div ref={containerRef} style={{ height: 240 }} />
+          {/* 多线时把图例挪到图表下方，避免压住窄屏曲线 */}
+          {isMultiLine && renderLegend()}
+        </>
       ) : (
         <p className="trend-panel__empty">暂无历史数据</p>
       )}
     </div>
   );
+}
+
+/** 仅在 renderLegend 中使用：从 CSS 变量即时取值（避免 useMemo 依赖 document） */
+function colorsFromDom(): { orange: string; blue: string; violet: string; violetSoft: string; ink: string; up: string; down: string; soft: string } {
+  if (typeof document === 'undefined') {
+    return { orange: '#FF4D00', blue: '#2563EB', violet: '#7C3AED', violetSoft: '#C4B5FD', ink: '#16181D', up: '#0A7D33', down: '#C62828', soft: '#6B6D64' };
+  }
+  const cs = getComputedStyle(document.documentElement);
+  return {
+    orange: cs.getPropertyValue('--orange').trim() || '#FF4D00',
+    blue: cs.getPropertyValue('--blue').trim() || '#2563EB',
+    violet: cs.getPropertyValue('--violet').trim() || '#7C3AED',
+    violetSoft: cs.getPropertyValue('--violet-soft').trim() || '#C4B5FD',
+    ink: cs.getPropertyValue('--ink').trim() || '#16181D',
+    up: cs.getPropertyValue('--up').trim() || '#0A7D33',
+    down: cs.getPropertyValue('--down').trim() || '#C62828',
+    soft: cs.getPropertyValue('--ink-soft').trim() || '#6B6D64',
+  };
 }

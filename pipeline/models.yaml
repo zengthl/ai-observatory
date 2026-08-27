@@ -134,7 +134,7 @@
   display_name: Gemini 3.7 Flash
   org: Google
   license: closed
-  aliases: ["Gemini 3.7 Flash", "gemini-3-7-flash", "gemini-37-flash", "gemini-3.7-flash-high", "Gemini 3.7 Flash (high)", "Gemini 3.7 Flash (medium)", "gpt gemini-3-7-flash-low", "gemini-3-7-flash-low"]
+  aliases: ["Gemini 3.7 Flash", "gemini-3-7-flash", "gemini-37-flash", "gemini-3.7-flash-high", "Gemini 3.7 Flash (high)", "Gemini 3.7 Flash (medium)", "gemini-3-7-flash-low", "gemini-3-7-flash-low"]
 - model_id: gemini-36-flash
   display_name: Gemini 3.6 Flash
   org: Google

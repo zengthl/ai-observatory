@@ -1,6 +1,12 @@
 // ===== 快照结构 =====
 
-export type SourceName = 'artificial_analysis' | 'lmarena' | 'swebench' | 'livebench';
+export type SourceName =
+  | 'artificial_analysis'
+  | 'lmarena'
+  | 'swebench'
+  | 'livebench'
+  | 'openllm'
+  | 'livecodebench';
 
 export type SourceStatus = 'ok' | 'unavailable';
 
@@ -64,6 +70,21 @@ export interface TBenchEntry {
   delta_score: number | null;
 }
 
+/**
+ * LiveCodeBench 主分条目（All 档）+ Easy/Medium/Hard 三档
+ * 字段单位：百分制（0–100）
+ */
+export interface LiveCodeBenchEntry {
+  model_id: string;
+  /** All 档主分 */
+  score: number;
+  pass_easy: number;
+  pass_medium: number;
+  pass_hard: number;
+  rank_prev: number | null;
+  delta_score: number | null;
+}
+
 export interface Snapshot {
   date: string;
   sources: Record<SourceName, SourceInfo>;
@@ -85,6 +106,16 @@ export interface Snapshot {
     livebench_language: GenericLLMEntry[];
     livebench_data_analysis: GenericLLMEntry[];
     livebench_instruction_following: GenericLLMEntry[];
+    // OpenLLM Leaderboard 6 个子榜（v2 实际数据：mmlu/arc/bbh 有完整数据；
+    //  hellaswag/truthfulqa/gsm8k 在 v2 schema 中已下线，留空数组）
+    openllm_mmlu: GenericLLMEntry[];
+    openllm_arc: GenericLLMEntry[];
+    openllm_hellaswag: GenericLLMEntry[];
+    openllm_truthfulqa: GenericLLMEntry[];
+    openllm_gsm8k: GenericLLMEntry[];
+    openllm_bbh: GenericLLMEntry[];
+    // LiveCodeBench 主分（All 档 + 三档分项）
+    livecodebench: LiveCodeBenchEntry[];
   };
   agent: {
     swebench_verified: SweEntry[];
@@ -129,6 +160,13 @@ export interface HistoryModel {
   livebench_language?: HistoryPoint[];
   livebench_data_analysis?: HistoryPoint[];
   livebench_instruction_following?: HistoryPoint[];
+  openllm_mmlu?: HistoryPoint[];
+  openllm_arc?: HistoryPoint[];
+  openllm_hellaswag?: HistoryPoint[];
+  openllm_truthfulqa?: HistoryPoint[];
+  openllm_gsm8k?: HistoryPoint[];
+  openllm_bbh?: HistoryPoint[];
+  livecodebench?: HistoryPoint[];
 }
 
 export type History = Record<string, HistoryModel>;

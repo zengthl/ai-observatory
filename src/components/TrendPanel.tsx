@@ -28,7 +28,14 @@ export type TrendBoard =
   | 'livebench_reasoning'
   | 'livebench_language'
   | 'livebench_data_analysis'
-  | 'livebench_instruction_following';
+  | 'livebench_instruction_following'
+  | 'openllm_mmlu'
+  | 'openllm_arc'
+  | 'openllm_hellaswag'
+  | 'openllm_truthfulqa'
+  | 'openllm_gsm8k'
+  | 'openllm_bbh'
+  | 'livecodebench';
 
 export interface Top3Ref {
   modelId: string;
@@ -92,6 +99,13 @@ const BOARD_LABELS: Record<TrendBoard, string> = {
   livebench_language: 'LiveBench 语言',
   livebench_data_analysis: 'LiveBench 数据分析',
   livebench_instruction_following: 'LiveBench 指令遵循',
+  openllm_mmlu: 'OpenLLM MMLU',
+  openllm_arc: 'OpenLLM ARC',
+  openllm_hellaswag: 'OpenLLM HellaSwag',
+  openllm_truthfulqa: 'OpenLLM TruthfulQA',
+  openllm_gsm8k: 'OpenLLM GSM8K',
+  openllm_bbh: 'OpenLLM BBH',
+  livecodebench: 'LiveCodeBench (All)',
 };
 
 /** 单系列 key → 该模型在 history 中的 series 名。

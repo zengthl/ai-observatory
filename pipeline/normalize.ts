@@ -107,6 +107,13 @@ const BOARD_KEYS: BoardKeys = [
   { snapshotPath: 'livebench_language', historyKey: 'livebench_language', getScore: (e) => e.score },
   { snapshotPath: 'livebench_data_analysis', historyKey: 'livebench_data_analysis', getScore: (e) => e.score },
   { snapshotPath: 'livebench_instruction_following', historyKey: 'livebench_instruction_following', getScore: (e) => e.score },
+  { snapshotPath: 'openllm_mmlu', historyKey: 'openllm_mmlu', getScore: (e) => e.score },
+  { snapshotPath: 'openllm_arc', historyKey: 'openllm_arc', getScore: (e) => e.score },
+  { snapshotPath: 'openllm_hellaswag', historyKey: 'openllm_hellaswag', getScore: (e) => e.score },
+  { snapshotPath: 'openllm_truthfulqa', historyKey: 'openllm_truthfulqa', getScore: (e) => e.score },
+  { snapshotPath: 'openllm_gsm8k', historyKey: 'openllm_gsm8k', getScore: (e) => e.score },
+  { snapshotPath: 'openllm_bbh', historyKey: 'openllm_bbh', getScore: (e) => e.score },
+  { snapshotPath: 'livecodebench', historyKey: 'livecodebench', getScore: (e) => e.score },
 ];
 
 export function buildHistory(prevHistory: History, snapshot: Snapshot): History {

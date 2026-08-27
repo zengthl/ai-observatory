@@ -1,27 +1,29 @@
 /**
  * 分领域维度配置（Kind × Dimension 双轴抽象）。
  * 核心约定：
- * - 一级 Tab（Kind）只控制 sub 可见性：'llm' 只见 aa/arena/livebench；'agent' 只见 swe/tbench
+ * - 一级 Tab（Kind）只控制 sub 可见性：'llm' 只见 aa/arena/livebench/openllm/livecodebench；'agent' 只见 swe/tbench
  * - 每个 kind 自己决定 1–N 个 dimension（多 dimension 必含 overall）
  * - 表格主分由 `dimDef.getScore(entry)` 取得；缺失返回 null 时该行不显
  * - 整体维（isOverall=true）有 subBadges（总榜旁的小分项徽标）
  * - 整体维 trendKeys 多线（橙 + 各分项色）；分项维只画单线（蓝/紫罗兰）
  *
  * 阶段 1（massive-s1）：DIMENSIONS 从 5 维扩到 19 维（AA 总 3 + AA 新 6 + Arena 3 + LiveBench 6 + SWE 1 + TB 1 = 19）。
+ * 阶段 2（massive-s2）：加 OpenLLM 6 + LiveCodeBench 1 = +7 → 共 26 维。
  * 按 `${kind}_${id}` 索引为扁平的 Record<string, DimensionDef>，让 App.tsx 平铺更简单。
  */
 import type {
   AAIndexEntry,
   ArenaEloEntry,
   GenericLLMEntry,
+  LiveCodeBenchEntry,
   SweEntry,
   TBenchEntry,
 } from '../types';
 
 /** 任意一种榜单条目（按 kind 决定具体窄化） */
-export type BoardEntry = ArenaEloEntry | AAIndexEntry | SweEntry | TBenchEntry | GenericLLMEntry;
+export type BoardEntry = ArenaEloEntry | AAIndexEntry | SweEntry | TBenchEntry | GenericLLMEntry | LiveCodeBenchEntry;
 
-export type Kind = 'arena' | 'aa' | 'livebench' | 'swe' | 'tbench';
+export type Kind = 'arena' | 'aa' | 'livebench' | 'openllm' | 'livecodebench' | 'swe' | 'tbench';
 
 export type DimensionId = string;
 
@@ -284,6 +286,89 @@ const tbenchOverall: DimensionDef<TBenchEntry> = {
   trendKeys: [{ key: 'overall', color: 'orange', label: '总榜' }],
 };
 
+// ===== OpenLLM Leaderboard (6 维) =====
+// v2 schema 实际可用的 key：
+//   mmlu         → leaderboard.acc_norm (综合分，~30-60%)
+//   arc          → leaderboard_arc_challenge.acc_norm
+//   bbh          → leaderboard_bbh.acc_norm
+//   hellaswag/truthfulqa/gsm8k → null (v1 字段，v2 不存在；保留维度但 entries 为空)
+const openllmRail = (): RailConfig => ({ min: 0, max: 80, ticks: [0, 30, 50, 65, 80] });
+
+const ollmMmlu: DimensionDef<GenericLLMEntry> = {
+  id: 'mmlu',
+  label: 'OpenLLM MMLU',
+  axisLabel: 'OPENLLM MMLU',
+  isOverall: false,
+  getScore: (e) => e.score,
+  getRail: openllmRail,
+  trendKeys: [{ key: 'overall', color: 'orange', label: 'mmlu' }],
+};
+const ollmArc: DimensionDef<GenericLLMEntry> = {
+  id: 'arc',
+  label: 'OpenLLM ARC',
+  axisLabel: 'OPENLLM ARC',
+  isOverall: false,
+  getScore: (e) => e.score,
+  getRail: () => ({ min: 0, max: 100, ticks: [0, 40, 60, 80, 100] }),
+  trendKeys: [{ key: 'overall', color: 'orange', label: 'arc' }],
+};
+const ollmHellaswag: DimensionDef<GenericLLMEntry> = {
+  id: 'hellaswag',
+  label: 'OpenLLM HellaSwag',
+  axisLabel: 'OPENLLM HELLASWAG',
+  isOverall: false,
+  getScore: (e) => e.score,
+  getRail: () => ({ min: 0, max: 100, ticks: [0, 40, 60, 80, 100] }),
+  trendKeys: [{ key: 'overall', color: 'orange', label: 'hellaswag' }],
+};
+const ollmTruthfulqa: DimensionDef<GenericLLMEntry> = {
+  id: 'truthfulqa',
+  label: 'OpenLLM TruthfulQA',
+  axisLabel: 'OPENLLM TRUTHFULQA',
+  isOverall: false,
+  getScore: (e) => e.score,
+  getRail: () => ({ min: 0, max: 80, ticks: [0, 30, 50, 65] }),
+  trendKeys: [{ key: 'overall', color: 'orange', label: 'truthfulqa' }],
+};
+const ollmGsm8k: DimensionDef<GenericLLMEntry> = {
+  id: 'gsm8k',
+  label: 'OpenLLM GSM8K',
+  axisLabel: 'OPENLLM GSM8K',
+  isOverall: false,
+  getScore: (e) => e.score,
+  getRail: () => ({ min: 0, max: 90, ticks: [0, 30, 60, 90] }),
+  trendKeys: [{ key: 'overall', color: 'orange', label: 'gsm8k' }],
+};
+const ollmBbh: DimensionDef<GenericLLMEntry> = {
+  id: 'bbh',
+  label: 'OpenLLM BBH',
+  axisLabel: 'OPENLLM BBH',
+  isOverall: false,
+  getScore: (e) => e.score,
+  getRail: () => ({ min: 0, max: 80, ticks: [0, 40, 60, 80] }),
+  trendKeys: [{ key: 'overall', color: 'orange', label: 'bbh' }],
+};
+
+// ===== LiveCodeBench (1 维：All 档主分 + 三档 sub badge) =====
+const lcbOverall: DimensionDef<LiveCodeBenchEntry> = {
+  id: 'overall',
+  label: 'LiveCodeBench',
+  axisLabel: 'LCB PASS@1 ALL',
+  isOverall: true,
+  getScore: (e) => e.score,
+  getRail: () => ({ min: 0, max: 100, ticks: [0, 30, 60, 90] }),
+  subBadges: [
+    { label: 'easy', tooltip: 'Easy 档 Pass@1', getValue: (e) => e.pass_easy },
+    { label: 'medium', tooltip: 'Medium 档 Pass@1', getValue: (e) => e.pass_medium },
+    { label: 'hard', tooltip: 'Hard 档 Pass@1', getValue: (e) => e.pass_hard },
+  ],
+  trendKeys: [
+    { key: 'overall', color: 'orange', label: '总榜' },
+    { key: 'easy', color: 'blue', label: 'easy' },
+    { key: 'medium', color: 'violet', label: 'medium' },
+  ],
+};
+
 /**
  * 扁平化索引：key = `${kind}_${id}`。让 App.tsx 平铺生成 sub tabs 时按前缀过滤。
  * 调用方仍可通过 (kind, id) 拿到具体 DimensionDef。
@@ -307,6 +392,13 @@ export const DIMENSIONS: Record<string, DimensionDef<any>> = {
   livebench_language: lbLanguage,
   livebench_data_analysis: lbDataAnalysis,
   livebench_instruction_following: lbInstructionFollowing,
+  openllm_mmlu: ollmMmlu,
+  openllm_arc: ollmArc,
+  openllm_hellaswag: ollmHellaswag,
+  openllm_truthfulqa: ollmTruthfulqa,
+  openllm_gsm8k: ollmGsm8k,
+  openllm_bbh: ollmBbh,
+  livecodebench_overall: lcbOverall,
   swe_overall: sweOverall,
   tbench_overall: tbenchOverall,
 };
@@ -316,7 +408,7 @@ export function splitDimKey(key: string): { kind: Kind; id: string } | null {
   const idx = key.indexOf('_');
   if (idx <= 0) return null;
   const kind = key.slice(0, idx) as Kind;
-  if (!['arena', 'aa', 'livebench', 'swe', 'tbench'].includes(kind)) return null;
+  if (!['arena', 'aa', 'livebench', 'openllm', 'livecodebench', 'swe', 'tbench'].includes(kind)) return null;
   return { kind, id: key.slice(idx + 1) };
 }
 
@@ -342,6 +434,10 @@ export type BoardEntryOf<K extends Kind> = K extends 'arena'
     ? AAIndexEntry
     : K extends 'livebench'
       ? GenericLLMEntry
-      : K extends 'swe'
-        ? SweEntry
-        : TBenchEntry;
+      : K extends 'openllm'
+        ? GenericLLMEntry
+        : K extends 'livecodebench'
+          ? LiveCodeBenchEntry
+          : K extends 'swe'
+            ? SweEntry
+            : TBenchEntry;

@@ -35,13 +35,15 @@ const SUB_SOURCE: Record<Kind, SourceName> = {
   arena: 'lmarena',
   aa: 'artificial_analysis',
   livebench: 'livebench',
+  openllm: 'openllm',
+  livecodebench: 'livecodebench',
   swe: 'swebench',
   tbench: 'artificial_analysis',
 };
 
 /** 一级 Tab → 可见的 sub kind 前缀 */
 const TAB_KINDS: Record<BoardTab, Kind[]> = {
-  llm: ['arena', 'aa', 'livebench'],
+  llm: ['arena', 'aa', 'livebench', 'openllm', 'livecodebench'],
   agent: ['swe', 'tbench'],
 };
 
@@ -69,6 +71,8 @@ const KIND_LABEL: Record<Kind, string> = {
   arena: 'Arena',
   aa: 'AA',
   livebench: 'LB',
+  openllm: 'OpenLLM',
+  livecodebench: 'LCB',
   swe: 'SWE',
   tbench: 'TBench',
 };
@@ -194,6 +198,13 @@ export default function App() {
       else if (pair.kind === 'livebench') {
         const k = `livebench_${pair.dimension}` as keyof LatestFile['llm'];
         entries = ((latest.llm as Record<string, unknown>)[k] as GenericLLMEntry[] | undefined) ?? [];
+      }
+      else if (pair.kind === 'openllm') {
+        const k = `openllm_${pair.dimension}` as keyof LatestFile['llm'];
+        entries = ((latest.llm as Record<string, unknown>)[k] as GenericLLMEntry[] | undefined) ?? [];
+      }
+      else if (pair.kind === 'livecodebench') {
+        entries = latest.llm.livecodebench;
       }
       else if (pair.kind === 'swe') entries = latest.agent.swebench_verified;
       else if (pair.kind === 'tbench') entries = latest.agent.terminal_bench;

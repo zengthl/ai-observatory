@@ -3,19 +3,27 @@
  "sources": {
   "artificial_analysis": {
    "status": "ok",
-   "fetched_at": "2026-08-27T05:12:39.157Z"
+   "fetched_at": "2026-08-27T06:55:07.387Z"
   },
   "lmarena": {
    "status": "ok",
-   "fetched_at": "2026-08-27T05:12:39.157Z"
+   "fetched_at": "2026-08-27T06:55:07.387Z"
   },
   "swebench": {
    "status": "ok",
-   "fetched_at": "2026-08-27T05:12:39.157Z"
+   "fetched_at": "2026-08-27T06:55:07.387Z"
   },
   "livebench": {
    "status": "ok",
-   "fetched_at": "2026-08-27T05:12:39.157Z"
+   "fetched_at": "2026-08-27T06:55:07.387Z"
+  },
+  "openllm": {
+   "status": "ok",
+   "fetched_at": "2026-08-27T06:55:07.387Z"
+  },
+  "livecodebench": {
+   "status": "ok",
+   "fetched_at": "2026-08-27T06:55:07.387Z"
   }
  },
  "llm": {
@@ -538,6 +546,20 @@
     "delta_score": 0
    },
    {
+    "model_id": "deepseek-r1",
+    "score": 1422,
+    "ci95": [
+     1416,
+     1428
+    ],
+    "votes": 18492,
+    "categories": {
+     "code": 1464
+    },
+    "rank_prev": 40,
+    "delta_score": 24
+   },
+   {
     "model_id": "deepseek-v31",
     "score": 1417,
     "ci95": [
@@ -592,20 +614,6 @@
      "code": 1424
     },
     "rank_prev": 39,
-    "delta_score": 0
-   },
-   {
-    "model_id": "deepseek-r1",
-    "score": 1398,
-    "ci95": [
-     1393,
-     1403
-    ],
-    "votes": 18524,
-    "categories": {
-     "code": 1445
-    },
-    "rank_prev": 40,
     "delta_score": 0
    },
    {
@@ -667,6 +675,20 @@
     "delta_score": 0
    },
    {
+    "model_id": "o3-mini",
+    "score": 1364,
+    "ci95": [
+     1359,
+     1369
+    ],
+    "votes": 18589,
+    "categories": {
+     "code": 1435
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "minimax-m1",
     "score": 1363,
     "ci95": [
@@ -710,6 +732,20 @@
     "delta_score": 0
    },
    {
+    "model_id": "gpt-5",
+    "score": 1335,
+    "ci95": [
+     1331,
+     1339
+    ],
+    "votes": 45499,
+    "categories": {
+     "code": 1361
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "llama-4-maverick",
     "score": 1327,
     "ci95": [
@@ -722,6 +758,20 @@
     },
     "rank_prev": 48,
     "delta_score": 0
+   },
+   {
+    "model_id": "gpt-5-pro",
+    "score": 1324,
+    "ci95": [
+     1320,
+     1328
+    ],
+    "votes": 98114,
+    "categories": {
+     "code": 1347
+    },
+    "rank_prev": null,
+    "delta_score": null
    },
    {
     "model_id": "llama-4-scout",
@@ -738,6 +788,20 @@
     "delta_score": 0
    },
    {
+    "model_id": "llama-33-70b",
+    "score": 1318,
+    "ci95": [
+     1315,
+     1321
+    ],
+    "votes": 54774,
+    "categories": {
+     "code": 1346
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "gpt-oss-20b",
     "score": 1318,
     "ci95": [
@@ -750,6 +814,356 @@
     },
     "rank_prev": 50,
     "delta_score": 0
+   },
+   {
+    "model_id": "mistral-large-2411",
+    "score": 1305,
+    "ci95": [
+     1301,
+     1309
+    ],
+    "votes": 28073,
+    "categories": {
+     "code": 1346
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen25-72b",
+    "score": 1303,
+    "ci95": [
+     1299,
+     1307
+    ],
+    "votes": 39406,
+    "categories": {
+     "code": 1356
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-31-70b",
+    "score": 1293,
+    "ci95": [
+     1289,
+     1297
+    ],
+    "votes": 55240,
+    "categories": {
+     "code": 1333
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemma-2-27b",
+    "score": 1289,
+    "ci95": [
+     1286,
+     1292
+    ],
+    "votes": 75754,
+    "categories": {
+     "code": 1305
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-3-70b",
+    "score": 1276,
+    "ci95": [
+     1272,
+     1280
+    ],
+    "votes": 156876,
+    "categories": {
+     "code": 1306
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen25-coder-32b",
+    "score": 1271,
+    "ci95": [
+     1263,
+     1279
+    ],
+    "votes": 5432,
+    "categories": {
+     "code": 1342
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemma-2-9b",
+    "score": 1267,
+    "ci95": [
+     1263,
+     1271
+    ],
+    "votes": 54611,
+    "categories": {
+     "code": 1271
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen2-72b",
+    "score": 1262,
+    "ci95": [
+     1257,
+     1267
+    ],
+    "votes": 37325,
+    "categories": {
+     "code": 1297
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-haiku-4-5",
+    "score": 1261,
+    "ci95": [
+     1257,
+     1265
+    ],
+    "votes": 117701,
+    "categories": {
+     "code": 1301
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "phi-4",
+    "score": 1256,
+    "ci95": [
+     1251,
+     1261
+    ],
+    "votes": 24126,
+    "categories": {
+     "code": 1306
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-3-8b",
+    "score": 1223,
+    "ci95": [
+     1219,
+     1227
+    ],
+    "votes": 104642,
+    "categories": {
+     "code": 1253
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "yi-15-34b",
+    "score": 1213,
+    "ci95": [
+     1208,
+     1218
+    ],
+    "votes": 24146,
+    "categories": {
+     "code": 1248
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-31-8b",
+    "score": 1211,
+    "ci95": [
+     1207,
+     1215
+    ],
+    "votes": 49605,
+    "categories": {
+     "code": 1260
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "phi-3-medium",
+    "score": 1198,
+    "ci95": [
+     1193,
+     1203
+    ],
+    "votes": 25055,
+    "categories": {
+     "code": 1231
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mixtral-8x7b",
+    "score": 1197,
+    "ci95": [
+     1193,
+     1201
+    ],
+    "votes": 73503,
+    "categories": {
+     "code": 1240
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "internlm-25-20b",
+    "score": 1191,
+    "ci95": [
+     1184,
+     1198
+    ],
+    "votes": 9901,
+    "categories": {
+     "code": 1249
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "yi-34b",
+    "score": 1183,
+    "ci95": [
+     1176,
+     1190
+    ],
+    "votes": 15483,
+    "categories": {
+     "code": 1206
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "phi-3-small",
+    "score": 1171,
+    "ci95": [
+     1165,
+     1177
+    ],
+    "votes": 17766,
+    "categories": {
+     "code": 1205
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-2-70b",
+    "score": 1170,
+    "ci95": [
+     1165,
+     1175
+    ],
+    "votes": 38492,
+    "categories": {
+     "code": 1179
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-32-3b",
+    "score": 1167,
+    "ci95": [
+     1159,
+     1175
+    ],
+    "votes": 7936,
+    "categories": {
+     "code": 1177
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-7b-instruct",
+    "score": 1149,
+    "ci95": [
+     1142,
+     1156
+    ],
+    "votes": 19402,
+    "categories": {
+     "code": 1186
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-2-13b",
+    "score": 1141,
+    "ci95": [
+     1134,
+     1148
+    ],
+    "votes": 19174,
+    "categories": {
+     "code": 1163
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemma-7b",
+    "score": 1137,
+    "ci95": [
+     1128,
+     1146
+    ],
+    "votes": 8925,
+    "categories": {
+     "code": 1168
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-32-1b",
+    "score": 1111,
+    "ci95": [
+     1103,
+     1119
+    ],
+    "votes": 8045,
+    "categories": {
+     "code": 1149
+    },
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-2-7b",
+    "score": 1108,
+    "ci95": [
+     1101,
+     1115
+    ],
+    "votes": 14148,
+    "categories": {
+     "code": 1103
+    },
+    "rank_prev": null,
+    "delta_score": null
    }
   ],
   "aa_index": [
@@ -1216,6 +1630,20 @@
     "delta_score": 0
    },
    {
+    "model_id": "o3",
+    "index": 31.1,
+    "coding_index": null,
+    "math_index": 88.3,
+    "output_speed_tps": 136.571,
+    "ttft_s": 6.668,
+    "price_blin_per_m": 3.5,
+    "price_in_per_m": 2,
+    "price_out_per_m": 8,
+    "tbench_v21_pct": null,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "minimax-m2",
     "index": 28.9,
     "coding_index": null,
@@ -1242,6 +1670,20 @@
     "tbench_v21_pct": null,
     "rank_prev": 35,
     "delta_score": 0
+   },
+   {
+    "model_id": "o4-mini",
+    "index": 26.1,
+    "coding_index": null,
+    "math_index": 90.7,
+    "output_speed_tps": 0,
+    "ttft_s": 0,
+    "price_blin_per_m": 1.925,
+    "price_in_per_m": 1.1,
+    "price_out_per_m": 4.4,
+    "tbench_v21_pct": null,
+    "rank_prev": null,
+    "delta_score": null
    },
    {
     "model_id": "gemini-25-pro",
@@ -1284,6 +1726,20 @@
     "tbench_v21_pct": 26.2,
     "rank_prev": 38,
     "delta_score": 0
+   },
+   {
+    "model_id": "o3-mini",
+    "index": 19.2,
+    "coding_index": null,
+    "math_index": null,
+    "output_speed_tps": 0,
+    "ttft_s": 0,
+    "price_blin_per_m": 1.925,
+    "price_in_per_m": 1.1,
+    "price_out_per_m": 4.4,
+    "tbench_v21_pct": null,
+    "rank_prev": null,
+    "delta_score": null
    },
    {
     "model_id": "qwen3-coder-480b",
@@ -1396,6 +1852,90 @@
     "tbench_v21_pct": 3.7,
     "rank_prev": 46,
     "delta_score": 0
+   },
+   {
+    "model_id": "gpt-5-pro",
+    "index": 7.7,
+    "coding_index": 21.5,
+    "math_index": null,
+    "output_speed_tps": 0,
+    "ttft_s": 0,
+    "price_blin_per_m": 15,
+    "price_in_per_m": 10,
+    "price_out_per_m": 30,
+    "tbench_v21_pct": null,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-5",
+    "index": 6.7,
+    "coding_index": 11.4,
+    "math_index": 14.7,
+    "output_speed_tps": 0,
+    "ttft_s": 0,
+    "price_blin_per_m": 0.262,
+    "price_in_per_m": 0.15,
+    "price_out_per_m": 0.6,
+    "tbench_v21_pct": 5.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "phi-4",
+    "index": 4.6,
+    "coding_index": null,
+    "math_index": 18,
+    "output_speed_tps": 44.645,
+    "ttft_s": 0.941,
+    "price_blin_per_m": 0.219,
+    "price_in_per_m": 0.125,
+    "price_out_per_m": 0.5,
+    "tbench_v21_pct": null,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-haiku-4-5",
+    "index": 3.5,
+    "coding_index": null,
+    "math_index": null,
+    "output_speed_tps": 0,
+    "ttft_s": 0,
+    "price_blin_per_m": 0.5,
+    "price_in_per_m": 0.25,
+    "price_out_per_m": 1.25,
+    "tbench_v21_pct": null,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mixtral-8x7b",
+    "index": 2,
+    "coding_index": null,
+    "math_index": null,
+    "output_speed_tps": 0,
+    "ttft_s": 0,
+    "price_blin_per_m": 0.512,
+    "price_in_per_m": 0.45,
+    "price_out_per_m": 0.7,
+    "tbench_v21_pct": null,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-7b-instruct",
+    "index": 1.7,
+    "coding_index": null,
+    "math_index": null,
+    "output_speed_tps": 0,
+    "ttft_s": 0,
+    "price_blin_per_m": 0.25,
+    "price_in_per_m": 0.25,
+    "price_out_per_m": 0.25,
+    "tbench_v21_pct": null,
+    "rank_prev": null,
+    "delta_score": null
    }
   ],
   "aa_mmlu_pro": [
@@ -1424,6 +1964,12 @@
     "delta_score": null
    },
    {
+    "model_id": "o3",
+    "score": 85.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "kimi-k2",
     "score": 84.8,
     "rank_prev": null,
@@ -1432,6 +1978,12 @@
    {
     "model_id": "qwen3-max",
     "score": 84.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "o4-mini",
+    "score": 83.2,
     "rank_prev": null,
     "delta_score": null
    },
@@ -1466,6 +2018,12 @@
     "delta_score": null
    },
    {
+    "model_id": "o3-mini",
+    "score": 80.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "qwen3-coder-480b",
     "score": 78.8,
     "rank_prev": null,
@@ -1484,14 +2042,44 @@
     "delta_score": null
    },
    {
+    "model_id": "phi-4",
+    "score": 71.4,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "devstral-medium",
     "score": 70.8,
     "rank_prev": null,
     "delta_score": null
    },
    {
+    "model_id": "gpt-5-pro",
+    "score": 69.4,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "mistral-small-3",
     "score": 68.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-5",
+    "score": 64.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mixtral-8x7b",
+    "score": 38.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-7b-instruct",
+    "score": 24.5,
     "rank_prev": null,
     "delta_score": null
    }
@@ -1702,6 +2290,18 @@
     "delta_score": null
    },
    {
+    "model_id": "o3",
+    "score": 82.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "o4-mini",
+    "score": 78.4,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "gpt-oss-120b",
     "score": 78.2,
     "rank_prev": null,
@@ -1710,6 +2310,12 @@
    {
     "model_id": "minimax-m2",
     "score": 77.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "o3-mini",
+    "score": 77.3,
     "rank_prev": null,
     "delta_score": null
    },
@@ -1762,6 +2368,12 @@
     "delta_score": null
    },
    {
+    "model_id": "phi-4",
+    "score": 57.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "mistral-small-3",
     "score": 50.5,
     "rank_prev": null,
@@ -1770,6 +2382,30 @@
    {
     "model_id": "devstral-medium",
     "score": 49.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-5",
+    "score": 42.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-haiku-4-5",
+    "score": 37.4,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mixtral-8x7b",
+    "score": 29.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-7b-instruct",
+    "score": 17.7,
     "rank_prev": null,
     "delta_score": null
    }
@@ -1974,6 +2610,12 @@
     "delta_score": null
    },
    {
+    "model_id": "o3",
+    "score": 20.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "gpt-oss-120b",
     "score": 19.6,
     "rank_prev": null,
@@ -1986,6 +2628,12 @@
     "delta_score": null
    },
    {
+    "model_id": "o4-mini",
+    "score": 16.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "doubao-seed-code",
     "score": 14.1,
     "rank_prev": null,
@@ -1994,6 +2642,12 @@
    {
     "model_id": "minimax-m2",
     "score": 13.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "o3-mini",
+    "score": 12,
     "rank_prev": null,
     "delta_score": null
    },
@@ -2022,6 +2676,18 @@
     "delta_score": null
    },
    {
+    "model_id": "mixtral-8x7b",
+    "score": 4.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-7b-instruct",
+    "score": 4.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "qwen3-coder-480b",
     "score": 4.5,
     "rank_prev": null,
@@ -2040,7 +2706,25 @@
     "delta_score": null
    },
    {
+    "model_id": "gpt-5",
+    "score": 4.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-haiku-4-5",
+    "score": 4.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "llama-4-scout",
+    "score": 3.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "phi-4",
     "score": 3.8,
     "rank_prev": null,
     "delta_score": null
@@ -2050,12 +2734,24 @@
     "score": 3.8,
     "rank_prev": null,
     "delta_score": null
+   },
+   {
+    "model_id": "gpt-5-pro",
+    "score": 3.1,
+    "rank_prev": null,
+    "delta_score": null
    }
   ],
   "aa_livecodebench": [
    {
     "model_id": "gpt-oss-120b",
     "score": 87.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "o4-mini",
+    "score": 85.9,
     "rank_prev": null,
     "delta_score": null
    },
@@ -2074,6 +2770,12 @@
    {
     "model_id": "grok-4",
     "score": 81.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "o3",
+    "score": 80.8,
     "rank_prev": null,
     "delta_score": null
    },
@@ -2098,6 +2800,12 @@
    {
     "model_id": "doubao-seed-code",
     "score": 76.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "o3-mini",
+    "score": 73.4,
     "rank_prev": null,
     "delta_score": null
    },
@@ -2144,8 +2852,44 @@
     "delta_score": null
    },
    {
+    "model_id": "gpt-5-pro",
+    "score": 29.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "mistral-small-3",
     "score": 27.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-5",
+    "score": 23.4,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "phi-4",
+    "score": 23.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-haiku-4-5",
+    "score": 15.4,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mixtral-8x7b",
+    "score": 6.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-7b-instruct",
+    "score": 4.6,
     "rank_prev": null,
     "delta_score": null
    }
@@ -2236,6 +2980,12 @@
     "delta_score": null
    },
    {
+    "model_id": "o3",
+    "score": 71.4,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "gpt-56-terra",
     "score": 71.2,
     "rank_prev": null,
@@ -2248,8 +2998,20 @@
     "delta_score": null
    },
    {
+    "model_id": "o4-mini",
+    "score": 68.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "kimi-k2",
     "score": 68.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "o3-mini",
+    "score": 67.1,
     "rank_prev": null,
     "delta_score": null
    },
@@ -2350,14 +3112,38 @@
     "delta_score": null
    },
    {
+    "model_id": "claude-haiku-4-5",
+    "score": 36.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "mistral-small-3",
     "score": 33.5,
     "rank_prev": null,
     "delta_score": null
    },
    {
+    "model_id": "gpt-5",
+    "score": 31,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "devstral-medium",
     "score": 29.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "phi-4",
+    "score": 23.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-7b-instruct",
+    "score": 19.9,
     "rank_prev": null,
     "delta_score": null
    }
@@ -2532,6 +3318,12 @@
     "delta_score": null
    },
    {
+    "model_id": "o3",
+    "score": 73.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "claude-opus-4-8",
     "score": 73,
     "rank_prev": null,
@@ -2580,6 +3372,12 @@
     "delta_score": null
    },
    {
+    "model_id": "o4-mini",
+    "score": 60,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "gpt-oss-120b",
     "score": 51,
     "rank_prev": null,
@@ -2610,6 +3408,12 @@
     "delta_score": null
    },
    {
+    "model_id": "o3-mini",
+    "score": 42,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "mistral-large-3",
     "score": 34.7,
     "rank_prev": null,
@@ -2634,13 +3438,127 @@
     "delta_score": null
    },
    {
+    "model_id": "claude-haiku-4-5",
+    "score": 25,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "mistral-small-3",
     "score": 18.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "phi-4",
+    "score": 0,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-7b-instruct",
+    "score": 0,
     "rank_prev": null,
     "delta_score": null
    }
   ],
   "livebench_coding": [
+   {
+    "model_id": "mistral-7b-instruct",
+    "score": 100,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "phi-3-medium",
+    "score": 100,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "phi-3-small",
+    "score": 100,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen2-7b",
+    "score": 100,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "deepseek-v4",
+    "score": 100,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemma-2-27b",
+    "score": 100,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemma-2-9b",
+    "score": 100,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-5",
+    "score": 100,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-3-70b",
+    "score": 100,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-3-8b",
+    "score": 100,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen2-72b",
+    "score": 100,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "o3-mini",
+    "score": 100,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen25-coder-32b",
+    "score": 0,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mixtral-8x7b",
+    "score": 0,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-sonnet-4-6",
+    "score": 0,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-haiku-4-5",
+    "score": 0,
+    "rank_prev": null,
+    "delta_score": null
+   },
    {
     "model_id": "deepseek-r1",
     "score": 0,
@@ -2648,7 +3566,25 @@
     "delta_score": null
    },
    {
+    "model_id": "gpt-5-pro",
+    "score": 0,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "llama-4-maverick",
+    "score": 0,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-large-2411",
+    "score": 0,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "phi-4",
     "score": 0,
     "rank_prev": null,
     "delta_score": null
@@ -2658,6 +3594,108 @@
   "livebench_reasoning": [],
   "livebench_language": [
    {
+    "model_id": "deepseek-v4",
+    "score": 50,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-5",
+    "score": 50,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-3-70b",
+    "score": 31.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemma-2-27b",
+    "score": 28.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-sonnet-4-6",
+    "score": 25,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemma-2-9b",
+    "score": 25,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-large-2411",
+    "score": 18.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen2-72b",
+    "score": 18.4,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mixtral-8x7b",
+    "score": 15.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen25-coder-32b",
+    "score": 15.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "phi-4",
+    "score": 12.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "o3-mini",
+    "score": 9.4,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-7b-instruct",
+    "score": 7.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "phi-3-medium",
+    "score": 7.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "phi-3-small",
+    "score": 7.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen2-7b",
+    "score": 5.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-3-8b",
+    "score": 2.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "deepseek-r1",
     "score": 0,
     "rank_prev": null,
@@ -2665,6 +3703,18 @@
    },
    {
     "model_id": "llama-4-maverick",
+    "score": 0,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-haiku-4-5",
+    "score": 0,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-5-pro",
     "score": 0,
     "rank_prev": null,
     "delta_score": null
@@ -2673,14 +3723,733 @@
   "livebench_data_analysis": [],
   "livebench_instruction_following": [
    {
+    "model_id": "claude-haiku-4-5",
+    "score": 100,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "deepseek-v4",
+    "score": 100,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-5",
+    "score": 100,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "llama-4-maverick",
     "score": 100,
     "rank_prev": null,
     "delta_score": null
    },
    {
+    "model_id": "mistral-large-2411",
+    "score": 100,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "o3-mini",
+    "score": 100,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "phi-4",
+    "score": 100,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-sonnet-4-6",
+    "score": 33.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "deepseek-r1",
     "score": 33.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemma-2-27b",
+    "score": 33.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "phi-3-medium",
+    "score": 33.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "phi-3-small",
+    "score": 33.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-3-70b",
+    "score": 33.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen2-72b",
+    "score": 33.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen25-coder-32b",
+    "score": 16.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemma-2-9b",
+    "score": 16.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-5-pro",
+    "score": 16.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-3-8b",
+    "score": 16.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-7b-instruct",
+    "score": 16.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mixtral-8x7b",
+    "score": 16.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen2-7b",
+    "score": 16.7,
+    "rank_prev": null,
+    "delta_score": null
+   }
+  ],
+  "openllm_mmlu": [
+   {
+    "model_id": "internlm-25-20b",
+    "score": 65.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen25-72b",
+    "score": 64.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen2-72b",
+    "score": 63.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "internlm-25-7b",
+    "score": 62.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-31-70b",
+    "score": 61.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-large-2411",
+    "score": 61.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "phi-4",
+    "score": 61.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-33-70b",
+    "score": 61.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-3-70b",
+    "score": 60.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen25-coder-32b",
+    "score": 59,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "phi-3-medium",
+    "score": 58.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemma-2-27b",
+    "score": 57.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "yi-15-34b",
+    "score": 56.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "phi-3-small",
+    "score": 55.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemma-2-9b",
+    "score": 54.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "yi-34b",
+    "score": 52.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "yi-15-9b",
+    "score": 52.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-2-70b",
+    "score": 51.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen2-7b",
+    "score": 51.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "glm-4-9b",
+    "score": 50.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen25-7b",
+    "score": 49.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mixtral-8x7b",
+    "score": 47,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-31-8b",
+    "score": 46.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-7b-instruct",
+    "score": 46,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-nemo",
+    "score": 45.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-3-8b",
+    "score": 44.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "ministral-8b",
+    "score": 43.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemma-7b",
+    "score": 43.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-32-3b",
+    "score": 42,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-2-13b",
+    "score": 41.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-2-7b",
+    "score": 36.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-32-1b",
+    "score": 33.4,
+    "rank_prev": null,
+    "delta_score": null
+   }
+  ],
+  "openllm_arc": [
+   {
+    "model_id": "qwen2-72b",
+    "score": 73.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-3-70b",
+    "score": 70.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "phi-3-medium",
+    "score": 69.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "yi-15-34b",
+    "score": 67.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-2-70b",
+    "score": 67.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "yi-34b",
+    "score": 66.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-7b-instruct",
+    "score": 64.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "yi-15-9b",
+    "score": 61.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen2-7b",
+    "score": 61.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemma-7b",
+    "score": 61.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-3-8b",
+    "score": 58,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-2-13b",
+    "score": 57.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-2-7b",
+    "score": 52.9,
+    "rank_prev": null,
+    "delta_score": null
+   }
+  ],
+  "openllm_hellaswag": [],
+  "openllm_truthfulqa": [],
+  "openllm_gsm8k": [],
+  "openllm_bbh": [
+   {
+    "model_id": "internlm-25-20b",
+    "score": 74.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen25-72b",
+    "score": 72.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "internlm-25-7b",
+    "score": 70.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen2-72b",
+    "score": 69.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-31-70b",
+    "score": 69.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-33-70b",
+    "score": 69.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "phi-4",
+    "score": 68.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-large-2411",
+    "score": 67,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen25-coder-32b",
+    "score": 66,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-3-70b",
+    "score": 65.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemma-2-27b",
+    "score": 64.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "phi-3-medium",
+    "score": 63.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "phi-3-small",
+    "score": 62,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "yi-15-34b",
+    "score": 60.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemma-2-9b",
+    "score": 59.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "yi-15-9b",
+    "score": 55.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "yi-34b",
+    "score": 55.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen2-7b",
+    "score": 55.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "glm-4-9b",
+    "score": 55.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-2-70b",
+    "score": 54.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen25-7b",
+    "score": 53.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-31-8b",
+    "score": 50.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mixtral-8x7b",
+    "score": 50.7,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-nemo",
+    "score": 50.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-3-8b",
+    "score": 48.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "ministral-8b",
+    "score": 47.4,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-7b-instruct",
+    "score": 47,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-32-3b",
+    "score": 45.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "mistral-7b",
+    "score": 45.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemma-7b",
+    "score": 43.4,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-2-13b",
+    "score": 41.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-2-7b",
+    "score": 34.8,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "llama-32-1b",
+    "score": 34.7,
+    "rank_prev": null,
+    "delta_score": null
+   }
+  ],
+  "livecodebench": [
+   {
+    "model_id": "o4-mini",
+    "score": 87.3,
+    "pass_easy": 98.4,
+    "pass_medium": 92.7,
+    "pass_hard": 71.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "o3",
+    "score": 84.7,
+    "pass_easy": 99.1,
+    "pass_medium": 89.8,
+    "pass_hard": 66,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "deepseek-r1",
+    "score": 84.4,
+    "pass_easy": 99.2,
+    "pass_medium": 90.9,
+    "pass_hard": 63.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemini-25-pro",
+    "score": 84.3,
+    "pass_easy": 99.1,
+    "pass_medium": 92.2,
+    "pass_hard": 62,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen3-235b",
+    "score": 80.4,
+    "pass_easy": 99.1,
+    "pass_medium": 88.8,
+    "pass_hard": 54,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "grok-4-1",
+    "score": 78.1,
+    "pass_easy": 98.1,
+    "pass_medium": 85.9,
+    "pass_hard": 51.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "o3-mini",
+    "score": 77.7,
+    "pass_easy": 99.1,
+    "pass_medium": 87.5,
+    "pass_hard": 47.4,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gemini-25-flash",
+    "score": 76.2,
+    "pass_easy": 99.1,
+    "pass_medium": 82.5,
+    "pass_hard": 48.3,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-opus-4-7",
+    "score": 70.4,
+    "pass_easy": 99.1,
+    "pass_medium": 80.4,
+    "pass_hard": 33.1,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-sonnet-4-6",
+    "score": 68.5,
+    "pass_easy": 98.8,
+    "pass_medium": 76,
+    "pass_hard": 32.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "deepseek-v4",
+    "score": 49.6,
+    "pass_easy": 83.3,
+    "pass_medium": 53.5,
+    "pass_hard": 14.2,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-5",
+    "score": 38.3,
+    "pass_easy": 82.5,
+    "pass_medium": 32.1,
+    "pass_hard": 4.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "gpt-5-pro",
+    "score": 37.3,
+    "pass_easy": 81.4,
+    "pass_medium": 30.7,
+    "pass_hard": 4,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "claude-haiku-4-5",
+    "score": 22.5,
+    "pass_easy": 61.1,
+    "pass_medium": 9,
+    "pass_hard": 1.9,
     "rank_prev": null,
     "delta_score": null
    }
@@ -2743,6 +4512,14 @@
     "cost_usd_per_instance": 0.5515226445,
     "rank_prev": 7,
     "delta_score": 0
+   },
+   {
+    "model_id": "claude-sonnet-4-6",
+    "resolved_pct": 74.8,
+    "agent": "Harness AI",
+    "cost_usd_per_instance": null,
+    "rank_prev": null,
+    "delta_score": null
    },
    {
     "model_id": "claude-sonnet-4-5",
@@ -2817,6 +4594,14 @@
     "delta_score": 0
    },
    {
+    "model_id": "o4-mini",
+    "resolved_pct": 64.6,
+    "agent": "PatchPilot-v1.1",
+    "cost_usd_per_instance": null,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "glm-45",
     "resolved_pct": 64.2,
     "agent": "Undisclosed",
@@ -2833,12 +4618,36 @@
     "delta_score": 0
    },
    {
+    "model_id": "o3",
+    "resolved_pct": 58.4,
+    "agent": "mini-SWE-agent",
+    "cost_usd_per_instance": 0.333652748,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "gemini-25-pro",
     "resolved_pct": 53.6,
     "agent": "mini-SWE-agent",
     "cost_usd_per_instance": 0.28837209562500005,
     "rank_prev": 19,
     "delta_score": 0
+   },
+   {
+    "model_id": "o3-mini",
+    "resolved_pct": 42.4,
+    "agent": "Agentless Lite",
+    "cost_usd_per_instance": null,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
+    "model_id": "qwen25-coder-32b",
+    "resolved_pct": 38,
+    "agent": "Skywork-SWE-32B",
+    "cost_usd_per_instance": null,
+    "rank_prev": null,
+    "delta_score": null
    },
    {
     "model_id": "gemini-25-flash",
@@ -3065,10 +4874,22 @@
     "delta_score": 0
    },
    {
+    "model_id": "gpt-5",
+    "score": 5.6,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "mistral-small-3",
     "score": 5.6,
     "rank_prev": 34,
     "delta_score": 0
+   },
+   {
+    "model_id": "o3-mini",
+    "score": 4.5,
+    "rank_prev": null,
+    "delta_score": null
    },
    {
     "model_id": "llama-4-scout",
@@ -3109,7 +4930,13 @@
     "Claude Opus 4.7 (high)",
     "Claude 4.7 Opus",
     "Claude Opus 4.7 (Adaptive Reasoning, Max Effort)",
-    "Claude Opus 4.7 (Non-reasoning, High Effort)"
+    "Claude Opus 4.7 (Non-reasoning, High Effort)",
+    "Claude-Opus-4",
+    "Claude Opus 4",
+    "claude-opus-4",
+    "Claude-Opus-4 (Thinking)",
+    "Claude-Opus-4-20250514",
+    "Claude Opus 4 (Thinking)"
    ]
   },
   {
@@ -3169,7 +4996,15 @@
     "claude-sonnet-4-6",
     "claude-sonnet-4-6-high",
     "Claude Sonnet 4.6 (Adaptive Reasoning, Max Effort)",
-    "Claude Sonnet 4.6 (Non-reasoning, High Effort)"
+    "Claude Sonnet 4.6 (Non-reasoning, High Effort)",
+    "Claude-Sonnet-4",
+    "Claude Sonnet 4 (LCB)",
+    "claude-sonnet-4-20250514",
+    "Claude-Sonnet-4-20250514",
+    "Claude-Sonnet-4 (Thinking)",
+    "Claude Sonnet 4 (Thinking)",
+    "Claude-3.5-Sonnet-20241022",
+    "Claude 3.5 Sonnet (10/22)"
    ]
   },
   {
@@ -3181,7 +5016,11 @@
     "Claude Haiku 4.5",
     "claude-haiku-4.5",
     "claude-haiku-4-5",
-    "Claude 4.5 Haiku"
+    "Claude 4.5 Haiku",
+    "Claude-3-Haiku",
+    "Claude 3 Haiku",
+    "claude-3-haiku-20240307",
+    "Claude 3 Haiku (03/07)"
    ]
   },
   {
@@ -3251,7 +5090,11 @@
     "gpt-5-pro-high",
     "chatgpt-5-pro",
     "GPT-5 Pro Codex",
-    "gpt-5-pro-codex"
+    "gpt-5-pro-codex",
+    "GPT-4-Turbo-2024-04-09",
+    "gpt-4-turbo-2024-04-09",
+    "GPT 4 Turbo (04/09)",
+    "GPT 4 Turbo"
    ]
   },
   {
@@ -3266,7 +5109,15 @@
     "GPT 5 mini",
     "gpt-5-mini",
     "GPT 5 nano",
-    "gpt-5-nano"
+    "gpt-5-nano",
+    "GPT-4O-2024-08-06",
+    "GPT-4O-mini-2024-07-18",
+    "gpt-4o-2024-08-06",
+    "gpt-4o-mini-2024-07-18",
+    "GPT 4o (08/06)",
+    "GPT 4o mini (07/18)",
+    "GPT 4o",
+    "GPT 4o mini"
    ]
   },
   {
@@ -3396,6 +5247,54 @@
    ]
   },
   {
+   "model_id": "o3",
+   "display_name": "o3",
+   "org": "OpenAI",
+   "license": "closed",
+   "aliases": [
+    "o3",
+    "O3 (High)",
+    "o3-high",
+    "o3 (high)"
+   ]
+  },
+  {
+   "model_id": "o3-mini",
+   "display_name": "o3-mini",
+   "org": "OpenAI",
+   "license": "closed",
+   "aliases": [
+    "o3-mini",
+    "O3-Mini-2025-01-31 (Low)",
+    "O3-Mini-2025-01-31 (Med)",
+    "O3-Mini-2025-01-31 (High)",
+    "o3-mini-2025-01-31__low",
+    "o3-mini-2025-01-31__medium",
+    "o3-mini-2025-01-31__high",
+    "o3-mini-low",
+    "o3-mini-medium",
+    "o3-mini-high"
+   ]
+  },
+  {
+   "model_id": "o4-mini",
+   "display_name": "o4-mini",
+   "org": "OpenAI",
+   "license": "closed",
+   "aliases": [
+    "o4-mini",
+    "O4-Mini (High)",
+    "O4-Mini (Medium)",
+    "O4-Mini (Low)",
+    "o4-mini__high",
+    "o4-mini__medium",
+    "o4-mini__low",
+    "o4-mini-high",
+    "o4-mini-medium",
+    "o4-mini-low"
+   ]
+  },
+  {
    "model_id": "gemini-31-pro",
    "display_name": "Gemini 3.1 Pro",
    "org": "Google",
@@ -3483,7 +5382,13 @@
     "Gemini 2.5 Pro",
     "gemini-2-5-pro",
     "gemini-25-pro",
-    "Gemini 2.5 Pro Preview"
+    "Gemini 2.5 Pro Preview",
+    "Gemini-2.5-Pro-06-05",
+    "Gemini-2.5-Pro-05-06",
+    "gemini-2.5-pro-preview-06-05",
+    "gemini-2.5-pro-preview-05-06",
+    "Gemini 2.5 Pro (06/05)",
+    "Gemini 2.5 Pro (05/06)"
    ]
   },
   {
@@ -3494,7 +5399,13 @@
    "aliases": [
     "Gemini 2.5 Flash",
     "gemini-2-5-flash",
-    "gemini-25-flash"
+    "gemini-25-flash",
+    "Gemini-2.5-Flash-04-17",
+    "Gemini-2.5-Flash-05-20",
+    "gemini-2.5-flash-preview-04-17",
+    "gemini-2.5-flash-preview-05-20",
+    "Gemini 2.5 Flash (04/17)",
+    "Gemini 2.5 Flash (05/20)"
    ]
   },
   {
@@ -3536,7 +5447,10 @@
     "Grok 4.1 Fast",
     "grok-4-1-fast",
     "Grok 4.1 (high)",
-    "grok-41-high"
+    "grok-41-high",
+    "Grok-3-Mini (High)",
+    "grok-3-mini-beta_high",
+    "Grok 3 Mini (High)"
    ]
   },
   {
@@ -3567,7 +5481,11 @@
     "deepseek-v4-pro",
     "DeepSeek V4 Pro 0813 (Reasoning, Max Effort)",
     "DeepSeek V4 Pro (Reasoning, Max Effort)",
-    "DeepSeek V4 Pro (Reasoning, High Effort)"
+    "DeepSeek V4 Pro (Reasoning, High Effort)",
+    "DeepSeek-V3",
+    "DeepSeek V3",
+    "deepseek-chat",
+    "deepseek-v3"
    ]
   },
   {
@@ -3619,7 +5537,9 @@
    "aliases": [
     "DeepSeek R1",
     "deepseek-r1",
-    "deepseek-reasoner"
+    "deepseek-reasoner",
+    "DeepSeek-R1-0528",
+    "DeepSeek-R1"
    ]
   },
   {
@@ -3893,6 +5813,158 @@
    ]
   },
   {
+   "model_id": "llama-3-8b",
+   "display_name": "Llama 3 8B",
+   "org": "Meta",
+   "license": "open",
+   "aliases": [
+    "Llama 3 8B",
+    "llama-3-8b",
+    "MetaLlama-3-8B",
+    "meta-llama/Meta-Llama-3-8B",
+    "Meta-Llama-3-8B",
+    "Meta-Llama-3-8B-Instruct",
+    "llama-3-8b-instruct",
+    "Llama-3-8B-Instruct"
+   ]
+  },
+  {
+   "model_id": "llama-3-70b",
+   "display_name": "Llama 3 70B",
+   "org": "Meta",
+   "license": "open",
+   "aliases": [
+    "Llama 3 70B",
+    "llama-3-70b",
+    "MetaLlama-3-70B",
+    "meta-llama/Meta-Llama-3-70B",
+    "Meta-Llama-3-70B",
+    "Meta-Llama-3-70B-Instruct",
+    "llama-3-70b-instruct",
+    "Llama-3-70B-Instruct"
+   ]
+  },
+  {
+   "model_id": "llama-31-8b",
+   "display_name": "Llama 3.1 8B",
+   "org": "Meta",
+   "license": "open",
+   "aliases": [
+    "Llama 3.1 8B",
+    "llama-3-1-8b",
+    "llama-31-8b",
+    "meta-llama/Meta-Llama-3.1-8B",
+    "Meta-Llama-3.1-8B",
+    "Meta-Llama-3.1-8B-Instruct",
+    "Llama-3.1-8B-Instruct"
+   ]
+  },
+  {
+   "model_id": "llama-31-70b",
+   "display_name": "Llama 3.1 70B",
+   "org": "Meta",
+   "license": "open",
+   "aliases": [
+    "Llama 3.1 70B",
+    "llama-3-1-70b",
+    "llama-31-70b",
+    "meta-llama/Meta-Llama-3.1-70B",
+    "Meta-Llama-3.1-70B",
+    "Meta-Llama-3.1-70B-Instruct",
+    "Llama-3.1-70B-Instruct"
+   ]
+  },
+  {
+   "model_id": "llama-32-1b",
+   "display_name": "Llama 3.2 1B",
+   "org": "Meta",
+   "license": "open",
+   "aliases": [
+    "Llama 3.2 1B",
+    "llama-3-2-1b",
+    "llama-32-1b",
+    "meta-llama/Llama-3.2-1B",
+    "Llama-3.2-1B",
+    "meta-llama/Llama-3.2-1B-Instruct",
+    "Llama-3.2-1B-Instruct"
+   ]
+  },
+  {
+   "model_id": "llama-32-3b",
+   "display_name": "Llama 3.2 3B",
+   "org": "Meta",
+   "license": "open",
+   "aliases": [
+    "Llama 3.2 3B",
+    "llama-3-2-3b",
+    "llama-32-3b",
+    "meta-llama/Llama-3.2-3B",
+    "Llama-3.2-3B",
+    "meta-llama/Llama-3.2-3B-Instruct",
+    "Llama-3.2-3B-Instruct"
+   ]
+  },
+  {
+   "model_id": "llama-33-70b",
+   "display_name": "Llama 3.3 70B",
+   "org": "Meta",
+   "license": "open",
+   "aliases": [
+    "Llama 3.3 70B",
+    "llama-3-3-70b",
+    "llama-33-70b",
+    "meta-llama/Llama-3.3-70B",
+    "Llama-3.3-70B",
+    "meta-llama/Llama-3.3-70B-Instruct",
+    "Llama-3.3-70B-Instruct"
+   ]
+  },
+  {
+   "model_id": "llama-2-7b",
+   "display_name": "Llama 2 7B",
+   "org": "Meta",
+   "license": "open",
+   "aliases": [
+    "Llama 2 7B",
+    "llama-2-7b",
+    "meta-llama/Llama-2-7b-hf",
+    "Llama-2-7b-hf",
+    "Llama-2-7B",
+    "Llama-2-7B-Instruct",
+    "Llama-2-7b-chat"
+   ]
+  },
+  {
+   "model_id": "llama-2-13b",
+   "display_name": "Llama 2 13B",
+   "org": "Meta",
+   "license": "open",
+   "aliases": [
+    "Llama 2 13B",
+    "llama-2-13b",
+    "meta-llama/Llama-2-13b-hf",
+    "Llama-2-13b-hf",
+    "Llama-2-13B",
+    "Llama-2-13B-Instruct",
+    "Llama-2-13b-chat"
+   ]
+  },
+  {
+   "model_id": "llama-2-70b",
+   "display_name": "Llama 2 70B",
+   "org": "Meta",
+   "license": "open",
+   "aliases": [
+    "Llama 2 70B",
+    "llama-2-70b",
+    "meta-llama/Llama-2-70b-hf",
+    "Llama-2-70b-hf",
+    "Llama-2-70B",
+    "Llama-2-70B-Instruct",
+    "Llama-2-70b-chat"
+   ]
+  },
+  {
    "model_id": "mistral-large-3",
    "display_name": "Mistral Large 3",
    "org": "Mistral AI",
@@ -3934,6 +6006,339 @@
     "devstral-small-2508",
     "Devstral Small",
     "devstral-small"
+   ]
+  },
+  {
+   "model_id": "mistral-7b",
+   "display_name": "Mistral 7B",
+   "org": "Mistral AI",
+   "license": "open",
+   "aliases": [
+    "Mistral 7B",
+    "mistral-7b",
+    "mistralai/Mistral-7B-v0.1",
+    "Mistral-7B-v0.1",
+    "Mistral-7B-v0.3",
+    "mistralai/Mistral-7B-v0.3",
+    "Mistral-7B"
+   ]
+  },
+  {
+   "model_id": "mistral-7b-instruct",
+   "display_name": "Mistral 7B Instruct",
+   "org": "Mistral AI",
+   "license": "open",
+   "aliases": [
+    "Mistral 7B Instruct",
+    "mistral-7b-instruct",
+    "mistralai/Mistral-7B-Instruct-v0.2",
+    "Mistral-7B-Instruct-v0.2",
+    "Mistral-7B-Instruct-v0.3",
+    "mistralai/Mistral-7B-Instruct-v0.3"
+   ]
+  },
+  {
+   "model_id": "mistral-large-2411",
+   "display_name": "Mistral Large (24.11)",
+   "org": "Mistral AI",
+   "license": "open",
+   "aliases": [
+    "Mistral Large 2411",
+    "mistral-large-2411",
+    "mistralai/Mistral-Large-Instruct-2411",
+    "Mistral-Large-Instruct-2411",
+    "Mistral Large 24.11",
+    "Mistral Large"
+   ]
+  },
+  {
+   "model_id": "ministral-8b",
+   "display_name": "Ministral 8B",
+   "org": "Mistral AI",
+   "license": "open",
+   "aliases": [
+    "Ministral 8B",
+    "ministral-8b",
+    "mistralai/Ministral-8B-Instruct-2410",
+    "Ministral-8B-Instruct-2410",
+    "Ministral-8B"
+   ]
+  },
+  {
+   "model_id": "mistral-nemo",
+   "display_name": "Mistral Nemo",
+   "org": "Mistral AI",
+   "license": "open",
+   "aliases": [
+    "Mistral Nemo",
+    "mistral-nemo",
+    "Mistral-Nemo-Base-2407",
+    "Mistral-Nemo-Instruct-2407",
+    "mistralai/Mistral-Nemo-Base-2407",
+    "mistralai/Mistral-Nemo-Instruct-2407"
+   ]
+  },
+  {
+   "model_id": "mixtral-8x7b",
+   "display_name": "Mixtral 8x7B",
+   "org": "Mistral AI",
+   "license": "open",
+   "aliases": [
+    "Mixtral 8x7B",
+    "mixtral-8x7b",
+    "Mixtral-8x7B-v0.1",
+    "mistralai/Mixtral-8x7B-v0.1",
+    "Mixtral-8x7B-Instruct-v0.1",
+    "mixtral-8x7b-instruct"
+   ]
+  },
+  {
+   "model_id": "yi-15-9b",
+   "display_name": "Yi-1.5 9B",
+   "org": "01-AI",
+   "license": "open",
+   "aliases": [
+    "Yi-1.5 9B",
+    "yi-1-5-9b",
+    "yi15-9b",
+    "01-ai/Yi-1.5-9B",
+    "Yi-1.5-9B",
+    "01-ai/Yi-1.5-9B-Chat",
+    "Yi-1.5-9B-Chat",
+    "01-ai/Yi-1.5-9B-32K",
+    "Yi-1.5-9B-32K",
+    "01-ai/Yi-1.5-9B-Chat-16K",
+    "Yi-1.5-9B-Chat-16K"
+   ]
+  },
+  {
+   "model_id": "yi-15-34b",
+   "display_name": "Yi-1.5 34B",
+   "org": "01-AI",
+   "license": "open",
+   "aliases": [
+    "Yi-1.5 34B",
+    "yi-1-5-34b",
+    "yi15-34b",
+    "01-ai/Yi-1.5-34B",
+    "Yi-1.5-34B",
+    "01-ai/Yi-1.5-34B-Chat",
+    "Yi-1.5-34B-Chat",
+    "01-ai/Yi-1.5-34B-32K",
+    "Yi-1.5-34B-32K",
+    "01-ai/Yi-1.5-34B-Chat-16K",
+    "Yi-1.5-34B-Chat-16K"
+   ]
+  },
+  {
+   "model_id": "yi-34b",
+   "display_name": "Yi 34B",
+   "org": "01-AI",
+   "license": "open",
+   "aliases": [
+    "Yi 34B",
+    "yi-34b",
+    "01-ai/Yi-34B",
+    "Yi-34B",
+    "01-ai/Yi-34B-Chat",
+    "Yi-34B-Chat",
+    "01-ai/Yi-34B-200K",
+    "Yi-34B-200K"
+   ]
+  },
+  {
+   "model_id": "gemma-2-9b",
+   "display_name": "Gemma 2 9B",
+   "org": "Google",
+   "license": "open",
+   "aliases": [
+    "Gemma 2 9B",
+    "gemma-2-9b",
+    "google/gemma-2-9b",
+    "gemma-2-9b-it",
+    "Gemma-2-9B-IT",
+    "google/gemma-2-9b-it"
+   ]
+  },
+  {
+   "model_id": "gemma-2-27b",
+   "display_name": "Gemma 2 27B",
+   "org": "Google",
+   "license": "open",
+   "aliases": [
+    "Gemma 2 27B",
+    "gemma-2-27b",
+    "google/gemma-2-27b",
+    "gemma-2-27b-it",
+    "Gemma-2-27B-IT",
+    "google/gemma-2-27b-it"
+   ]
+  },
+  {
+   "model_id": "gemma-7b",
+   "display_name": "Gemma 7B",
+   "org": "Google",
+   "license": "open",
+   "aliases": [
+    "Gemma 7B",
+    "gemma-7b",
+    "google/gemma-7b",
+    "gemma-7b-it"
+   ]
+  },
+  {
+   "model_id": "phi-3-medium",
+   "display_name": "Phi-3 Medium",
+   "org": "Microsoft",
+   "license": "open",
+   "aliases": [
+    "Phi-3 Medium",
+    "phi-3-medium",
+    "microsoft/Phi-3-medium-4k-instruct",
+    "Phi-3-medium-4k-instruct",
+    "Phi-3-medium-128k-instruct"
+   ]
+  },
+  {
+   "model_id": "phi-3-small",
+   "display_name": "Phi-3 Small",
+   "org": "Microsoft",
+   "license": "open",
+   "aliases": [
+    "Phi-3 Small",
+    "phi-3-small",
+    "microsoft/Phi-3-small-8k-instruct",
+    "Phi-3-small-8k-instruct",
+    "Phi-3-small-128k-instruct"
+   ]
+  },
+  {
+   "model_id": "phi-4",
+   "display_name": "Phi-4",
+   "org": "Microsoft",
+   "license": "open",
+   "aliases": [
+    "Phi-4",
+    "phi-4",
+    "microsoft/phi-4",
+    "Phi-4"
+   ]
+  },
+  {
+   "model_id": "glm-4-9b",
+   "display_name": "GLM-4 9B",
+   "org": "Zhipu AI",
+   "license": "open",
+   "aliases": [
+    "GLM-4 9B",
+    "glm-4-9b",
+    "THUDM/glm-4-9b",
+    "glm-4-9b-chat",
+    "THUDM/glm-4-9b-chat",
+    "GLM-4-9B-Chat",
+    "GLM-4-9B"
+   ]
+  },
+  {
+   "model_id": "internlm-25-7b",
+   "display_name": "InternLM2.5 7B",
+   "org": "Shanghai AI Lab",
+   "license": "open",
+   "aliases": [
+    "InternLM2.5 7B",
+    "internlm-2-5-7b",
+    "internlm25-7b",
+    "internlm/internlm2_5-7b-chat",
+    "internlm2_5-7b-chat",
+    "InternLM2.5-7B-Chat",
+    "internlm/internlm2_5-7b"
+   ]
+  },
+  {
+   "model_id": "internlm-25-20b",
+   "display_name": "InternLM2.5 20B",
+   "org": "Shanghai AI Lab",
+   "license": "open",
+   "aliases": [
+    "InternLM2.5 20B",
+    "internlm-2-5-20b",
+    "internlm25-20b",
+    "internlm/internlm2_5-20b-chat",
+    "internlm2_5-20b-chat",
+    "InternLM2.5-20B-Chat",
+    "internlm/internlm2_5-20b"
+   ]
+  },
+  {
+   "model_id": "qwen2-7b",
+   "display_name": "Qwen2 7B",
+   "org": "Alibaba",
+   "license": "open",
+   "aliases": [
+    "Qwen2 7B",
+    "qwen2-7b",
+    "Qwen/Qwen2-7B",
+    "Qwen2-7B",
+    "Qwen2-7B-Instruct",
+    "Qwen/Qwen2-7B-Instruct"
+   ]
+  },
+  {
+   "model_id": "qwen2-72b",
+   "display_name": "Qwen2 72B",
+   "org": "Alibaba",
+   "license": "open",
+   "aliases": [
+    "Qwen2 72B",
+    "qwen2-72b",
+    "Qwen/Qwen2-72B",
+    "Qwen2-72B",
+    "Qwen2-72B-Instruct",
+    "Qwen/Qwen2-72B-Instruct"
+   ]
+  },
+  {
+   "model_id": "qwen25-7b",
+   "display_name": "Qwen2.5 7B",
+   "org": "Alibaba",
+   "license": "open",
+   "aliases": [
+    "Qwen2.5 7B",
+    "qwen2-5-7b",
+    "qwen25-7b",
+    "Qwen/Qwen2.5-7B",
+    "Qwen2.5-7B",
+    "Qwen2.5-7B-Instruct",
+    "Qwen/Qwen2.5-7B-Instruct"
+   ]
+  },
+  {
+   "model_id": "qwen25-72b",
+   "display_name": "Qwen2.5 72B",
+   "org": "Alibaba",
+   "license": "open",
+   "aliases": [
+    "Qwen2.5 72B",
+    "qwen2-5-72b",
+    "qwen25-72b",
+    "Qwen/Qwen2.5-72B",
+    "Qwen2.5-72B",
+    "Qwen2.5-72B-Instruct",
+    "Qwen/Qwen2.5-72B-Instruct"
+   ]
+  },
+  {
+   "model_id": "qwen25-coder-32b",
+   "display_name": "Qwen2.5 Coder 32B",
+   "org": "Alibaba",
+   "license": "open",
+   "aliases": [
+    "Qwen2.5 Coder 32B",
+    "qwen2-5-coder-32b",
+    "qwen25-coder-32b",
+    "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "Qwen2.5-Coder-32B-Instruct",
+    "Qwen2.5-Coder-32B"
    ]
   },
   {

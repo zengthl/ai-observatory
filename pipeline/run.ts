@@ -17,6 +17,8 @@ import { fetchAA } from './sources/aa';
 import { fetchArena } from './sources/arena';
 import { fetchSwebench } from './sources/swebench';
 import { fetchLivebench } from './sources/livebench';
+import { fetchOpenLLM } from './sources/openllm';
+import { fetchLiveCodeBench } from './sources/livecodebench';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = path.resolve(__dirname, '..', 'public', 'data');
@@ -76,11 +78,13 @@ async function main(): Promise<void> {
   const fetchedAt = now.toISOString();
 
   console.log(`[${date}] fetching sources...`);
-  const [aaRes, arenaRes, sweRes, lbRes] = await Promise.all([
+  const [aaRes, arenaRes, sweRes, lbRes, openllmRes, lcbRes] = await Promise.all([
     fetchAA(apiKey),
     fetchArena(),
     fetchSwebench(),
     fetchLivebench(),
+    fetchOpenLLM(),
+    fetchLiveCodeBench(),
   ]);
 
   const prevLatest = readJson<Snapshot>('latest.json');
@@ -97,15 +101,23 @@ async function main(): Promise<void> {
     livebench: lbRes.ok
       ? { status: 'ok', fetched_at: fetchedAt }
       : { status: 'unavailable', fetched_at: fetchedAt, last_ok: lastOkFrom(prevLatest, 'livebench') },
+    openllm: openllmRes.ok
+      ? { status: 'ok', fetched_at: fetchedAt }
+      : { status: 'unavailable', fetched_at: fetchedAt, last_ok: lastOkFrom(prevLatest, 'openllm') },
+    livecodebench: lcbRes.ok
+      ? { status: 'ok', fetched_at: fetchedAt }
+      : { status: 'unavailable', fetched_at: fetchedAt, last_ok: lastOkFrom(prevLatest, 'livecodebench') },
   };
 
-  if (!aaRes.ok && !arenaRes.ok && !sweRes.ok && !lbRes.ok) {
+  if (!aaRes.ok && !arenaRes.ok && !sweRes.ok && !lbRes.ok && !openllmRes.ok && !lcbRes.ok) {
     console.error('ALL SOURCES FAILED — aborting, no snapshot written');
     console.error(
       `  artificial_analysis: ${'error' in aaRes ? aaRes.error : ''}\n` +
         `  lmarena: ${'error' in arenaRes ? arenaRes.error : ''}\n` +
         `  swebench: ${'error' in sweRes ? sweRes.error : ''}\n` +
-        `  livebench: ${'error' in lbRes ? lbRes.error : ''}`,
+        `  livebench: ${'error' in lbRes ? lbRes.error : ''}\n` +
+        `  openllm: ${'error' in openllmRes ? openllmRes.error : ''}\n` +
+        `  livecodebench: ${'error' in lcbRes ? lcbRes.error : ''}`,
     );
     process.exit(1);
   }
@@ -114,6 +126,8 @@ async function main(): Promise<void> {
     ['lmarena', arenaRes],
     ['swebench', sweRes],
     ['livebench', lbRes],
+    ['openllm', openllmRes],
+    ['livecodebench', lcbRes],
   ] as const) {
     if (!res.ok) console.warn(`[${date}] ${name} unavailable: ${(res as { error: string }).error}`);
   }
@@ -138,6 +152,8 @@ async function main(): Promise<void> {
   // AA 6 子榜：失败/无数据时落空数组
   const aaP = aaRes.ok ? aaRes.parsed : null;
   const lbP = lbRes.ok ? lbRes.parsed : null;
+  const ollmP = openllmRes.ok ? openllmRes.parsed : null;
+  const lcbP = lcbRes.ok ? lcbRes.parsed : null;
   const prevLlm = baseline?.llm;
 
   const snapshot: LatestFile = {
@@ -161,6 +177,13 @@ async function main(): Promise<void> {
         lbP?.livebench_instruction_following ?? [],
         prevLlm?.livebench_instruction_following,
       ),
+      openllm_mmlu: withRanksGeneric(ollmP?.openllm_mmlu ?? [], prevLlm?.openllm_mmlu),
+      openllm_arc: withRanksGeneric(ollmP?.openllm_arc ?? [], prevLlm?.openllm_arc),
+      openllm_hellaswag: withRanksGeneric(ollmP?.openllm_hellaswag ?? [], prevLlm?.openllm_hellaswag),
+      openllm_truthfulqa: withRanksGeneric(ollmP?.openllm_truthfulqa ?? [], prevLlm?.openllm_truthfulqa),
+      openllm_gsm8k: withRanksGeneric(ollmP?.openllm_gsm8k ?? [], prevLlm?.openllm_gsm8k),
+      openllm_bbh: withRanksGeneric(ollmP?.openllm_bbh ?? [], prevLlm?.openllm_bbh),
+      livecodebench: withRanksGeneric(lcbP?.livecodebench ?? [], prevLlm?.livecodebench),
     },
     agent: {
       swebench_verified: withRanks(sweEntries, baseline?.agent.swebench_verified),
@@ -177,6 +200,8 @@ async function main(): Promise<void> {
     ...(arenaRes.ok ? [arenaRes.pending] : []),
     ...(sweRes.ok ? [sweRes.parsed.pending] : []),
     ...(lbRes.ok ? [lbRes.parsed.pending] : []),
+    ...(openllmRes.ok ? [openllmRes.parsed.pending] : []),
+    ...(lcbRes.ok ? [lcbRes.parsed.pending] : []),
   );
   const pending: PendingFile =
     pendingAll.length > PENDING_LIMIT
@@ -196,6 +221,10 @@ async function main(): Promise<void> {
       `lb_cod:${validated.llm.livebench_coding.length} lb_math:${validated.llm.livebench_math.length} ` +
       `lb_rea:${validated.llm.livebench_reasoning.length} lb_lang:${validated.llm.livebench_language.length} ` +
       `lb_data:${validated.llm.livebench_data_analysis.length} lb_if:${validated.llm.livebench_instruction_following.length} ` +
+      `ollm_mmlu:${validated.llm.openllm_mmlu.length} ollm_arc:${validated.llm.openllm_arc.length} ` +
+      `ollm_hella:${validated.llm.openllm_hellaswag.length} ollm_tqa:${validated.llm.openllm_truthfulqa.length} ` +
+      `ollm_gsm:${validated.llm.openllm_gsm8k.length} ollm_bbh:${validated.llm.openllm_bbh.length} ` +
+      `lcb:${validated.llm.livecodebench.length} ` +
       `swe:${validated.agent.swebench_verified.length} tb:${validated.agent.terminal_bench.length} ` +
       `pending:${pending.names.length}${pending.total != null ? `/${pending.total} (truncated)` : ''} ` +
       `history:${Object.keys(history).length} models`,

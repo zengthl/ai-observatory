@@ -34,8 +34,10 @@ describe('parseSwe', () => {
   it('resolves the full Verified board with no unresolved high-rank gaps', () => {
     // 180 行原始记录去重后命中 models.yaml 的模型数
     // （2026-08-26 实测 14；Task 6 补表登记 GPT-5/Claude Sonnet 4/MiniMax M2.5/GLM-5/
-    //   Kimi K2.5/DeepSeek V3.2/Qwen3-Coder-480B/Llama 4 Maverick 后升至 22）
-    expect(out.entries.length).toBe(22);
+    //   Kimi K2.5/DeepSeek V3.2/Qwen3-Coder-480B/Llama 4 Maverick 后升至 22；
+    //   Task 7 阶段 2 massive-s2 又补 o3/o3-mini/o4-mini/gemini-2.5/claude-3.5-sonnet/
+    //   gpt-4o/llama-2 等 OpenLLM/LCB 共享模型后升至 27）
+    expect(out.entries.length).toBe(27);
     expect(out.entries).toContainEqual(expect.objectContaining({ model_id: 'gemini-3-pro' }));
     expect(out.entries).toContainEqual(expect.objectContaining({ model_id: 'minimax-m2' }));
     expect(out.entries).toContainEqual(expect.objectContaining({ model_id: 'gpt-5' }));
@@ -46,6 +48,10 @@ describe('parseSwe', () => {
     expect(out.entries).toContainEqual(expect.objectContaining({ model_id: 'deepseek-v3-2' }));
     expect(out.entries).toContainEqual(expect.objectContaining({ model_id: 'qwen3-coder-480b' }));
     expect(out.entries).toContainEqual(expect.objectContaining({ model_id: 'llama-4-maverick' }));
+    // 阶段 2 新增
+    expect(out.entries).toContainEqual(expect.objectContaining({ model_id: 'o3' }));
+    expect(out.entries).toContainEqual(expect.objectContaining({ model_id: 'o3-mini' }));
+    expect(out.entries).toContainEqual(expect.objectContaining({ model_id: 'gemini-25-pro' }));
   });
   it('multi-run dedup keeps the highest resolved run per model', () => {
     const claude45 = out.entries.find((e) => e.model_id === 'claude-opus-4-5');

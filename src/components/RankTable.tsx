@@ -5,6 +5,7 @@ import type {
   ArenaEloEntry,
   GenericLLMEntry,
   History,
+  LiveCodeBenchEntry,
   ModelMeta,
   SweEntry,
   TBenchEntry,
@@ -23,8 +24,20 @@ const BOARD_OF: Record<RankKind, TrendBoard> = {
   arena: 'arena_elo',
   aa: 'aa_index',
   livebench: 'livebench_coding', // 实际由 dimension 决定（见 LiveBench BOARD_OF_BY_DIM）
+  openllm: 'openllm_mmlu', // 实际由 dimension 决定（见 OPENLLM_BOARD_BY_DIM）
+  livecodebench: 'livecodebench',
   swe: 'swebench_verified',
   tbench: 'terminal_bench',
+};
+
+/** OpenLLM 不同 dimension 映射不同 TrendBoard */
+const OPENLLM_BOARD_BY_DIM: Record<string, TrendBoard> = {
+  mmlu: 'openllm_mmlu',
+  arc: 'openllm_arc',
+  hellaswag: 'openllm_hellaswag',
+  truthfulqa: 'openllm_truthfulqa',
+  gsm8k: 'openllm_gsm8k',
+  bbh: 'openllm_bbh',
 };
 
 /** LiveBench 不同 dimension 映射不同 TrendBoard */
@@ -92,14 +105,17 @@ interface RowModel {
   deltaScore: number | null;
   /** 分项徽标展示数据（isOverall 时填充） */
   subBadges?: Array<{ label: string; value: number; tooltip: string }>;
+  /** LiveCodeBench 三档分项（仅 livecodebench kind 填充） */
+  passEasy?: number;
+  passMedium?: number;
+  passHard?: number;
 }
 
 const fmt1 = (n: number): string => n.toFixed(1);
 
 function fmtScore(n: number, kind: RankKind): string {
   if (kind === 'aa') return fmt1(n);
-  if (kind === 'swe' || kind === 'tbench') return `${fmt1(n)}%`;
-  if (kind === 'livebench') return `${fmt1(n)}%`; // 百分制
+  if (kind === 'swe' || kind === 'tbench' || kind === 'livebench' || kind === 'openllm' || kind === 'livecodebench') return `${fmt1(n)}%`;
   return String(n);
 }
 
@@ -165,6 +181,19 @@ function normalizeRows<K extends RankKind>(
         rail: { value: score, ...railBase },
         speedTps: a.output_speed_tps ?? null,
         priceBlin: a.price_blin_per_m ?? null,
+        subBadges: subBadges.length > 0 ? subBadges : undefined,
+      });
+      return;
+    }
+    if (kind === 'livecodebench') {
+      const l = e as unknown as LiveCodeBenchEntry;
+      out.push({
+        ...base,
+        scoreText,
+        rail: { value: score, ...railBase },
+        passEasy: l.pass_easy,
+        passMedium: l.pass_medium,
+        passHard: l.pass_hard,
         subBadges: subBadges.length > 0 ? subBadges : undefined,
       });
       return;
@@ -325,6 +354,23 @@ const COLUMNS: Record<RankKind, ColDef[]> = {
     { header: '得分 %', width: 210, render: (r) => <ScoreCell row={r} /> },
     { header: 'Δ', width: 96, render: (r) => <DeltaBadge rankPrev={r.rankPrev} deltaScore={r.deltaScore} /> },
   ],
+  openllm: [
+    { header: '#', width: 48, render: rankCell },
+    { header: '模型', render: (r) => <NameCell row={r} /> },
+    { header: '厂商', render: (r) => r.org },
+    { header: '得分 %', width: 210, render: (r) => <ScoreCell row={r} /> },
+    { header: 'Δ', width: 96, render: (r) => <DeltaBadge rankPrev={r.rankPrev} deltaScore={r.deltaScore} /> },
+  ],
+  livecodebench: [
+    { header: '#', width: 48, render: rankCell },
+    { header: '模型', render: (r) => <NameCell row={r} /> },
+    { header: '厂商', render: (r) => r.org },
+    { header: 'All %', width: 130, render: (r) => <ScoreCell row={r} /> },
+    { header: 'Easy', width: 80, variant: 'num', render: (r) => (r.passEasy != null ? <span className="mono">{fmt1(r.passEasy)}</span> : dash) },
+    { header: 'Med', width: 80, variant: 'num', render: (r) => (r.passMedium != null ? <span className="mono">{fmt1(r.passMedium)}</span> : dash) },
+    { header: 'Hard', width: 80, variant: 'num', render: (r) => (r.passHard != null ? <span className="mono">{fmt1(r.passHard)}</span> : dash) },
+    { header: 'Δ', width: 96, render: (r) => <DeltaBadge rankPrev={r.rankPrev} deltaScore={r.deltaScore} /> },
+  ],
 };
 
 // ===== 组件 =====
@@ -370,12 +416,15 @@ export default function RankTable({
   // - arena/aa_overall/aa_coding/aa_math：主榜
   // - AA 6 新子榜：各自独立序列
   // - LiveBench 6 个：各自独立序列
+  // - OpenLLM 6 个：各自独立序列
   const board: TrendBoard =
     kind === 'aa'
       ? (AA_BOARD_BY_DIM[dimension] ?? 'aa_index')
       : kind === 'livebench'
         ? (LIVEBENCH_BOARD_BY_DIM[dimension] ?? 'livebench_coding')
-        : BOARD_OF[kind];
+        : kind === 'openllm'
+          ? (OPENLLM_BOARD_BY_DIM[dimension] ?? 'openllm_mmlu')
+          : BOARD_OF[kind];
 
   // AA 维度的"主分列"header：基于 dimDef.label 动态取名
   //   overall/coding/math → "智能指数 / Coding 指数 / Math 指数"（保持原命名习惯）

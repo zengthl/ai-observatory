@@ -33,10 +33,21 @@ const aaEntrySchema = z.object({
   delta_score: z.number().nullable(),
 });
 
-/** 通用 LLM 榜条目（AA 6 个新子榜 + LiveBench 6 个子榜都用此形态） */
+/** 通用 LLM 榜条目（AA 6 个新子榜 + LiveBench 6 个子榜 + OpenLLM 6 个子榜都用此形态） */
 const genericLLMEntrySchema = z.object({
   model_id: z.string(),
   score: z.number(),
+  rank_prev: z.number().nullable(),
+  delta_score: z.number().nullable(),
+});
+
+/** LiveCodeBench 主分条目（All 档 + Easy/Medium/Hard） */
+const livecodebenchEntrySchema = z.object({
+  model_id: z.string(),
+  score: z.number(),
+  pass_easy: z.number(),
+  pass_medium: z.number(),
+  pass_hard: z.number(),
   rank_prev: z.number().nullable(),
   delta_score: z.number().nullable(),
 });
@@ -83,6 +94,13 @@ export const snapshotSchema = z.object({
     livebench_language: z.array(genericLLMEntrySchema),
     livebench_data_analysis: z.array(genericLLMEntrySchema),
     livebench_instruction_following: z.array(genericLLMEntrySchema),
+    openllm_mmlu: z.array(genericLLMEntrySchema),
+    openllm_arc: z.array(genericLLMEntrySchema),
+    openllm_hellaswag: z.array(genericLLMEntrySchema),
+    openllm_truthfulqa: z.array(genericLLMEntrySchema),
+    openllm_gsm8k: z.array(genericLLMEntrySchema),
+    openllm_bbh: z.array(genericLLMEntrySchema),
+    livecodebench: z.array(livecodebenchEntrySchema),
   }),
   agent: z.object({
     swebench_verified: z.array(sweEntrySchema),
@@ -110,5 +128,12 @@ export const historySchema = z.record(
     livebench_language: z.array(z.tuple([z.string(), z.number()])).optional(),
     livebench_data_analysis: z.array(z.tuple([z.string(), z.number()])).optional(),
     livebench_instruction_following: z.array(z.tuple([z.string(), z.number()])).optional(),
+    openllm_mmlu: z.array(z.tuple([z.string(), z.number()])).optional(),
+    openllm_arc: z.array(z.tuple([z.string(), z.number()])).optional(),
+    openllm_hellaswag: z.array(z.tuple([z.string(), z.number()])).optional(),
+    openllm_truthfulqa: z.array(z.tuple([z.string(), z.number()])).optional(),
+    openllm_gsm8k: z.array(z.tuple([z.string(), z.number()])).optional(),
+    openllm_bbh: z.array(z.tuple([z.string(), z.number()])).optional(),
+    livecodebench: z.array(z.tuple([z.string(), z.number()])).optional(),
   }),
 );

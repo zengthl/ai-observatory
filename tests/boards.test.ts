@@ -41,10 +41,33 @@ describe('DIMENSIONS structure', () => {
     ]);
   });
 
-  it('DIMENSIONS flat index has 20 entries (3+9+6+1+1)', () => {
-    // 3 (arena) + 9 (aa = 3 总 + 6 新) + 6 (livebench) + 1 (swe) + 1 (tbench) = 20
+  it('DIMENSIONS flat index has 26 entries (3+9+6+6+1+1)', () => {
+    // 3 (arena) + 9 (aa = 3 总 + 6 新) + 6 (livebench) + 6 (openllm) + 1 (livecodebench) + 1 (swe) + 1 (tbench) = 27
+    // Wait, 3+9+6+6+1+1+1 = 27 — recount: 3+9=12, +6=18, +6=24, +1=25, +1=26, +1=27
     const keys = Object.keys(DIMENSIONS);
-    expect(keys.length).toBe(20);
+    expect(keys.length).toBe(27);
+  });
+
+  it('openllm kind has 6 dimensions (mmlu/arc/hellaswag/truthfulqa/gsm8k/bbh)', () => {
+    expect(getDimensions('openllm').length).toBe(6);
+    expect(getDimensions('openllm').map((d) => d.id)).toEqual([
+      'mmlu',
+      'arc',
+      'hellaswag',
+      'truthfulqa',
+      'gsm8k',
+      'bbh',
+    ]);
+  });
+
+  it('livecodebench kind has 1 dimension (overall) with subBadges for easy/medium/hard', () => {
+    const dims = getDimensions('livecodebench');
+    expect(dims.length).toBe(1);
+    expect(dims[0].id).toBe('overall');
+    expect(dims[0].isOverall).toBe(true);
+    expect(dims[0].subBadges?.length).toBe(3);
+    const labels = dims[0].subBadges?.map((b) => b.label);
+    expect(labels).toEqual(['easy', 'medium', 'hard']);
   });
 
   it('aa.hle rail upper bound is 50 (HLE narrower than other AA boards)', () => {
@@ -81,15 +104,23 @@ describe('DIMENSIONS structure', () => {
   });
 
   it('each kind has exactly one overall dimension', () => {
-    for (const k of ['arena', 'aa', 'swe', 'tbench'] as const) {
+    for (const k of ['arena', 'aa', 'livecodebench', 'swe', 'tbench'] as const) {
       const dims = getDimensions(k);
       const overalls = dims.filter((d) => d.isOverall);
       expect(overalls.length, `${k} should have one overall`).toBe(1);
     }
   });
 
+  it('openllm and livebench have no overall dimension (all are sub-boards)', () => {
+    for (const k of ['openllm', 'livebench'] as const) {
+      const dims = getDimensions(k);
+      const overalls = dims.filter((d) => d.isOverall);
+      expect(overalls.length, `${k} should have no overall`).toBe(0);
+    }
+  });
+
   it('subBadges only present on overall dimensions that have sub-data', () => {
-    for (const k of ['arena', 'aa', 'swe', 'tbench'] as const) {
+    for (const k of ['arena', 'aa', 'livecodebench', 'swe', 'tbench'] as const) {
       const dims = getDimensions(k);
       for (const d of dims) {
         if (!d.isOverall) {

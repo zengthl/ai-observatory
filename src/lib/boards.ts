@@ -13,6 +13,9 @@ import type {
   TBenchEntry,
 } from '../types';
 
+/** 任意一种榜单条目（按 kind 决定具体窄化） */
+export type BoardEntry = ArenaEloEntry | AAIndexEntry | SweEntry | TBenchEntry;
+
 export type Kind = 'arena' | 'aa' | 'swe' | 'tbench';
 
 export type DimensionId = 'overall' | 'code' | 'webdev' | 'coding' | 'math';
@@ -35,7 +38,14 @@ export interface RailConfig {
   ticks: number[];
 }
 
-export interface DimensionDef<T> {
+/**
+ * 单个分项维度的配置。T 收敛到该维对应 kind 的条目类型，
+ * 让 getScore / getCi95 / subBadges.getValue 在编译期得到正确窄化。
+ *
+ * 多 kind 共享同一 DIMENSIONS 容器时用 DimensionDef<any> 抹平联合；
+ * 调用方需自行按 `kind` 字段决定具体窄化（见 findDimension / getDimensions）。
+ */
+export interface DimensionDef<T extends BoardEntry = BoardEntry> {
   id: DimensionId;
   label: string;
   axisLabel: string;
@@ -162,12 +172,26 @@ export interface DimensionDef<T> {
   ],
 };
 
-/** 取得某 kind 全部 dimension 定义（按声明顺序） */
-export function getDimensions(kind: Kind): DimensionDef<any>[] {
-  return DIMENSIONS[kind];
+/** 取得某 kind 全部 dimension 定义（按声明顺序）。返回类型按 kind 收窄。 */
+export function getDimensions<K extends Kind>(kind: K): DimensionDef<BoardEntryOf<K>>[] {
+  return DIMENSIONS[kind] as DimensionDef<BoardEntryOf<K>>[];
 }
 
-/** 按 (kind, dimension) 查找 dimension 定义；找不到返回 undefined */
-export function findDimension(kind: Kind, id: DimensionId): DimensionDef<any> | undefined {
-  return DIMENSIONS[kind].find((d) => d.id === id);
+/** 按 (kind, dimension) 查找 dimension 定义；找不到返回 undefined。返回类型按 kind 收窄。 */
+export function findDimension<K extends Kind>(
+  kind: K,
+  id: DimensionId,
+): DimensionDef<BoardEntryOf<K>> | undefined {
+  return DIMENSIONS[kind].find((d) => d.id === id) as
+    | DimensionDef<BoardEntryOf<K>>
+    | undefined;
 }
+
+/** Kind → 对应 BoardEntry 子类型映射（用于 DimensionDef 类型参数推断） */
+export type BoardEntryOf<K extends Kind> = K extends 'arena'
+  ? ArenaEloEntry
+  : K extends 'aa'
+    ? AAIndexEntry
+    : K extends 'swe'
+      ? SweEntry
+      : TBenchEntry;

@@ -1,7 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { findDimension, getDimensions, DIMENSIONS } from '../src/lib/boards';
-import type { ArenaEloEntry, AAIndexEntry } from '../src/types';
+import type { ArenaEloEntry, AAIndexEntry, SweEntry, TBenchEntry } from '../src/types';
+import type { BoardEntryOf } from '../src/lib/boards';
 
 const latest = JSON.parse(readFileSync('public/data/latest.json', 'utf8'));
 const sampleArena: ArenaEloEntry = latest.llm.arena_elo[0];
@@ -151,5 +152,54 @@ describe('trendKeys', () => {
   it('aa.math trendKey is violet (the new color)', () => {
     const d = findDimension('aa', 'math')!;
     expect(d.trendKeys[0].color).toBe('violet');
+  });
+});
+
+describe('kind-typed findDimension / getDimensions (Round 1 type safety fix)', () => {
+  it('findDimension(arena, ...) returns ArenaEloEntry-typed def', () => {
+    const d = findDimension('arena', 'overall')!;
+    // 编译期断言：getScore 的 e 参数必须是 ArenaEloEntry
+    const v: number | null = d.getScore(sampleArena);
+    expect(typeof v).toBe('number');
+    // ci95 也在 arena 上
+    const ci = d.getCi95?.(sampleArena);
+    expect(ci === undefined || Array.isArray(ci)).toBe(true);
+  });
+
+  it('findDimension(aa, ...) returns AAIndexEntry-typed def', () => {
+    const d = findDimension('aa', 'overall')!;
+    const v: number | null = d.getScore(sampleAA);
+    expect(typeof v).toBe('number');
+  });
+
+  it('findDimension(swe, ...) and findDimension(tbench, ...) return their respective entry types', () => {
+    // 编译期断言：swe 维拿到的 sample 是 SweEntry 形状
+    const sd = findDimension('swe', 'overall')!;
+    const swSample: SweEntry = latest.agent.swebench_verified[0];
+    expect(sd.getScore(swSample)).toBe(swSample.resolved_pct);
+    const td = findDimension('tbench', 'overall')!;
+    const tbSample: TBenchEntry = latest.agent.terminal_bench[0];
+    expect(td.getScore(tbSample)).toBe(tbSample.score);
+  });
+
+  it('getDimensions(arena) is DimensionDef<ArenaEloEntry>[]', () => {
+    const dims = getDimensions('arena');
+    expect(dims.length).toBe(3);
+    // 编译期断言：entries 必须是 ArenaEloEntry
+    const _typecheck: ReadonlyArray<{ score: number }> = dims.map((d) => ({
+      score: d.getScore(sampleArena) ?? 0,
+    }));
+    expect(_typecheck.length).toBe(3);
+  });
+
+  it('BoardEntryOf maps each Kind to its concrete entry type (compile-time check)', () => {
+    const _arena: BoardEntryOf<'arena'> = sampleArena;
+    const _aa: BoardEntryOf<'aa'> = sampleAA;
+    const _swe: BoardEntryOf<'swe'> = latest.agent.swebench_verified[0];
+    const _tb: BoardEntryOf<'tbench'> = latest.agent.terminal_bench[0];
+    expect(_arena.model_id).toBeDefined();
+    expect(_aa.model_id).toBeDefined();
+    expect(_swe.model_id).toBeDefined();
+    expect(_tb.model_id).toBeDefined();
   });
 });

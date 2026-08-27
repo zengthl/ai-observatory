@@ -12,7 +12,7 @@ import DeltaBadge from './DeltaBadge';
 import TickRail from './TickRail';
 import TrendPanel from './TrendPanel';
 import type { Top3Ref, TrendBoard } from './TrendPanel';
-import type { DimensionDef, DimensionId, Kind } from '../lib/boards';
+import type { BoardEntryOf, DimensionDef, DimensionId, Kind } from '../lib/boards';
 import { findDimension } from '../lib/boards';
 
 export type RankKind = Kind;
@@ -77,9 +77,9 @@ function fmtScore(n: number, kind: RankKind): string {
   return String(n);
 }
 
-function normalizeRows(
-  kind: RankKind,
-  dimDef: DimensionDef<any>,
+function normalizeRows<K extends RankKind>(
+  kind: K,
+  dimDef: DimensionDef<BoardEntryOf<K>>,
   entries: AnyEntries,
   models: Record<string, ModelMeta>,
 ): RowModel[] {
@@ -99,14 +99,14 @@ function normalizeRows(
     };
 
     // 主分（由 dimDef.getScore 取得；null 则整行过滤）
-    const score = dimDef.getScore(e);
+    const score = dimDef.getScore(e as unknown as BoardEntryOf<K>);
     if (score == null) return;
 
     const scoreText = fmtScore(score, kind);
     const subBadges: Array<{ label: string; value: number; tooltip: string }> = [];
     if (dimDef.isOverall && dimDef.subBadges) {
       for (const sb of dimDef.subBadges) {
-        const v = sb.getValue(e);
+        const v = sb.getValue(e as unknown as BoardEntryOf<K>);
         if (v != null) {
           subBadges.push({ label: sb.label, value: v, tooltip: `${sb.tooltip} ${v}` });
         }
@@ -117,7 +117,9 @@ function normalizeRows(
 
     if (kind === 'arena') {
       const a = e as unknown as ArenaEloEntry;
-      const ci = dimDef.getCi95?.(a);
+      // kind 已被 === 分支窄化，dimDef 跟着窄到具体类型避免联合签名传递
+      const arenaDim = dimDef as DimensionDef<ArenaEloEntry>;
+      const ci = arenaDim.getCi95?.(a);
       const ciHalf = ci ? Math.round((ci[1] - ci[0]) / 2) : undefined;
       out.push({
         ...base,

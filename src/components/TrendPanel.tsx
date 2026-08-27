@@ -7,7 +7,7 @@ import type { EChartsCoreOption, EChartsType } from 'echarts/core';
 import type { LineSeriesOption } from 'echarts/charts';
 import type { History } from '../types';
 import { getChartColors } from '../design/chartTheme';
-import type { DimensionDef } from '../lib/boards';
+import type { BoardEntry, DimensionDef } from '../lib/boards';
 
 // 按需注册（模块级一次即可，重复 use 幂等）
 echarts.use([LineChart, GridComponent, TooltipComponent, CanvasRenderer]);
@@ -25,8 +25,9 @@ interface TrendPanelProps {
   history: History;
   /** 当前榜前三参照（已排除主模型自己） */
   top3Refs: Top3Ref[];
-  /** 维度配置；驱动主线颜色与分项曲线 */
-  dimension: DimensionDef<any>;
+  /** 维度配置；驱动主线颜色与分项曲线。TrendPanel 只读 trendKeys/getScore/getCi95/getRail，
+   *  不需要具体 kind 窄化，DimensionDef<BoardEntry> 联合签名已足够 */
+  dimension: DimensionDef<BoardEntry>;
 }
 
 const WINDOW_DAYS = 90;
@@ -65,14 +66,21 @@ const BOARD_LABELS: Record<TrendBoard, string> = {
   terminal_bench: 'Terminal-Bench 得分',
 };
 
-/** 单系列 key → 该模型在 history 中的 series 名 */
+/** 单系列 key → 该模型在 history 中的 series 名。
+ *
+ * 分项 key（code/webdev/coding/math）约定的独立 series 名是 `${board}_${trendKey}`，
+ * 例如 aa_index 的 coding 分项 → 'aa_index_coding'。当前 history.json 尚未生成
+ * 这些子序列（首日实装），因此 lookup 通常会落空。**绝不**再回退到主 board：
+ * 否则多线图三条线都画主 board 数据，全重叠成一条线（用户无法区分分项）。
+ *
+ * 调用方应通过返回值是否为 null 判断「无分项历史」并相应降级到单线 + 空态提示。
+ */
 function historySeriesFor(
   board: TrendBoard,
   trendKey: 'overall' | 'code' | 'webdev' | 'coding' | 'math',
-): string {
+): string | null {
   if (trendKey === 'overall') return board;
-  // 分项序列：暂未在 history 中独立存（首日实装时无数据），先用 board 兜底避免空数据假连线
-  return board;
+  return `${board}_${trendKey}`;
 }
 
 /** 按 trendKey color 名取实际色值 */
@@ -95,17 +103,27 @@ export default function TrendPanel({ modelId, board, history, top3Refs, dimensio
   const trendKeys = dimension.trendKeys;
   const isMultiLine = trendKeys.length > 1;
 
-  // 主模型各分项序列（按 dimDef.trendKeys 顺序）
+  // 主模型各分项序列（按 dimDef.trendKeys 顺序）。
+  // 分项 key 找不到独立历史时记空点（points=[]），绝不回退到主 board 序列，
+  // 否则多线图三条线全画主 board 数据 → 完全重叠。
   const mainSeries = useMemo(
     () =>
       trendKeys.map((tk) => {
         const key = historySeriesFor(board, tk.key);
         const hm = history[modelId] ?? {};
-        const pts = (hm as Record<string, Array<[string, number]> | undefined>)[key] ?? [];
+        const pts =
+          key == null
+            ? []
+            : (hm as Record<string, Array<[string, number]> | undefined>)[key] ?? [];
         return { ...tk, points: sliceWindow(pts), hasData: pts.length > 0 };
       }),
     [trendKeys, history, board, modelId],
   );
+
+  // 多线场景下：所有分项 key 都无独立历史 → 仅画主线 + 「分项曲线待积累」提示
+  const mainHasData = mainSeries.find((s) => s.key === 'overall')?.hasData ?? false;
+  const anySubHasData = mainSeries.some((s) => s.key !== 'overall' && s.hasData);
+  const allSubEmpty = isMultiLine && mainHasData && !anySubHasData;
 
   // 参照线数据：排除主模型自己
   const refSeries = useMemo(
@@ -144,28 +162,33 @@ export default function TrendPanel({ modelId, board, history, top3Refs, dimensio
       const toData = (pts: Array<[string, number]>): Array<number | null> =>
         dates.map((d) => at(pts, d));
 
-      // 主线序列：分项维单线（蓝色/紫罗兰），整体维多线（橙主 + 蓝/紫虚线）
-      const mainLineSeries: LineSeriesOption[] = mainSeries.map((s) => {
-        const isMain = s.key === 'overall';
-        const c = colorByName(s.color, colors);
-        return {
-          name: s.label,
-          type: 'line',
-          data: toData(s.points),
-          lineStyle: {
-            color: c,
-            width: isMain ? 2 : 1.5,
-            type: isMain ? 'solid' : 'dashed',
-            opacity: isMain ? 1 : 0.85,
-          },
-          itemStyle: { color: c },
-          symbol: 'circle',
-          symbolSize: isMain ? 5 : 3,
-          connectNulls: false,
-          emphasis: { disabled: true },
-          z: 3,
-        };
-      });
+      // 主线序列：分项维单线（蓝色/紫罗兰），整体维多线（橙主 + 蓝/紫虚线）。
+      // 多线场景但所有分项序列都无独立历史时（首日实装阶段），仅画主线
+      // 并在 ECharts option 里加 graphic 文字提示「分项曲线待积累」，
+      // 避免三条线全部重叠到主序列上造成的视觉假象。
+      const mainLineSeries: LineSeriesOption[] = mainSeries
+        .filter((s) => !allSubEmpty || s.key === 'overall')
+        .map((s) => {
+          const isMain = s.key === 'overall';
+          const c = colorByName(s.color, colors);
+          return {
+            name: s.label,
+            type: 'line',
+            data: toData(s.points),
+            lineStyle: {
+              color: c,
+              width: isMain ? 2 : 1.5,
+              type: isMain ? 'solid' : 'dashed',
+              opacity: isMain ? 1 : 0.85,
+            },
+            itemStyle: { color: c },
+            symbol: 'circle',
+            symbolSize: isMain ? 5 : 3,
+            connectNulls: false,
+            emphasis: { disabled: true },
+            z: 3,
+          };
+        });
 
       // 参照线：与主色一致；整体维时参照线为浅色，分项维保持同色
       const refColor = isMultiLine ? colors.soft : colorByName(trendKeys[0].color, colors);
@@ -183,6 +206,27 @@ export default function TrendPanel({ modelId, board, history, top3Refs, dimensio
       }));
 
       const series: LineSeriesOption[] = [...mainLineSeries, ...refLineSeries];
+
+      // 分项曲线待积累提示（多线场景下分项历史都为空时）
+      const emptyHintGraphic = allSubEmpty
+        ? [
+            {
+              type: 'group' as const,
+              left: 'center',
+              top: 'middle',
+              children: [
+                {
+                  type: 'text' as const,
+                  style: {
+                    text: '分项曲线待积累',
+                    fill: colors.soft,
+                    font: "11px 'IBM Plex Mono', ui-monospace, monospace",
+                  },
+                },
+              ],
+            },
+          ]
+        : undefined;
 
       option = {
         animation: !reduceMotion,
@@ -234,6 +278,7 @@ export default function TrendPanel({ modelId, board, history, top3Refs, dimensio
             return [`<div style="color:${colors.soft}">${list[0]?.axisValue ?? ''}</div>`, rows].join('');
           },
         },
+        ...(emptyHintGraphic ? { graphic: emptyHintGraphic } : {}),
         series,
       };
       return option;
@@ -270,15 +315,18 @@ export default function TrendPanel({ modelId, board, history, top3Refs, dimensio
       chartRef.current?.dispose();
       chartRef.current = null;
     };
-  }, [modelId, board, history, refSeries, mainSeries, isMultiLine, trendKeys]);
+  }, [modelId, board, history, refSeries, mainSeries, isMultiLine, allSubEmpty, trendKeys]);
 
-  // 多线图例：主色块 + label；trendKeys 长度 > 1 时显
+  // 多线图例：主色块 + label；trendKeys 长度 > 1 时显。
+  // allSubEmpty 时仅主线有意义，legend 也只显示主线色块，
+  // 避免出现「分项曲线待积累」但图例假装有多分项的违和感。
   const renderLegend = (): React.ReactNode => {
     if (!isMultiLine) return null;
-    const c = colorsFromDom();
+    const c = getChartColors();
+    const visibleTrendKeys = allSubEmpty ? trendKeys.filter((tk) => tk.key === 'overall') : trendKeys;
     return (
       <div className="trend-panel__legend">
-        {trendKeys.map((tk) => {
+        {visibleTrendKeys.map((tk) => {
           const color = tk.color === 'blue' ? c.blue : tk.color === 'violet' ? c.violet : c.orange;
           return (
             <span className="trend-panel__legend-item" key={tk.key}>
@@ -311,22 +359,4 @@ export default function TrendPanel({ modelId, board, history, top3Refs, dimensio
       )}
     </div>
   );
-}
-
-/** 仅在 renderLegend 中使用：从 CSS 变量即时取值（避免 useMemo 依赖 document） */
-function colorsFromDom(): { orange: string; blue: string; violet: string; violetSoft: string; ink: string; up: string; down: string; soft: string } {
-  if (typeof document === 'undefined') {
-    return { orange: '#FF4D00', blue: '#2563EB', violet: '#7C3AED', violetSoft: '#C4B5FD', ink: '#16181D', up: '#0A7D33', down: '#C62828', soft: '#6B6D64' };
-  }
-  const cs = getComputedStyle(document.documentElement);
-  return {
-    orange: cs.getPropertyValue('--orange').trim() || '#FF4D00',
-    blue: cs.getPropertyValue('--blue').trim() || '#2563EB',
-    violet: cs.getPropertyValue('--violet').trim() || '#7C3AED',
-    violetSoft: cs.getPropertyValue('--violet-soft').trim() || '#C4B5FD',
-    ink: cs.getPropertyValue('--ink').trim() || '#16181D',
-    up: cs.getPropertyValue('--up').trim() || '#0A7D33',
-    down: cs.getPropertyValue('--down').trim() || '#C62828',
-    soft: cs.getPropertyValue('--ink-soft').trim() || '#6B6D64',
-  };
 }

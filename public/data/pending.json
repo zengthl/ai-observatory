@@ -1,6 +1,7 @@
 {
- "date": "2026-08-26",
+ "date": "2026-08-27",
  "names": [
+  "GLM-5.3-Flash",
   "gpt-oss-20b (low)",
   "o3",
   "GPT-5.6 Luna (low)",
@@ -99,8 +100,7 @@
   "Kimi Linear 48B A3B Instruct",
   "Step 3.7 Flash",
   "Step3 VL 10B",
-  "Olmo 3.1 32B Instruct",
-  "Olmo 3 7B Think"
+  "Olmo 3.1 32B Instruct"
  ],
- "total": 922
+ "total": 925
 }

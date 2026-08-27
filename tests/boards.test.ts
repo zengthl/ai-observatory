@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { findDimension, getDimensions, DIMENSIONS, splitDimKey } from '../src/lib/boards';
+import { findDimension, getDimensions, DIMENSIONS, splitDimKey, VIEWS, VIEW_BY_ID, getDimensionsForView } from '../src/lib/boards';
+import type { ViewId } from '../src/lib/boards';
 import type { ArenaEloEntry, AAIndexEntry, SweEntry, TBenchEntry } from '../src/types';
 import type { BoardEntryOf } from '../src/lib/boards';
 // DIMENSIONS 引用：保证类型注册 + 防止纯 unused-import 警告
@@ -284,5 +285,99 @@ describe('kind-typed findDimension / getDimensions (Round 1 type safety fix)', (
     expect(_aa.model_id).toBeDefined();
     expect(_swe.model_id).toBeDefined();
     expect(_tb.model_id).toBeDefined();
+  });
+});
+
+/**
+ * 阶段 3（tabs-ux）view-grouped tabs：
+ * 1. 每个 dimension 有 view 字段（不允许 undefined）
+ * 2. 每个视图至少 1 个 dimension
+ * 3. 视图「综合」包含 arena/aa（用户最常用榜）
+ * 4. shortLabel 全局唯一
+ * 5. DIMENSIONS 总数 >= 17（保持与改造前相当）
+ */
+describe('view grouping (tabs-ux)', () => {
+  it('every dimension has a non-empty view field', () => {
+    for (const [key, def] of Object.entries(DIMENSIONS)) {
+      expect(def.view, `${key} should have view field`).toBeTruthy();
+      expect(typeof def.view).toBe('string');
+    }
+  });
+
+  it('every dimension has a non-empty shortLabel', () => {
+    for (const [key, def] of Object.entries(DIMENSIONS)) {
+      expect(def.shortLabel, `${key} should have shortLabel`).toBeTruthy();
+      expect(typeof def.shortLabel).toBe('string');
+      expect(def.shortLabel.length, `${key} shortLabel too short`).toBeGreaterThan(0);
+    }
+  });
+
+  it('every defined view has at least one dimension', () => {
+    const viewIds: ViewId[] = ['general', 'coding', 'knowledge', 'instruction', 'agent'];
+    for (const v of viewIds) {
+      const dims = getDimensionsForView(v);
+      expect(dims.length, `view ${v} should have at least 1 dimension`).toBeGreaterThanOrEqual(1);
+    }
+  });
+
+  it('"general" view contains arena + aa dimensions', () => {
+    const dims = getDimensionsForView('general');
+    const kinds = new Set(dims.map((d) => splitDimKey(Object.keys(DIMENSIONS).find((k) => DIMENSIONS[k] === d)!)!.kind));
+    expect(kinds.has('arena'), 'general should include arena').toBe(true);
+    expect(kinds.has('aa'), 'general should include aa').toBe(true);
+  });
+
+  it('shortLabel values are unique across DIMENSIONS (no duplicates)', () => {
+    const seen = new Map<string, string>();
+    for (const [key, def] of Object.entries(DIMENSIONS)) {
+      const prev = seen.get(def.shortLabel);
+      expect(prev, `shortLabel "${def.shortLabel}" already used by ${prev}, now ${key}`).toBeUndefined();
+      seen.set(def.shortLabel, key);
+    }
+  });
+
+  it('DIMENSIONS total count >= 17 (preserved through refactor)', () => {
+    const keys = Object.keys(DIMENSIONS);
+    expect(keys.length).toBeGreaterThanOrEqual(17);
+    // 与改造前一致：实际 27 个（3 arena + 9 aa + 6 livebench + 6 openllm + 1 livecodebench + 1 swe + 1 tbench）
+    expect(keys.length).toBe(27);
+  });
+
+  it('VIEWS array has 5 entries in correct order (general / coding / knowledge / instruction / agent)', () => {
+    expect(VIEWS.length).toBe(5);
+    expect(VIEWS.map((v) => v.id)).toEqual([
+      'general',
+      'coding',
+      'knowledge',
+      'instruction',
+      'agent',
+    ]);
+  });
+
+  it('VIEW_BY_ID lookup matches VIEWS array', () => {
+    for (const v of VIEWS) {
+      expect(VIEW_BY_ID[v.id]).toBe(v);
+    }
+  });
+
+  it('each view order references existing DIMENSIONS keys (no dangling)', () => {
+    for (const v of VIEWS) {
+      for (const key of v.order) {
+        expect(DIMENSIONS[key], `view ${v.id} order "${key}" should exist in DIMENSIONS`).toBeDefined();
+      }
+    }
+  });
+
+  it('getDimensionsForView returns dimensions in the view-declared order', () => {
+    const dims = getDimensionsForView('general');
+    const expected = VIEWS.find((v) => v.id === 'general')!.order
+      .map((k) => DIMENSIONS[k])
+      .filter(Boolean);
+    expect(dims).toEqual(expected);
+  });
+
+  it('getDimensionsForView returns [] for unknown view (defensive)', () => {
+    // type-level: ViewId 是字面量类型，运行期传入 string 不应崩
+    expect(getDimensionsForView('unknown' as unknown as ViewId)).toEqual([]);
   });
 });

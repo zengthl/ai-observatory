@@ -1,31 +1,28 @@
-export type BoardTab = 'llm' | 'agent';
+import { VIEWS } from '../lib/boards';
+import type { ViewId } from '../lib/boards';
+
+export type BoardTab = ViewId;
 
 interface BoardTabsProps {
-  tab: BoardTab;
-  onChange: (t: BoardTab) => void;
+  tab: ViewId;
+  onChange: (t: ViewId) => void;
 }
 
 export default function BoardTabs({ tab, onChange }: BoardTabsProps) {
   return (
-    <div className="tabs" role="tablist" aria-label="榜单切换">
-      <button
-        type="button"
-        role="tab"
-        aria-selected={tab === 'llm'}
-        className="tabs__tab"
-        onClick={() => onChange('llm')}
-      >
-        大模型榜
-      </button>
-      <button
-        type="button"
-        role="tab"
-        aria-selected={tab === 'agent'}
-        className="tabs__tab"
-        onClick={() => onChange('agent')}
-      >
-        Agent 榜
-      </button>
+    <div className="tabs" role="tablist" aria-label="视图切换">
+      {VIEWS.map((v) => (
+        <button
+          key={v.id}
+          type="button"
+          role="tab"
+          aria-selected={tab === v.id}
+          className="tabs__tab"
+          onClick={() => onChange(v.id)}
+        >
+          {v.label}
+        </button>
+      ))}
     </div>
   );
 }

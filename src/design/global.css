@@ -227,6 +227,14 @@
   background: color-mix(in srgb, var(--ink) 6%, transparent);
 }
 
+/* 移动端：5 个视图 tab 总宽压缩 padding，避免水平滚动 */
+@media (max-width: 600px) {
+  .tabs__tab {
+    padding: 9px 14px;
+    font-size: 12px;
+  }
+}
+
 /* ===== ErrorState ===== */
 
 .error-state {
@@ -290,15 +298,17 @@
 }
 
 /* ===== 二级子榜切换（SubTabs，与 BoardTabs 同款小一号）===== */
+/* 阶段 3（tabs-ux）：改 CSS Grid 多行布局，所有 sub tab 在屏幕宽度内可见，避免横向滚动。
+ * auto-fit + minmax(120px, 1fr) 让按钮按容器宽度自动换行；移动端保持 2 列起步。 */
 
 .subtabs {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0;
   border: 1px solid var(--rule-light);
   border-radius: var(--radius);
   margin-top: 22px;
-  scrollbar-width: thin;
+  overflow: visible;
 }
 
 .subtabs__tab {
@@ -313,11 +323,12 @@
   padding: 6px 16px;
   cursor: pointer;
   white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.subtabs__tab + .subtabs__tab {
-  position: relative;
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  min-width: 0;
+  border-right: 1px solid var(--rule-light);
+  border-bottom: 1px solid var(--rule-light);
 }
 
 .subtabs__tab[aria-selected='true'] {
@@ -330,18 +341,19 @@
   background: color-mix(in srgb, var(--ink) 6%, transparent);
 }
 
-/* 单 tab 间分隔：用 after 伪元素，不让 overflow 滚动裁掉左 border */
+/* Grid 多行布局：每个 cell 之间通过 border 自然分隔，移除之前 ::before 分隔符 */
 .subtabs__tab + .subtabs__tab {
-  position: relative;
+  position: static;
 }
 .subtabs__tab + .subtabs__tab::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: var(--rule-light);
+  display: none;
+}
+
+/* 移动端：保持 2 列布局（更紧凑），让 sub tab 文字仍可读 */
+@media (max-width: 600px) {
+  .subtabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 /* ===== RankTable ===== */

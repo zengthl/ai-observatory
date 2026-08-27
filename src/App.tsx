@@ -13,8 +13,8 @@ import type {
   SourceName,
 } from './types';
 import { addToFifoSelection } from './lib/compare';
-import type { Kind } from './lib/boards';
-import { DIMENSIONS, splitDimKey } from './lib/boards';
+import { DIMENSIONS, VIEW_BY_ID, splitDimKey, getDimensionsForView } from './lib/boards';
+import type { Kind, ViewId } from './lib/boards';
 import TopBar from './components/TopBar';
 import HeroChampions from './components/HeroChampions';
 import BoardTabs from './components/BoardTabs';
@@ -26,9 +26,7 @@ import ScatterView from './components/ScatterView';
 import BoardUnavailable from './components/BoardUnavailable';
 import Footer from './components/Footer';
 
-type BoardTab = 'llm' | 'agent';
-
-/** Sub tab 由扁平化的 DIMENSIONS key 表达，附 'scatter' 哨兵 */
+/** Sub tab 由扁平化的 DIMENSIONS key 表达，附 'scatter' 哨兵（仅 general 视图） */
 type SubTab = string | 'scatter';
 
 const SUB_SOURCE: Record<Kind, SourceName> = {
@@ -41,89 +39,28 @@ const SUB_SOURCE: Record<Kind, SourceName> = {
   tbench: 'artificial_analysis',
 };
 
-/** 一级 Tab → 可见的 sub kind 前缀 */
-const TAB_KINDS: Record<BoardTab, Kind[]> = {
-  llm: ['arena', 'aa', 'livebench', 'openllm', 'livecodebench'],
-  agent: ['swe', 'tbench'],
-};
+/** 'scatter' 哨兵仅在 general 视图下可见 */
+function subTabsForView(view: ViewId): SubTab[] {
+  const dims = getDimensionsForView(view);
+  const out: SubTab[] = dims.map((d) => {
+    // 反查 key（同一 kind+id 唯一）
+    const key = Object.entries(DIMENSIONS).find(
+      ([, v]) => v === d,
+    )?.[0];
+    return key ?? '';
+  }).filter(Boolean) as string[];
+  if (view === 'general') out.push('scatter');
+  return out;
+}
 
-/** 全部 sub tabs（按 DIMENSIONS 声明顺序） */
-const SUB_TABS_ALL = Object.keys(DIMENSIONS);
-
-/** 一级 Tab 下可见的 sub tabs */
-function subTabsForTab(tab: BoardTab): string[] {
-  const kinds = new Set(TAB_KINDS[tab]);
-  return SUB_TABS_ALL.filter((k) => {
-    const sp = splitDimKey(k);
-    return sp ? kinds.has(sp.kind) : false;
+/** 当前 sub 是否属于当前视图（决定能不能渲染表格/散点） */
+function isSubVisibleInView(sub: SubTab, view: ViewId): boolean {
+  if (sub === 'scatter') return view === 'general';
+  const dims = getDimensionsForView(view);
+  return dims.some((d) => {
+    const key = Object.entries(DIMENSIONS).find(([, v]) => v === d)?.[0];
+    return key === sub;
   });
-}
-
-function isBoardTabMatch(sub: SubTab, tab: BoardTab): boolean {
-  if (sub === 'scatter') return tab === 'llm';
-  const sp = splitDimKey(sub);
-  if (!sp) return false;
-  return TAB_KINDS[tab].includes(sp.kind);
-}
-
-/** kind 中文显示名（用于 sub tab 标签前缀） */
-const KIND_LABEL: Record<Kind, string> = {
-  arena: 'Arena',
-  aa: 'AA',
-  livebench: 'LB',
-  openllm: 'OpenLLM',
-  livecodebench: 'LCB',
-  swe: 'SWE',
-  tbench: 'TBench',
-};
-
-/** 二级子榜切换（与 BoardTabs 同款样式，小一号；横向滚动） */
-function SubTabs({
-  tab,
-  board,
-  onChange,
-}: {
-  tab: SubTab;
-  board: BoardTab;
-  onChange: (t: SubTab) => void;
-}) {
-  const visible = subTabsForTab(board);
-  return (
-    <div className="subtabs" role="tablist" aria-label="子榜单切换">
-      {visible.map((k) => {
-        const sp = splitDimKey(k);
-        if (!sp) return null;
-        const def = DIMENSIONS[k];
-        const active = tab === k;
-        const label = `${KIND_LABEL[sp.kind]} · ${def.label}`;
-        return (
-          <button
-            key={k}
-            type="button"
-            role="tab"
-            aria-selected={active}
-            className="subtabs__tab"
-            data-kind={sp.kind}
-            data-dimension={sp.id}
-            onClick={() => onChange(k)}
-          >
-            {label}
-          </button>
-        );
-      })}
-      {board === 'llm' && (
-        <button
-          type="button"
-          role="tab"
-          aria-selected={tab === 'scatter'}
-          className="subtabs__tab"
-          onClick={() => onChange('scatter')}
-        >
-          速度 × 价格
-        </button>
-      )}
-    </div>
-  );
 }
 
 /** 把 SubTab 拆出 (kind, dimension)；'scatter' 返回 null */
@@ -136,8 +73,9 @@ function subToPair(sub: SubTab): { kind: Kind; dimension: string } | null {
 
 export default function App() {
   const { loading, error, retry, latest, history, pendingCount, pendingTotal } = useBoardData();
-  const [board, setBoard] = useState<BoardTab>('llm');
-  const [sub, setSub] = useState<SubTab>('arena_overall');
+  // 默认进入「综合」视图（用户最常用）
+  const [view, setView] = useState<ViewId>('general');
+  const [sub, setSub] = useState<SubTab>(VIEW_BY_ID.general.defaultSub);
   // 对比选择（最多 2 个，Set 保序：先勾的在前）
   const [compareSelection, setCompareSelection] = useState<Set<string>>(new Set());
   const [expandedId, setExpandedId] = useState<string | null>(null);
@@ -171,10 +109,10 @@ export default function App() {
     setSub(s);
   };
 
-  const changeBoard = (b: BoardTab) => {
-    setBoard(b);
-    // 换主榜时把子榜重置到该榜的第一个 dimension
-    const fallback: SubTab = b === 'llm' ? 'arena_overall' : 'swe_overall';
+  const changeView = (v: ViewId) => {
+    setView(v);
+    // 换视图时把 sub 重置到该视图的第一个 dimension（不含 scatter）
+    const fallback = VIEW_BY_ID[v].defaultSub;
     setSub(fallback);
     setFilter((f) => ({ ...f, org: '' }));
   };
@@ -234,9 +172,9 @@ export default function App() {
           <BoardBody
             latest={latest}
             history={history}
-            board={board}
+            view={view}
             sub={sub}
-            onBoardChange={changeBoard}
+            onViewChange={changeView}
             onSubChange={changeSub}
             filtered={filteredAny}
             orgs={orgs}
@@ -269,9 +207,9 @@ function modelsById(latest: LatestFile | null): Record<string, ModelMeta> {
 interface BoardBodyProps {
   latest: LatestFile;
   history: History | null;
-  board: BoardTab;
+  view: ViewId;
   sub: SubTab;
-  onBoardChange: (b: BoardTab) => void;
+  onViewChange: (v: ViewId) => void;
   onSubChange: (s: SubTab) => void;
   filtered: Array<ArenaEloEntry | AAIndexEntry | SweEntry | TBenchEntry | GenericLLMEntry>;
   orgs: string[];
@@ -287,9 +225,9 @@ interface BoardBodyProps {
 function BoardBody({
   latest,
   history,
-  board,
+  view,
   sub,
-  onBoardChange,
+  onViewChange,
   onSubChange,
   filtered,
   orgs,
@@ -305,21 +243,21 @@ function BoardBody({
   const subKind: Kind | null = pair ? pair.kind : null;
   const unavailable =
     subKind !== null ? latest.sources[SUB_SOURCE[subKind]]?.status === 'unavailable' : false;
-  const isBoardMatch = isBoardTabMatch(sub, board);
+  const isSubMatch = isSubVisibleInView(sub, view);
 
   const subLabel =
     sub === 'scatter'
       ? '速度 × 价格'
       : pair
-        ? `${KIND_LABEL[pair.kind]} · ${DIMENSIONS[sub]?.label ?? sub}`
+        ? DIMENSIONS[sub]?.shortLabel ?? DIMENSIONS[sub]?.label ?? sub
         : sub;
 
   return (
     <>
       <HeroChampions latest={latest} />
-      <BoardTabs tab={board} onChange={onBoardChange} />
-      <SubTabs tab={sub} board={board} onChange={onSubChange} />
-      {sub !== 'scatter' && !unavailable && isBoardMatch && pair && (
+      <BoardTabs tab={view} onChange={onViewChange} />
+      <SubTabs view={view} sub={sub} onChange={onSubChange} />
+      {sub !== 'scatter' && !unavailable && isSubMatch && pair && (
         <>
           <FilterBar orgs={orgs} filter={filter} setFilter={onFilterChange} count={filtered.length} />
           <RankTable
@@ -336,12 +274,12 @@ function BoardBody({
           />
         </>
       )}
-      {sub !== 'scatter' && !isBoardMatch && (
+      {sub !== 'scatter' && !isSubMatch && (
         <p className="label-caps" style={{ padding: 32 }}>
-          请在 {board === 'llm' ? '大模型榜' : 'Agent 榜'}下查看该子榜
+          该子榜不在当前视图，请切换视图
         </p>
       )}
-      {sub !== 'scatter' && unavailable && isBoardMatch && subKind && (
+      {sub !== 'scatter' && unavailable && isSubMatch && subKind && (
         <BoardUnavailable
           name={subLabel}
           lastOk={latest.sources[SUB_SOURCE[subKind]]?.last_ok}
@@ -354,5 +292,57 @@ function BoardBody({
           <ScatterView aaEntries={latest.llm.aa_index} models={models} onSelect={() => {}} />
         ))}
     </>
+  );
+}
+
+/** Sub tab 渲染：去冗余 shortLabel + CSS Grid 多行布局避免横向滚动 */
+function SubTabs({
+  view,
+  sub,
+  onChange,
+}: {
+  view: ViewId;
+  sub: SubTab;
+  onChange: (t: SubTab) => void;
+}) {
+  const visible = subTabsForView(view);
+  return (
+    <div className="subtabs" role="tablist" aria-label="子榜单切换">
+      {visible.map((k) => {
+        if (k === 'scatter') {
+          const active = sub === 'scatter';
+          return (
+            <button
+              key="scatter"
+              type="button"
+              role="tab"
+              aria-selected={active}
+              className="subtabs__tab"
+              onClick={() => onChange('scatter')}
+            >
+              速度 × 价格
+            </button>
+          );
+        }
+        const def = DIMENSIONS[k];
+        if (!def) return null;
+        const active = sub === k;
+        return (
+          <button
+            key={k}
+            type="button"
+            role="tab"
+            aria-selected={active}
+            className="subtabs__tab"
+            data-view={def.view}
+            data-kind={splitDimKey(k)?.kind}
+            data-dimension={def.id}
+            onClick={() => onChange(k)}
+          >
+            {def.shortLabel}
+          </button>
+        );
+      })}
+    </div>
   );
 }

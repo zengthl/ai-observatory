@@ -3,27 +3,27 @@
  "sources": {
   "artificial_analysis": {
    "status": "ok",
-   "fetched_at": "2026-09-01T00:56:32.389Z"
+   "fetched_at": "2026-09-01T23:43:52.516Z"
   },
   "lmarena": {
    "status": "ok",
-   "fetched_at": "2026-09-01T00:56:32.389Z"
+   "fetched_at": "2026-09-01T23:43:52.516Z"
   },
   "swebench": {
    "status": "ok",
-   "fetched_at": "2026-09-01T00:56:32.389Z"
+   "fetched_at": "2026-09-01T23:43:52.516Z"
   },
   "livebench": {
    "status": "ok",
-   "fetched_at": "2026-09-01T00:56:32.389Z"
+   "fetched_at": "2026-09-01T23:43:52.516Z"
   },
   "openllm": {
    "status": "ok",
-   "fetched_at": "2026-09-01T00:56:32.389Z"
+   "fetched_at": "2026-09-01T23:43:52.516Z"
   },
   "livecodebench": {
    "status": "ok",
-   "fetched_at": "2026-09-01T00:56:32.389Z"
+   "fetched_at": "2026-09-01T23:43:52.516Z"
   }
  },
  "llm": {
@@ -35,7 +35,7 @@
      1502,
      1512
     ],
-    "votes": 25824,
+    "votes": 26977,
     "categories": {
      "code": 1551,
      "webdev": 1628
@@ -50,9 +50,9 @@
      1501,
      1509
     ],
-    "votes": 72104,
+    "votes": 72110,
     "categories": {
-     "code": 1552,
+     "code": 1551,
      "webdev": 1546
     },
     "rank_prev": 2,
@@ -65,7 +65,7 @@
      1498,
      1506
     ],
-    "votes": 60136,
+    "votes": 60123,
     "categories": {
      "code": 1552,
      "webdev": 1557
@@ -80,7 +80,7 @@
      1487,
      1497
     ],
-    "votes": 31570,
+    "votes": 34617,
     "categories": {
      "code": 1533,
      "webdev": 1661
@@ -90,29 +90,29 @@
    },
    {
     "model_id": "gemini-37-flash",
-    "score": 1490,
+    "score": 1491,
     "ci95": [
-     1482,
-     1498
+     1483,
+     1499
     ],
-    "votes": 5720,
+    "votes": 5685,
     "categories": {
-     "code": 1521,
+     "code": 1522,
      "webdev": 1587
     },
     "rank_prev": 5,
-    "delta_score": 0
+    "delta_score": 1
    },
    {
     "model_id": "kimi-k3-max",
     "score": 1489,
     "ci95": [
-     1483,
-     1495
+     1484,
+     1494
     ],
-    "votes": 16586,
+    "votes": 17895,
     "categories": {
-     "code": 1543,
+     "code": 1542,
      "webdev": 1674
     },
     "rank_prev": 6,
@@ -125,7 +125,7 @@
      1484,
      1490
     ],
-    "votes": 101163,
+    "votes": 102763,
     "categories": {
      "code": 1521,
      "webdev": 1446
@@ -140,7 +140,7 @@
      1482,
      1490
     ],
-    "votes": 40674,
+    "votes": 40675,
     "categories": {
      "code": 1518,
      "webdev": 1438
@@ -150,18 +150,32 @@
    },
    {
     "model_id": "glm-53",
-    "score": 1484,
+    "score": 1483,
     "ci95": [
      1476,
-     1492
+     1490
     ],
-    "votes": 5820,
+    "votes": 7401,
     "categories": {
-     "code": 1530,
+     "code": 1527,
      "webdev": 1608
     },
     "rank_prev": 9,
-    "delta_score": 0
+    "delta_score": -1
+   },
+   {
+    "model_id": "gpt-56-sol",
+    "score": 1483,
+    "ci95": [
+     1478,
+     1488
+    ],
+    "votes": 23153,
+    "categories": {
+     "code": 1529
+    },
+    "rank_prev": 11,
+    "delta_score": 1
    },
    {
     "model_id": "gpt-55",
@@ -170,41 +184,27 @@
      1478,
      1486
     ],
-    "votes": 61604,
+    "votes": 63265,
     "categories": {
-     "code": 1519
+     "code": 1520
     },
     "rank_prev": 10,
     "delta_score": 0
    },
    {
-    "model_id": "gpt-56-sol",
-    "score": 1482,
-    "ci95": [
-     1477,
-     1487
-    ],
-    "votes": 21537,
-    "categories": {
-     "code": 1528
-    },
-    "rank_prev": 11,
-    "delta_score": 0
-   },
-   {
     "model_id": "gemini-36-flash",
-    "score": 1481,
+    "score": 1480,
     "ci95": [
-     1476,
-     1486
+     1475,
+     1485
     ],
-    "votes": 20190,
+    "votes": 22009,
     "categories": {
-     "code": 1520,
+     "code": 1519,
      "webdev": 1538
     },
     "rank_prev": 12,
-    "delta_score": 0
+    "delta_score": -1
    },
    {
     "model_id": "qwen38-max",
@@ -213,9 +213,9 @@
      1473,
      1485
     ],
-    "votes": 11780,
+    "votes": 13136,
     "categories": {
-     "code": 1520,
+     "code": 1519,
      "webdev": 1669
     },
     "rank_prev": 13,
@@ -228,7 +228,7 @@
      1475,
      1483
     ],
-    "votes": 32174,
+    "votes": 33874,
     "categories": {
      "code": 1508,
      "webdev": 1501
@@ -243,9 +243,9 @@
      1470,
      1478
     ],
-    "votes": 30242,
+    "votes": 30248,
     "categories": {
-     "code": 1507,
+     "code": 1508,
      "webdev": 1438
     },
     "rank_prev": 15,
@@ -258,9 +258,9 @@
      1469,
      1477
     ],
-    "votes": 47459,
+    "votes": 49123,
     "categories": {
-     "code": 1527,
+     "code": 1528,
      "webdev": 1540
     },
     "rank_prev": 16,
@@ -273,7 +273,7 @@
      1468,
      1476
     ],
-    "votes": 66354,
+    "votes": 66343,
     "categories": {
      "code": 1528,
      "webdev": 1522
@@ -288,9 +288,9 @@
      1467,
      1477
     ],
-    "votes": 32495,
+    "votes": 33758,
     "categories": {
-     "code": 1508,
+     "code": 1509,
      "webdev": 1585
     },
     "rank_prev": 18,
@@ -303,9 +303,9 @@
      1465,
      1475
     ],
-    "votes": 24152,
+    "votes": 25873,
     "categories": {
-     "code": 1523,
+     "code": 1522,
      "webdev": 1556
     },
     "rank_prev": 19,
@@ -318,7 +318,7 @@
      1461,
      1471
     ],
-    "votes": 22345,
+    "votes": 23942,
     "categories": {
      "code": 1519
     },
@@ -332,7 +332,7 @@
      1462,
      1470
     ],
-    "votes": 63594,
+    "votes": 63615,
     "categories": {
      "code": 1514,
      "webdev": 1388
@@ -347,9 +347,9 @@
      1451,
      1471
     ],
-    "votes": 3471,
+    "votes": 3453,
     "categories": {
-     "code": 1510,
+     "code": 1511,
      "webdev": 1629
     },
     "rank_prev": 22,
@@ -362,7 +362,7 @@
      1456,
      1466
     ],
-    "votes": 37545,
+    "votes": 37573,
     "categories": {
      "code": 1514,
      "webdev": 1509
@@ -377,7 +377,7 @@
      1456,
      1462
     ],
-    "votes": 66374,
+    "votes": 66380,
     "categories": {
      "code": 1493
     },
@@ -391,7 +391,7 @@
      1454,
      1462
     ],
-    "votes": 27649,
+    "votes": 27643,
     "categories": {
      "code": 1498,
      "webdev": 1436
@@ -406,7 +406,7 @@
      1454,
      1462
     ],
-    "votes": 54214,
+    "votes": 54243,
     "categories": {
      "code": 1502,
      "webdev": 1445
@@ -416,17 +416,17 @@
    },
    {
     "model_id": "qwen37-max",
-    "score": 1456,
+    "score": 1455,
     "ci95": [
-     1451,
-     1461
+     1450,
+     1460
     ],
-    "votes": 36304,
+    "votes": 37854,
     "categories": {
-     "code": 1502
+     "code": 1500
     },
     "rank_prev": 27,
-    "delta_score": 0
+    "delta_score": -1
    },
    {
     "model_id": "gpt-56-luna",
@@ -435,9 +435,9 @@
      1447,
      1457
     ],
-    "votes": 22852,
+    "votes": 24433,
     "categories": {
-     "code": 1496
+     "code": 1497
     },
     "rank_prev": 28,
     "delta_score": 0
@@ -449,7 +449,7 @@
      1444,
      1448
     ],
-    "votes": 122589,
+    "votes": 122575,
     "categories": {
      "code": 1465,
      "webdev": 1225
@@ -459,33 +459,18 @@
    },
    {
     "model_id": "minimax-m3",
-    "score": 1442,
+    "score": 1443,
     "ci95": [
-     1438,
-     1446
+     1439,
+     1447
     ],
-    "votes": 42988,
+    "votes": 44544,
     "categories": {
-     "code": 1499,
+     "code": 1498,
      "webdev": 1487
     },
     "rank_prev": 30,
-    "delta_score": 0
-   },
-   {
-    "model_id": "qwen38-27b",
-    "score": 1436,
-    "ci95": [
-     1427,
-     1445
-    ],
-    "votes": 5046,
-    "categories": {
-     "code": 1498,
-     "webdev": 1598
-    },
-    "rank_prev": 31,
-    "delta_score": 0
+    "delta_score": 1
    },
    {
     "model_id": "deepseek-v4-flash",
@@ -494,12 +479,27 @@
      1432,
      1440
     ],
-    "votes": 48947,
+    "votes": 48963,
     "categories": {
      "code": 1483
     },
     "rank_prev": 32,
     "delta_score": 0
+   },
+   {
+    "model_id": "qwen38-27b",
+    "score": 1435,
+    "ci95": [
+     1427,
+     1443
+    ],
+    "votes": 6626,
+    "categories": {
+     "code": 1493,
+     "webdev": 1598
+    },
+    "rank_prev": 31,
+    "delta_score": -1
    },
    {
     "model_id": "qwen3-max",
@@ -508,7 +508,7 @@
      1430,
      1440
     ],
-    "votes": 27180,
+    "votes": 27182,
     "categories": {
      "code": 1481
     },
@@ -522,7 +522,7 @@
      1421,
      1429
     ],
-    "votes": 46493,
+    "votes": 46487,
     "categories": {
      "code": 1470,
      "webdev": 1325
@@ -537,7 +537,7 @@
      1421,
      1429
     ],
-    "votes": 35066,
+    "votes": 35061,
     "categories": {
      "code": 1458,
      "webdev": 1340
@@ -552,7 +552,7 @@
      1415,
      1427
     ],
-    "votes": 18090,
+    "votes": 18087,
     "categories": {
      "code": 1464
     },
@@ -566,7 +566,7 @@
      1411,
      1423
     ],
-    "votes": 14600,
+    "votes": 14601,
     "categories": {
      "code": 1447
     },
@@ -580,9 +580,9 @@
      1411,
      1417
     ],
-    "votes": 63974,
+    "votes": 65336,
     "categories": {
-     "code": 1468,
+     "code": 1469,
      "webdev": 1229
     },
     "rank_prev": 38,
@@ -595,9 +595,9 @@
      1406,
      1416
     ],
-    "votes": 23710,
+    "votes": 23706,
     "categories": {
-     "code": 1455
+     "code": 1454
     },
     "rank_prev": 39,
     "delta_score": 0
@@ -609,7 +609,7 @@
      1408,
      1412
     ],
-    "votes": 122761,
+    "votes": 122770,
     "categories": {
      "code": 1424
     },
@@ -618,18 +618,18 @@
    },
    {
     "model_id": "minimax-m2-5",
-    "score": 1390,
+    "score": 1391,
     "ci95": [
-     1386,
-     1394
+     1387,
+     1395
     ],
-    "votes": 40887,
+    "votes": 40895,
     "categories": {
      "code": 1444,
      "webdev": 1384
     },
     "rank_prev": 41,
-    "delta_score": 0
+    "delta_score": 1
    },
    {
     "model_id": "qwen3-coder-480b",
@@ -638,7 +638,7 @@
      1382,
      1392
     ],
-    "votes": 25091,
+    "votes": 25081,
     "categories": {
      "code": 1458,
      "webdev": 1273
@@ -653,7 +653,7 @@
      1370,
      1380
     ],
-    "votes": 25860,
+    "votes": 25865,
     "categories": {
      "code": 1432
     },
@@ -681,7 +681,7 @@
      1360,
      1368
     ],
-    "votes": 34014,
+    "votes": 34028,
     "categories": {
      "code": 1416
     },
@@ -709,7 +709,7 @@
      1348,
      1356
     ],
-    "votes": 29938,
+    "votes": 29935,
     "categories": {
      "code": 1391
     },
@@ -718,18 +718,18 @@
    },
    {
     "model_id": "minimax-m2",
-    "score": 1345,
+    "score": 1346,
     "ci95": [
-     1337,
-     1353
+     1338,
+     1354
     ],
-    "votes": 6750,
+    "votes": 6748,
     "categories": {
-     "code": 1383,
+     "code": 1382,
      "webdev": 1298
     },
     "rank_prev": 48,
-    "delta_score": 0
+    "delta_score": 1
    },
    {
     "model_id": "gpt-5",
@@ -752,7 +752,7 @@
      1323,
      1331
     ],
-    "votes": 39347,
+    "votes": 39349,
     "categories": {
      "code": 1373
     },
@@ -780,7 +780,7 @@
      1316,
      1326
     ],
-    "votes": 29740,
+    "votes": 29739,
     "categories": {
      "code": 1362
     },
@@ -794,7 +794,7 @@
      1313,
      1321
     ],
-    "votes": 54416,
+    "votes": 54411,
     "categories": {
      "code": 1346
     },
@@ -808,7 +808,7 @@
      1311,
      1323
     ],
-    "votes": 10385,
+    "votes": 10386,
     "categories": {
      "code": 1369
     },
@@ -908,7 +908,7 @@
     ],
     "votes": 54611,
     "categories": {
-     "code": 1271
+     "code": 1270
     },
     "rank_prev": 61,
     "delta_score": 0
@@ -1172,8 +1172,8 @@
     "index": 63.1,
     "coding_index": 78,
     "math_index": null,
-    "output_speed_tps": 53.776,
-    "ttft_s": 34.573,
+    "output_speed_tps": 48.383,
+    "ttft_s": 35.981,
     "price_blin_per_m": 10,
     "price_in_per_m": 5,
     "price_out_per_m": 25,
@@ -1186,8 +1186,8 @@
     "index": 62.1,
     "coding_index": 76.5,
     "math_index": null,
-    "output_speed_tps": 62.444,
-    "ttft_s": 54.134,
+    "output_speed_tps": 59.291,
+    "ttft_s": 54.882,
     "price_blin_per_m": 20,
     "price_in_per_m": 10,
     "price_out_per_m": 50,
@@ -1200,8 +1200,8 @@
     "index": 60.9,
     "coding_index": 77.4,
     "math_index": null,
-    "output_speed_tps": 84.156,
-    "ttft_s": 50.555,
+    "output_speed_tps": 76.699,
+    "ttft_s": 101.029,
     "price_blin_per_m": 8,
     "price_in_per_m": 4,
     "price_out_per_m": 20,
@@ -1214,8 +1214,8 @@
     "index": 60.9,
     "coding_index": 76.8,
     "math_index": null,
-    "output_speed_tps": 57.637,
-    "ttft_s": 36.587,
+    "output_speed_tps": 51.202,
+    "ttft_s": 35.102,
     "price_blin_per_m": 3,
     "price_in_per_m": 2,
     "price_out_per_m": 6,
@@ -1228,8 +1228,8 @@
     "index": 59.7,
     "coding_index": 76.2,
     "math_index": null,
-    "output_speed_tps": 36.383,
-    "ttft_s": 3.56,
+    "output_speed_tps": 39.508,
+    "ttft_s": 2.474,
     "price_blin_per_m": 6,
     "price_in_per_m": 3,
     "price_out_per_m": 15,
@@ -1242,8 +1242,8 @@
     "index": 59.5,
     "coding_index": 74.8,
     "math_index": null,
-    "output_speed_tps": 75.231,
-    "ttft_s": 1.612,
+    "output_speed_tps": 73.432,
+    "ttft_s": 1.452,
     "price_blin_per_m": 2.15,
     "price_in_per_m": 1.4,
     "price_out_per_m": 4.4,
@@ -1256,8 +1256,8 @@
     "index": 58.1,
     "coding_index": 71.8,
     "math_index": null,
-    "output_speed_tps": 29.891,
-    "ttft_s": 1.761,
+    "output_speed_tps": 39.51,
+    "ttft_s": 1.409,
     "price_blin_per_m": 3,
     "price_in_per_m": 2,
     "price_out_per_m": 6,
@@ -1284,8 +1284,8 @@
     "index": 56.6,
     "coding_index": 76.7,
     "math_index": null,
-    "output_speed_tps": 110.017,
-    "ttft_s": 119.679,
+    "output_speed_tps": 105.738,
+    "ttft_s": 94.245,
     "price_blin_per_m": 4.5,
     "price_in_per_m": 2,
     "price_out_per_m": 12,
@@ -1312,8 +1312,8 @@
     "index": 56,
     "coding_index": 76.1,
     "math_index": null,
-    "output_speed_tps": 345.24,
-    "ttft_s": 7.57,
+    "output_speed_tps": 307.074,
+    "ttft_s": 7.005,
     "price_blin_per_m": 1.5,
     "price_in_per_m": 0.75,
     "price_out_per_m": 3.75,
@@ -1326,8 +1326,8 @@
     "index": 55.8,
     "coding_index": 72.4,
     "math_index": null,
-    "output_speed_tps": 53.794,
-    "ttft_s": 13.117,
+    "output_speed_tps": 47.89,
+    "ttft_s": 11.482,
     "price_blin_per_m": 3,
     "price_in_per_m": 2,
     "price_out_per_m": 6,
@@ -1340,8 +1340,8 @@
     "index": 55.3,
     "coding_index": 71.5,
     "math_index": null,
-    "output_speed_tps": 91.41,
-    "ttft_s": 121.77,
+    "output_speed_tps": 78.709,
+    "ttft_s": 128.658,
     "price_blin_per_m": 4,
     "price_in_per_m": 2,
     "price_out_per_m": 10,
@@ -1368,8 +1368,8 @@
     "index": 53.2,
     "coding_index": 68.8,
     "math_index": null,
-    "output_speed_tps": 62.305,
-    "ttft_s": 1.154,
+    "output_speed_tps": 50.593,
+    "ttft_s": 0.985,
     "price_blin_per_m": 1.98,
     "price_in_per_m": 1.32,
     "price_out_per_m": 3.96,
@@ -1396,8 +1396,8 @@
     "index": 52.6,
     "coding_index": 68.8,
     "math_index": null,
-    "output_speed_tps": 68.376,
-    "ttft_s": 1.283,
+    "output_speed_tps": 69.445,
+    "ttft_s": 1.313,
     "price_blin_per_m": 2.15,
     "price_in_per_m": 1.4,
     "price_out_per_m": 4.4,
@@ -1410,8 +1410,8 @@
     "index": 52.3,
     "coding_index": 71.4,
     "math_index": null,
-    "output_speed_tps": 128.526,
-    "ttft_s": 69.708,
+    "output_speed_tps": 121.539,
+    "ttft_s": 83.326,
     "price_blin_per_m": 0.45,
     "price_in_per_m": 0.2,
     "price_out_per_m": 1.2,
@@ -1438,8 +1438,8 @@
     "index": 52,
     "coding_index": 68.1,
     "math_index": null,
-    "output_speed_tps": 45.711,
-    "ttft_s": 1.257,
+    "output_speed_tps": 44.38,
+    "ttft_s": 1.225,
     "price_blin_per_m": 1.125,
     "price_in_per_m": 0.5,
     "price_out_per_m": 3,
@@ -1452,8 +1452,8 @@
     "index": 51.8,
     "coding_index": 69.1,
     "math_index": null,
-    "output_speed_tps": 135.393,
-    "ttft_s": 0.835,
+    "output_speed_tps": 106.308,
+    "ttft_s": 0.956,
     "price_blin_per_m": 0.66,
     "price_in_per_m": 0.44,
     "price_out_per_m": 1.32,
@@ -1466,8 +1466,8 @@
     "index": 51.6,
     "coding_index": 69.2,
     "math_index": null,
-    "output_speed_tps": 174.72,
-    "ttft_s": 12.408,
+    "output_speed_tps": 161.14,
+    "ttft_s": 12.888,
     "price_blin_per_m": 1.5,
     "price_in_per_m": 0.75,
     "price_out_per_m": 3.75,
@@ -1494,8 +1494,8 @@
     "index": 47.7,
     "coding_index": 68.8,
     "math_index": null,
-    "output_speed_tps": 120.093,
-    "ttft_s": 22.68,
+    "output_speed_tps": 113.257,
+    "ttft_s": 24.571,
     "price_blin_per_m": 4.5,
     "price_in_per_m": 2,
     "price_out_per_m": 12,
@@ -1522,8 +1522,8 @@
     "index": 45.5,
     "coding_index": null,
     "math_index": null,
-    "output_speed_tps": 126.285,
-    "ttft_s": 36.406,
+    "output_speed_tps": 116.578,
+    "ttft_s": 35.838,
     "price_blin_per_m": 4.813,
     "price_in_per_m": 1.75,
     "price_out_per_m": 14,
@@ -1536,8 +1536,8 @@
     "index": 45.4,
     "coding_index": 58.6,
     "math_index": null,
-    "output_speed_tps": 125.906,
-    "ttft_s": 0.977,
+    "output_speed_tps": 111.031,
+    "ttft_s": 1.03,
     "price_blin_per_m": 0.525,
     "price_in_per_m": 0.3,
     "price_out_per_m": 1.2,
@@ -1634,8 +1634,8 @@
     "index": 31.1,
     "coding_index": null,
     "math_index": 88.3,
-    "output_speed_tps": 99.34,
-    "ttft_s": 5.158,
+    "output_speed_tps": 127.77,
+    "ttft_s": 6.004,
     "price_blin_per_m": 3.5,
     "price_in_per_m": 2,
     "price_out_per_m": 8,
@@ -1718,8 +1718,8 @@
     "index": 24.1,
     "coding_index": 30.4,
     "math_index": 93.4,
-    "output_speed_tps": 178.912,
-    "ttft_s": 0.515,
+    "output_speed_tps": 172.337,
+    "ttft_s": 0.52,
     "price_blin_per_m": 0.262,
     "price_in_per_m": 0.15,
     "price_out_per_m": 0.6,
@@ -1774,8 +1774,8 @@
     "index": 15.9,
     "coding_index": 20.1,
     "math_index": 38,
-    "output_speed_tps": 37.778,
-    "ttft_s": 2.357,
+    "output_speed_tps": 75.49,
+    "ttft_s": 0.769,
     "price_blin_per_m": 0.75,
     "price_in_per_m": 0.5,
     "price_out_per_m": 1.5,
@@ -1788,8 +1788,8 @@
     "index": 15.2,
     "coding_index": 20.7,
     "math_index": 89.3,
-    "output_speed_tps": 123.275,
-    "ttft_s": 0.59,
+    "output_speed_tps": 114.695,
+    "ttft_s": 0.662,
     "price_blin_per_m": 0.092,
     "price_in_per_m": 0.06,
     "price_out_per_m": 0.19,
@@ -1802,8 +1802,8 @@
     "index": 14.5,
     "coding_index": 16.3,
     "math_index": 19.3,
-    "output_speed_tps": 100.01,
-    "ttft_s": 0.563,
+    "output_speed_tps": 86.785,
+    "ttft_s": 0.538,
     "price_blin_per_m": 0.422,
     "price_in_per_m": 0.26,
     "price_out_per_m": 0.91,
@@ -1844,8 +1844,8 @@
     "index": 10.3,
     "coding_index": 8.2,
     "math_index": 14,
-    "output_speed_tps": 132.967,
-    "ttft_s": 0.567,
+    "output_speed_tps": 131.815,
+    "ttft_s": 0.546,
     "price_blin_per_m": 0.3,
     "price_in_per_m": 0.18,
     "price_out_per_m": 0.66,
@@ -1886,8 +1886,8 @@
     "index": 4.6,
     "coding_index": null,
     "math_index": 18,
-    "output_speed_tps": 44.222,
-    "ttft_s": 0.913,
+    "output_speed_tps": 43.74,
+    "ttft_s": 0.947,
     "price_blin_per_m": 0.219,
     "price_in_per_m": 0.125,
     "price_out_per_m": 0.5,
@@ -4058,7 +4058,7 @@
    {
     "model_id": "claude-opus-4-5",
     "resolved_pct": 79.2,
-    "agent": "live-SWE-agent",
+    "agent": "Sonar Foundation Agent",
     "cost_usd_per_instance": null,
     "rank_prev": 1,
     "delta_score": 0

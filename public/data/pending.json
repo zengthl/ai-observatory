@@ -3,6 +3,7 @@
  "names": [
   "GLM-5.3-Flash",
   "Qwen3.8-Flash-Next",
+  "Quasar 438B",
   "gpt-oss-20b (low)",
   "GPT-5.6 Luna (low)",
   "gpt-oss-120b (low)",
@@ -32,6 +33,11 @@
   "Claude 4.5 Haiku (Reasoning)",
   "Claude 4.5 Haiku (Non-reasoning)",
   "Claude Sonnet 5 (Non-reasoning, High Effort)",
+  "Claude Fable 5.1 (Adaptive Reasoning, High Effort, Default Fallback)",
+  "Claude Fable 5.1 (Adaptive Reasoning, Low Effort, Default Fallback)",
+  "Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)",
+  "Claude Fable 5.1 (Adaptive Reasoning, Medium Effort, Default Fallback)",
+  "Claude Fable 5.1 (Adaptive Reasoning, Xhigh Effort, Default Fallback)",
   "Claude Sonnet 4.6 (Non-reasoning, Low Effort)",
   "Ministral 3 14B",
   "Magistral Medium 1.2",
@@ -94,13 +100,7 @@
   "Llama Nemotron Super 49B v1.5 (Reasoning)",
   "NVIDIA Nemotron 3 Nano 30B A3B (Non-reasoning)",
   "NVIDIA Nemotron 3 Nano 4B",
-  "Nemotron Cascade 2 30B A3B",
-  "Kimi K2.7 Code",
-  "Kimi Linear 48B A3B Instruct",
-  "Step 3.7 Flash",
-  "Step3 VL 10B",
-  "Olmo 3.1 32B Instruct",
-  "Olmo 3 7B Think"
+  "Nemotron Cascade 2 30B A3B"
  ],
- "total": 1467
+ "total": 1477
 }

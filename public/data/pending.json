@@ -1,7 +1,10 @@
 {
- "date": "2026-09-01",
+ "date": "2026-09-02",
  "names": [
   "GLM-5.3-Flash",
+  "Gemini 3.8 Flash (high)",
+  "Gemini 3.8 Flash (low)",
+  "Gemini 3.8 Flash (medium)",
   "Qwen3.8-Flash-Next",
   "Quasar 438B",
   "gpt-oss-20b (low)",
@@ -97,10 +100,7 @@
   "NVIDIA Nemotron Nano 12B v2 VL (Reasoning)",
   "Nemotron 3 Super 120B A12B (Reasoning)",
   "Llama Nemotron Super 49B v1.5 (Non-reasoning)",
-  "Llama Nemotron Super 49B v1.5 (Reasoning)",
-  "NVIDIA Nemotron 3 Nano 30B A3B (Non-reasoning)",
-  "NVIDIA Nemotron 3 Nano 4B",
-  "Nemotron Cascade 2 30B A3B"
+  "Llama Nemotron Super 49B v1.5 (Reasoning)"
  ],
- "total": 1477
+ "total": 1483
 }

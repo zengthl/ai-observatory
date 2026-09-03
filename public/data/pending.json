@@ -1,12 +1,19 @@
 {
- "date": "2026-09-02",
+ "date": "2026-09-03",
  "names": [
+  "GPT-6 Astra (Non-reasoning)",
+  "GPT-6 Astra (high)",
+  "GPT-6 Astra (low)",
+  "GPT-6 Astra (max)",
+  "GPT-6 Astra (medium)",
+  "GPT-6 Astra (xhigh)",
   "GLM-5.3-Flash",
   "Gemini 3.8 Flash (high)",
   "Gemini 3.8 Flash (low)",
   "Gemini 3.8 Flash (medium)",
   "Qwen3.8-Flash-Next",
-  "Quasar 438B",
+  "K2 Horizon 375B A23B",
+  "Quasar 438B (max, based on GLM-5.2)",
   "gpt-oss-20b (low)",
   "GPT-5.6 Luna (low)",
   "gpt-oss-120b (low)",
@@ -20,6 +27,8 @@
   "Llama 3.2 Instruct 11B (Vision)",
   "Muse Spark 1.2 (xhigh)",
   "Muse Glimmer (high)",
+  "Muse Spark 1.3 (max)",
+  "Muse Spark 1.3 (xhigh)",
   "Gemma 4 26B A4B (Reasoning)",
   "Gemma 4 12B (Reasoning)",
   "Gemma 4 31B (Reasoning)",
@@ -91,16 +100,7 @@
   "Llama 3.1 Nemotron Instruct 70B",
   "NVIDIA Nemotron Nano 9B V2 (Non-reasoning)",
   "Nemotron 3 Ultra 550B A55B (Reasoning)",
-  "NVIDIA Nemotron 3 Nano 30B A3B (Reasoning)",
-  "Nemotron 3 Nano Omni 30B A3B Reasoning",
-  "NVIDIA Nemotron Nano 12B v2 VL (Non-reasoning)",
-  "Llama 3.1 Nemotron Ultra 253B v1 (Reasoning)",
-  "Nemotron 3.5 Lightning",
-  "NVIDIA Nemotron Nano 9B V2 (Reasoning)",
-  "NVIDIA Nemotron Nano 12B v2 VL (Reasoning)",
-  "Nemotron 3 Super 120B A12B (Reasoning)",
-  "Llama Nemotron Super 49B v1.5 (Non-reasoning)",
-  "Llama Nemotron Super 49B v1.5 (Reasoning)"
+  "NVIDIA Nemotron 3 Nano 30B A3B (Reasoning)"
  ],
- "total": 1483
+ "total": 1492
 }

@@ -1,5 +1,5 @@
 {
- "date": "2026-09-09",
+ "date": "2026-09-10",
  "names": [
   "GPT-6 Astra (Non-reasoning)",
   "GPT-6 Astra (high)",
@@ -12,7 +12,9 @@
   "Gemini 3.8 Flash (low)",
   "Gemini 3.8 Flash (medium)",
   "Qwen3.8-Flash-Next",
+  "DeepSeek V4.1 Flash (Reasoning, Max Effort)",
   "Quasar 438B (max, based on GLM-5.2)",
+  "Ling-3.0-flash-VL",
   "MiniCPM5-2B",
   "K2 Horizon 375B A23B",
   "gpt-oss-20b (low)",
@@ -47,6 +49,7 @@
   "Claude 4.5 Haiku (Non-reasoning)",
   "Claude Sonnet 5 (Non-reasoning, High Effort)",
   "Claude Sonnet 5 (Adaptive Reasoning, Medium Effort)",
+  "Claude Sonnet 5 (Adaptive Reasoning, High Effort)",
   "Claude Fable 5.1 (Adaptive Reasoning, High Effort, Default Fallback)",
   "Claude Fable 5.1 (Adaptive Reasoning, Low Effort, Default Fallback)",
   "Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)",
@@ -97,10 +100,7 @@
   "LFM2.5-1.2B-Instruct",
   "LFM2 24B A2B",
   "Solar Pro 4",
-  "Solar Open 100B (Reasoning)",
-  "Solar Pro 3",
-  "Solar Open2 250B",
-  "Llama 3.1 Nemotron Instruct 70B"
+  "Solar Open 100B (Reasoning)"
  ],
- "total": 1498
+ "total": 1501
 }

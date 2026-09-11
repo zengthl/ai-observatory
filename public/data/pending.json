@@ -1,5 +1,5 @@
 {
- "date": "2026-09-10",
+ "date": "2026-09-11",
  "names": [
   "GPT-6 Astra (Non-reasoning)",
   "GPT-6 Astra (high)",
@@ -16,6 +16,7 @@
   "Quasar 438B (max, based on GLM-5.2)",
   "Ling-3.0-flash-VL",
   "MiniCPM5-2B",
+  "Agnes 3.0 Flash",
   "K2 Horizon 375B A23B",
   "gpt-oss-20b (low)",
   "GPT-5.6 Luna (low)",
@@ -50,6 +51,7 @@
   "Claude Sonnet 5 (Non-reasoning, High Effort)",
   "Claude Sonnet 5 (Adaptive Reasoning, Medium Effort)",
   "Claude Sonnet 5 (Adaptive Reasoning, High Effort)",
+  "Claude Sonnet 5 (Adaptive Reasoning, Xhigh Effort)",
   "Claude Fable 5.1 (Adaptive Reasoning, High Effort, Default Fallback)",
   "Claude Fable 5.1 (Adaptive Reasoning, Low Effort, Default Fallback)",
   "Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)",
@@ -98,9 +100,7 @@
   "LFM2 2.6B",
   "LFM2.5-VL-1.6B",
   "LFM2.5-1.2B-Instruct",
-  "LFM2 24B A2B",
-  "Solar Pro 4",
-  "Solar Open 100B (Reasoning)"
+  "LFM2 24B A2B"
  ],
- "total": 1501
+ "total": 1504
 }

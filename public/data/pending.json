@@ -12,6 +12,7 @@
   "Muse Spark 1.3 (max)",
   "Claude Fable 5.1 (Adaptive Reasoning, Low Effort, Default Fallback)",
   "GPT-6 Astra (low)",
+  "Qwen3.8 Max (0902)",
   "Muse Spark 1.3 (xhigh)",
   "GLM-5.3-Flash",
   "Gemini 3.8 Flash (high)",
@@ -62,10 +63,9 @@
   "Grok 4.3 (high)",
   "Grok 4.20 0309 (Reasoning)",
   "MiMo-V2-Omni-0327",
-  "Ling 3.0 Flash",
+  "Ling-3.0-flash-VL",
   "GPT-5 Codex (high)",
   "Grok 4.3 (medium)",
-  "Ling-3.0-flash-VL",
   "Claude Sonnet 5 (Adaptive Reasoning, Low Effort)",
   "Solar Open2 250B",
   "GPT-5.1 (high)",
@@ -94,13 +94,13 @@
   "Qwen3.8 27B (Non-reasoning)",
   "Gemini 3 Pro Preview (low)",
   "MiMo-V2.5",
-  "GPT-5.6 Terra (Non-reasoning)",
   "GLM-4.7 (Reasoning)",
   "Qwen3.6 27B (Reasoning)",
   "o3-pro",
   "G9v3-39A5B",
   "GLM-5 (Non-reasoning)",
-  "KAT Coder Pro V2"
+  "KAT Coder Pro V2",
+  "GPT-5.6 Luna (low)"
  ],
- "total": 1401
+ "total": 1508
 }

@@ -1,5 +1,5 @@
 {
- "date": "2026-09-19",
+ "date": "2026-09-20",
  "names": [
   "Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)",
   "Claude Fable 5.1 (Adaptive Reasoning, Xhigh Effort, Default Fallback)",
@@ -102,5 +102,5 @@
   "Gemini 3 Pro Preview (low)",
   "GLM-4.7 (Reasoning)"
  ],
- "total": 1712
+ "total": 1514
 }

@@ -1,5 +1,5 @@
 {
- "date": "2026-09-22",
+ "date": "2026-09-24",
  "names": [
   "Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)",
   "Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)",
@@ -67,7 +67,7 @@
   "JT-4.1 Flash 236B A21B",
   "Grok Build 0.1 0616",
   "Qwen3.6 Plus",
-  "Agnes 2.5 Pro Alpha",
+  "Agnes 2.5 Pro Alpha (based on Qwen3.5 397B A17B)",
   "Quasar 438B (max, based on GLM-5.2)",
   "GLM-5-Turbo",
   "GPT-5.2 (medium)",
@@ -102,5 +102,5 @@
   "Kimi K2.6 (Non-reasoning)",
   "GLM 5V Turbo (Reasoning)"
  ],
- "total": 1535
+ "total": 1537
 }

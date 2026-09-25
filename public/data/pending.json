@@ -1,5 +1,5 @@
 {
- "date": "2026-09-24",
+ "date": "2026-09-25",
  "names": [
   "Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)",
   "Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)",
@@ -34,10 +34,9 @@
   "Muse Spark 1.2 (xhigh)",
   "DeepSeek V4.1 Flash (Reasoning, Max Effort)",
   "GPT-6 Luna (max)",
-  "Agnes 3.0 Flash",
-  "Agnes 2.5 Pro Beta",
   "DeepSeek V4 Flash Vision (Reasoning, Max Effort)",
   "Claude Sonnet 5 (Adaptive Reasoning, Xhigh Effort)",
+  "GLM-5.3 (low)",
   "GPT-6 Sol (low)",
   "GPT-6 Luna (xhigh)",
   "Muse Spark 1.1 (xhigh)",
@@ -67,7 +66,6 @@
   "JT-4.1 Flash 236B A21B",
   "Grok Build 0.1 0616",
   "Qwen3.6 Plus",
-  "Agnes 2.5 Pro Alpha (based on Qwen3.5 397B A17B)",
   "Quasar 438B (max, based on GLM-5.2)",
   "GLM-5-Turbo",
   "GPT-5.2 (medium)",
@@ -90,6 +88,7 @@
   "Grok 4.3 (medium)",
   "Solar Open2 250B",
   "GPT-5.1 (high)",
+  "DeepSeek V4.1 Flash (Non-Reasoning)",
   "Ling-3.0-flash-VL",
   "Grok 4.3 (low)",
   "Claude Sonnet 5 (Adaptive Reasoning, Low Effort)",
@@ -100,7 +99,8 @@
   "GPT-5.1 Codex (high)",
   "Claude Opus 4.5 (Non-reasoning)",
   "Kimi K2.6 (Non-reasoning)",
-  "GLM 5V Turbo (Reasoning)"
+  "GLM 5V Turbo (Reasoning)",
+  "Kimi K2.5 (Reasoning)"
  ],
- "total": 1537
+ "total": 1539
 }

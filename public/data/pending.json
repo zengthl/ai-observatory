@@ -1,5 +1,5 @@
 {
- "date": "2026-09-25",
+ "date": "2026-09-26",
  "names": [
   "Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)",
   "Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)",
@@ -49,7 +49,6 @@
   "K2 Horizon 375B A23B",
   "DeepSeek V4 Pro 0424 (Reasoning, Max Effort)",
   "GPT-5.2 (xhigh)",
-  "Apodex 1.1",
   "DeepSeek V4 Pro 0424 (Reasoning, High Effort)",
   "GPT-6 Luna (medium)",
   "Claude Opus 4.5 (Reasoning)",
@@ -69,6 +68,7 @@
   "Quasar 438B (max, based on GLM-5.2)",
   "GLM-5-Turbo",
   "GPT-5.2 (medium)",
+  "Apodex 1.1",
   "Gemini 3 Flash Preview (Reasoning)",
   "GLM-5.1 (Reasoning)",
   "GPT-5.5 Instant (June 2026)",
@@ -102,5 +102,5 @@
   "GLM 5V Turbo (Reasoning)",
   "Kimi K2.5 (Reasoning)"
  ],
- "total": 1539
+ "total": 1540
 }

@@ -1,5 +1,5 @@
 {
- "date": "2026-09-27",
+ "date": "2026-09-28",
  "names": [
   "Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)",
   "Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)",
@@ -33,6 +33,7 @@
   "Gemini 3.8 Flash (medium)",
   "Muse Spark 1.2 (xhigh)",
   "DeepSeek V4.1 Flash (Reasoning, Max Effort)",
+  "MiMo-V2.6-Flash",
   "GPT-6 Luna (max)",
   "DeepSeek V4 Flash Vision (Reasoning, Max Effort)",
   "Claude Sonnet 5 (Adaptive Reasoning, Xhigh Effort)",
@@ -99,8 +100,7 @@
   "GPT-5.1 Codex (high)",
   "Claude Opus 4.5 (Non-reasoning)",
   "Kimi K2.6 (Non-reasoning)",
-  "GLM 5V Turbo (Reasoning)",
-  "Kimi K2.5 (Reasoning)"
+  "GLM 5V Turbo (Reasoning)"
  ],
- "total": 1542
+ "total": 1543
 }

@@ -1,13 +1,15 @@
 {
- "date": "2026-09-28",
+ "date": "2026-09-29",
  "names": [
   "Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)",
   "Claude Opus 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)",
+  "Claude Sonnet 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)",
   "Claude Opus 5.5 (Adaptive Reasoning, High Effort, Default Fallback)",
   "Claude Fable 5.1 (Adaptive Reasoning, Max Effort, Default Fallback)",
   "Claude Fable 5.1 (Adaptive Reasoning, Xhigh Effort, Default Fallback)",
   "GPT-6 Astra (max)",
   "GPT-6 Astra (xhigh)",
+  "Claude Sonnet 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)",
   "Claude Opus 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)",
   "Claude Fable 5.1 (Adaptive Reasoning, High Effort, Default Fallback)",
   "GPT-6 Astra (high)",
@@ -16,6 +18,7 @@
   "Muse Spark 1.3 (max)",
   "GPT-6 Sol (max)",
   "Claude Fable 5.1 (Adaptive Reasoning, Low Effort, Default Fallback)",
+  "Claude Sonnet 5.5 (Adaptive Reasoning, High Effort, Default Fallback)",
   "Grok 4.7 (xhigh)",
   "Grok 4.7 (high)",
   "MiMo-V2.6-Pro",
@@ -28,6 +31,7 @@
   "Claude Opus 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)",
   "GLM 5.3 Flash",
   "Gemini 3.8 Flash (high)",
+  "Claude Sonnet 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)",
   "Qwen3.8-Flash-Next",
   "GPT-6 Sol (medium)",
   "Gemini 3.8 Flash (medium)",
@@ -35,6 +39,7 @@
   "DeepSeek V4.1 Flash (Reasoning, Max Effort)",
   "MiMo-V2.6-Flash",
   "GPT-6 Luna (max)",
+  "Claude Sonnet 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)",
   "DeepSeek V4 Flash Vision (Reasoning, Max Effort)",
   "Claude Sonnet 5 (Adaptive Reasoning, Xhigh Effort)",
   "GLM-5.3 (low)",
@@ -95,12 +100,7 @@
   "Claude Sonnet 5 (Adaptive Reasoning, Low Effort)",
   "GLM-5.1 (Non-reasoning)",
   "DeepSeek V4 Flash 0420 (Reasoning, Max Effort)",
-  "GPT-5.4 mini (xhigh)",
-  "MiMo-V2-Omni",
-  "GPT-5.1 Codex (high)",
-  "Claude Opus 4.5 (Non-reasoning)",
-  "Kimi K2.6 (Non-reasoning)",
-  "GLM 5V Turbo (Reasoning)"
+  "GPT-5.4 mini (xhigh)"
  ],
- "total": 1543
+ "total": 1548
 }

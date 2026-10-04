@@ -1,5 +1,5 @@
 {
- "date": "2026-10-03",
+ "date": "2026-10-04",
  "names": [
   "Claude Opus 5.5 (Max, Default Fallback)",
   "Claude Sonnet 5.5 (Max, Default Fallback)",
@@ -40,6 +40,7 @@
   "GPT-6.1 Sol (Low)",
   "GLM 5.3 Flash",
   "Claude Opus 4.8 (Max)",
+  "Ling 3.1 Flash",
   "Gemini 3.8 Flash (High)",
   "Claude Sonnet 5.5 (Medium, Default Fallback)",
   "Claude Opus 4.7 (Max)",
@@ -99,8 +100,7 @@
   "GPT-5.5 Instant (June 2026)",
   "MiMo-V2.5-Pro (Reasoning)",
   "Kimi K2.7 Code",
-  "Inkling Small",
-  "Grok 4.20 0309 v2 (Reasoning)"
+  "Inkling Small"
  ],
- "total": 1575
+ "total": 1576
 }

@@ -1,5 +1,5 @@
 {
- "date": "2026-10-07",
+ "date": "2026-10-08",
  "names": [
   "Claude Opus 5.5 (Max, Default Fallback)",
   "Claude Sonnet 5.5 (Max, Default Fallback)",
@@ -34,12 +34,14 @@
   "Muse Spark 1.3 (Xhigh)",
   "GPT-6 Sol (Xhigh)",
   "Step 5 Preview",
+  "Claude Haiku 5.5 (Max)",
   "GPT-6 Sol (High)",
   "Claude Opus 5.5 (Low, Default Fallback)",
   "Grok 4.7 (Low)",
   "GPT-6.1 Sol (Low)",
   "GLM 5.3 Flash",
   "Claude Opus 4.8 (Max)",
+  "Claude Haiku 5.5 (Xhigh)",
   "Ling 3.1 Flash",
   "Gemini 3.8 Flash (High)",
   "Claude Sonnet 5.5 (Medium, Default Fallback)",
@@ -53,10 +55,12 @@
   "Claude Sonnet 5 (Max)",
   "GPT-6 Luna (Max)",
   "MiMo-V2.6-Flash",
+  "Claude Haiku 5.5 (High)",
   "DeepSeek V4 Pro 0813 (Max)",
   "Claude Sonnet 5.5 (Low, Default Fallback)",
   "DeepSeek V4 Flash Vision (Max)",
   "GPT-6 Luna (Xhigh)",
+  "Claude Haiku 5.5 (Medium)",
   "Claude Sonnet 5 (Xhigh)",
   "DeepSeek V4 Flash 0731 (Max)",
   "GLM-5.3 (Low)",
@@ -77,6 +81,7 @@
   "DeepSeek V4 Pro 0424 (High)",
   "Claude Sonnet 4.6 (Max)",
   "GPT-6 Luna (Medium)",
+  "Claude Haiku 5.5 (Low)",
   "Claude Opus 4.5 (Reasoning)",
   "MiMo-V2-Pro",
   "GPT-6 Sol (Non-reasoning)",
@@ -95,12 +100,7 @@
   "GLM-5-Turbo",
   "GPT-5.2 (Medium)",
   "Apodex 1.1",
-  "Claude Opus 4.6 (Non-reasoning, High)",
-  "Gemini 3 Flash Preview (Reasoning)",
-  "GLM-5.1 (Reasoning)",
-  "GPT-5.5 Instant (June 2026)",
-  "MiMo-V2.5-Pro (Reasoning)",
-  "Kimi K2.7 Code"
+  "Claude Opus 4.6 (Non-reasoning, High)"
  ],
- "total": 1577
+ "total": 2076
 }

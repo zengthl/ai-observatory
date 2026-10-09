@@ -1,5 +1,5 @@
 {
- "date": "2026-10-08",
+ "date": "2026-10-09",
  "names": [
   "Claude Opus 5.5 (Max, Default Fallback)",
   "Claude Sonnet 5.5 (Max, Default Fallback)",
@@ -39,7 +39,7 @@
   "Claude Opus 5.5 (Low, Default Fallback)",
   "Grok 4.7 (Low)",
   "GPT-6.1 Sol (Low)",
-  "GLM 5.3 Flash",
+  "GLM-5.3-Flash",
   "Claude Opus 4.8 (Max)",
   "Claude Haiku 5.5 (Xhigh)",
   "Ling 3.1 Flash",
@@ -102,5 +102,5 @@
   "Apodex 1.1",
   "Claude Opus 4.6 (Non-reasoning, High)"
  ],
- "total": 2076
+ "total": 2080
 }

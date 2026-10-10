@@ -1,5 +1,5 @@
 {
- "date": "2026-10-09",
+ "date": "2026-10-10",
  "names": [
   "Claude Opus 5.5 (Max, Default Fallback)",
   "Claude Sonnet 5.5 (Max, Default Fallback)",
@@ -102,5 +102,5 @@
   "Apodex 1.1",
   "Claude Opus 4.6 (Non-reasoning, High)"
  ],
- "total": 2080
+ "total": 1584
 }

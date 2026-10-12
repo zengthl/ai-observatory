@@ -1,29 +1,29 @@
 {
- "date": "2026-10-11",
+ "date": "2026-10-12",
  "sources": {
   "artificial_analysis": {
    "status": "ok",
-   "fetched_at": "2026-10-11T00:37:26.711Z"
+   "fetched_at": "2026-10-12T00:54:10.012Z"
   },
   "lmarena": {
    "status": "ok",
-   "fetched_at": "2026-10-11T00:37:26.711Z"
+   "fetched_at": "2026-10-12T00:54:10.012Z"
   },
   "swebench": {
    "status": "ok",
-   "fetched_at": "2026-10-11T00:37:26.711Z"
+   "fetched_at": "2026-10-12T00:54:10.012Z"
   },
   "livebench": {
    "status": "ok",
-   "fetched_at": "2026-10-11T00:37:26.711Z"
+   "fetched_at": "2026-10-12T00:54:10.012Z"
   },
   "openllm": {
    "status": "ok",
-   "fetched_at": "2026-10-11T00:37:26.711Z"
+   "fetched_at": "2026-10-12T00:54:10.012Z"
   },
   "livecodebench": {
    "status": "ok",
-   "fetched_at": "2026-10-11T00:37:26.711Z"
+   "fetched_at": "2026-10-12T00:54:10.012Z"
   }
  },
  "llm": {
@@ -1200,8 +1200,8 @@
     "index": 44.8,
     "coding_index": 74.8,
     "math_index": null,
-    "output_speed_tps": 60.108,
-    "ttft_s": 3.197,
+    "output_speed_tps": 65.601,
+    "ttft_s": 3.05,
     "price_blin_per_m": 2.15,
     "price_in_per_m": 1.4,
     "price_out_per_m": 4.4,
@@ -1228,8 +1228,8 @@
     "index": 43.6,
     "coding_index": 76.2,
     "math_index": null,
-    "output_speed_tps": 38.851,
-    "ttft_s": 2.894,
+    "output_speed_tps": 39.932,
+    "ttft_s": 2.571,
     "price_blin_per_m": 6,
     "price_in_per_m": 3,
     "price_out_per_m": 15,
@@ -1242,8 +1242,8 @@
     "index": 42.1,
     "coding_index": 76.7,
     "math_index": null,
-    "output_speed_tps": 114.462,
-    "ttft_s": 113.118,
+    "output_speed_tps": 120.273,
+    "ttft_s": 74.461,
     "price_blin_per_m": 4.5,
     "price_in_per_m": 2,
     "price_out_per_m": 12,
@@ -1368,8 +1368,8 @@
     "index": 33.7,
     "coding_index": 68.1,
     "math_index": null,
-    "output_speed_tps": 45.227,
-    "ttft_s": 1.175,
+    "output_speed_tps": 46.14,
+    "ttft_s": 1.235,
     "price_blin_per_m": 1.125,
     "price_in_per_m": 0.5,
     "price_out_per_m": 3,
@@ -1396,8 +1396,8 @@
     "index": 32.5,
     "coding_index": null,
     "math_index": null,
-    "output_speed_tps": 96.49,
-    "ttft_s": 43.357,
+    "output_speed_tps": 106.059,
+    "ttft_s": 29.56,
     "price_blin_per_m": 4.813,
     "price_in_per_m": 1.75,
     "price_out_per_m": 14,
@@ -1410,8 +1410,8 @@
     "index": 29.7,
     "coding_index": 68.8,
     "math_index": null,
-    "output_speed_tps": 125.995,
-    "ttft_s": 15.111,
+    "output_speed_tps": 123.664,
+    "ttft_s": 14.652,
     "price_blin_per_m": 4.5,
     "price_in_per_m": 2,
     "price_out_per_m": 12,
@@ -1438,8 +1438,8 @@
     "index": 29.2,
     "coding_index": 58.6,
     "math_index": null,
-    "output_speed_tps": 106.604,
-    "ttft_s": 1.121,
+    "output_speed_tps": 115.244,
+    "ttft_s": 0.72,
     "price_blin_per_m": 0.525,
     "price_in_per_m": 0.3,
     "price_out_per_m": 1.2,
@@ -1508,8 +1508,8 @@
     "index": 20.2,
     "coding_index": null,
     "math_index": 88.3,
-    "output_speed_tps": 98.583,
-    "ttft_s": 5.545,
+    "output_speed_tps": 122.808,
+    "ttft_s": 4.953,
     "price_blin_per_m": 3.5,
     "price_in_per_m": 2,
     "price_out_per_m": 8,
@@ -1620,8 +1620,8 @@
     "index": 11.6,
     "coding_index": 30.4,
     "math_index": 93.4,
-    "output_speed_tps": 215.96,
-    "ttft_s": 0.502,
+    "output_speed_tps": 224.804,
+    "ttft_s": 0.514,
     "price_blin_per_m": 0.26,
     "price_in_per_m": 0.15,
     "price_out_per_m": 0.59,
@@ -1648,8 +1648,8 @@
     "index": 10,
     "coding_index": 16.3,
     "math_index": 19.3,
-    "output_speed_tps": 49.484,
-    "ttft_s": 0.617,
+    "output_speed_tps": 46.812,
+    "ttft_s": 0.623,
     "price_blin_per_m": 0.405,
     "price_in_per_m": 0.25,
     "price_out_per_m": 0.87,
@@ -1690,8 +1690,8 @@
     "index": 9,
     "coding_index": 20.7,
     "math_index": 89.3,
-    "output_speed_tps": 210.456,
-    "ttft_s": 0.418,
+    "output_speed_tps": 248.689,
+    "ttft_s": 0.414,
     "price_blin_per_m": 0.098,
     "price_in_per_m": 0.07,
     "price_out_per_m": 0.18,
@@ -1718,8 +1718,8 @@
     "index": 8.1,
     "coding_index": 8.2,
     "math_index": 14,
-    "output_speed_tps": 71.752,
-    "ttft_s": 0.637,
+    "output_speed_tps": 81.038,
+    "ttft_s": 0.67,
     "price_blin_per_m": 0.3,
     "price_in_per_m": 0.18,
     "price_out_per_m": 0.66,
@@ -1760,8 +1760,8 @@
     "index": 5.9,
     "coding_index": null,
     "math_index": 18,
-    "output_speed_tps": 44.126,
-    "ttft_s": 0.956,
+    "output_speed_tps": 44.29,
+    "ttft_s": 0.916,
     "price_blin_per_m": 0.219,
     "price_in_per_m": 0.125,
     "price_out_per_m": 0.5,

@@ -1,14 +1,16 @@
 {
- "date": "2026-10-12",
+ "date": "2026-10-13",
  "names": [
   "Claude Opus 5.5 (Max, Default Fallback)",
   "Claude Sonnet 5.5 (Max, Default Fallback)",
   "Claude Opus 5.5 (Xhigh, Default Fallback)",
+  "Muse Wonder Full (Max)",
   "Claude Opus 5.5 (High, Default Fallback)",
   "Claude Fable 5.1 (Max, Default Fallback)",
   "Claude Fable 5.1 (Xhigh, Default Fallback)",
   "GPT-6 Astra (Max)",
   "Gemini 4 Argon (High)",
+  "Muse Wonder (Max)",
   "GPT-6 Astra (Xhigh)",
   "Claude Sonnet 5.5 (Xhigh, Default Fallback)",
   "GPT-6.1 Sol (Max)",
@@ -98,9 +100,7 @@
   "Kimi K2.6 (Reasoning)",
   "Quasar 438B (Max, Based on GLM-5.2)",
   "GLM-5-Turbo",
-  "GPT-5.2 (Medium)",
-  "Apodex 1.1",
-  "Claude Opus 4.6 (Non-reasoning, High)"
+  "GPT-5.2 (Medium)"
  ],
- "total": 1584
+ "total": 1280
 }

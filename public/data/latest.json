@@ -1,1171 +1,34 @@
 {
- "date": "2026-10-12",
+ "date": "2026-10-13",
  "sources": {
   "artificial_analysis": {
    "status": "ok",
-   "fetched_at": "2026-10-12T00:54:10.012Z"
+   "fetched_at": "2026-10-13T02:47:52.957Z"
   },
   "lmarena": {
-   "status": "ok",
-   "fetched_at": "2026-10-12T00:54:10.012Z"
+   "status": "unavailable",
+   "fetched_at": "2026-10-13T02:47:52.957Z",
+   "last_ok": "2026-10-12"
   },
   "swebench": {
    "status": "ok",
-   "fetched_at": "2026-10-12T00:54:10.012Z"
+   "fetched_at": "2026-10-13T02:47:52.957Z"
   },
   "livebench": {
    "status": "ok",
-   "fetched_at": "2026-10-12T00:54:10.012Z"
+   "fetched_at": "2026-10-13T02:47:52.957Z"
   },
   "openllm": {
    "status": "ok",
-   "fetched_at": "2026-10-12T00:54:10.012Z"
+   "fetched_at": "2026-10-13T02:47:52.957Z"
   },
   "livecodebench": {
    "status": "ok",
-   "fetched_at": "2026-10-12T00:54:10.012Z"
+   "fetched_at": "2026-10-13T02:47:52.957Z"
   }
  },
  "llm": {
-  "arena_elo": [
-   {
-    "model_id": "claude-opus-4-6",
-    "score": 1504,
-    "ci95": [
-     1501,
-     1507
-    ],
-    "votes": 79415,
-    "categories": {
-     "code": 1550,
-     "webdev": 1547
-    },
-    "rank_prev": 1,
-    "delta_score": 0
-   },
-   {
-    "model_id": "claude-fable-5",
-    "score": 1504,
-    "ci95": [
-     1500,
-     1508
-    ],
-    "votes": 40026,
-    "categories": {
-     "code": 1551,
-     "webdev": 1625
-    },
-    "rank_prev": 2,
-    "delta_score": 0
-   },
-   {
-    "model_id": "claude-opus-4-7",
-    "score": 1501,
-    "ci95": [
-     1497,
-     1505
-    ],
-    "votes": 65192,
-    "categories": {
-     "code": 1550,
-     "webdev": 1557
-    },
-    "rank_prev": 3,
-    "delta_score": 0
-   },
-   {
-    "model_id": "claude-opus-5",
-    "score": 1490,
-    "ci95": [
-     1486,
-     1494
-    ],
-    "votes": 62934,
-    "categories": {
-     "code": 1534,
-     "webdev": 1657
-    },
-    "rank_prev": 4,
-    "delta_score": 0
-   },
-   {
-    "model_id": "kimi-k3-max",
-    "score": 1488,
-    "ci95": [
-     1483,
-     1493
-    ],
-    "votes": 30351,
-    "categories": {
-     "code": 1540,
-     "webdev": 1654
-    },
-    "rank_prev": 5,
-    "delta_score": 0
-   },
-   {
-    "model_id": "gemini-31-pro",
-    "score": 1487,
-    "ci95": [
-     1484,
-     1490
-    ],
-    "votes": 124675,
-    "categories": {
-     "code": 1522,
-     "webdev": 1447
-    },
-    "rank_prev": 6,
-    "delta_score": 0
-   },
-   {
-    "model_id": "gemini-37-flash",
-    "score": 1486,
-    "ci95": [
-     1481,
-     1491
-    ],
-    "votes": 24173,
-    "categories": {
-     "code": 1517,
-     "webdev": 1592
-    },
-    "rank_prev": 7,
-    "delta_score": 0
-   },
-   {
-    "model_id": "gemini-3-pro",
-    "score": 1485,
-    "ci95": [
-     1481,
-     1489
-    ],
-    "votes": 42078,
-    "categories": {
-     "code": 1517,
-     "webdev": 1440
-    },
-    "rank_prev": 8,
-    "delta_score": 0
-   },
-   {
-    "model_id": "gpt-56-sol",
-    "score": 1485,
-    "ci95": [
-     1481,
-     1489
-    ],
-    "votes": 38490,
-    "categories": {
-     "code": 1535
-    },
-    "rank_prev": 9,
-    "delta_score": 0
-   },
-   {
-    "model_id": "qwen38-max",
-    "score": 1483,
-    "ci95": [
-     1478,
-     1488
-    ],
-    "votes": 25378,
-    "categories": {
-     "code": 1524,
-     "webdev": 1672
-    },
-    "rank_prev": 10,
-    "delta_score": 0
-   },
-   {
-    "model_id": "gemini-36-flash",
-    "score": 1482,
-    "ci95": [
-     1478,
-     1486
-    ],
-    "votes": 36172,
-    "categories": {
-     "code": 1518,
-     "webdev": 1538
-    },
-    "rank_prev": 11,
-    "delta_score": 0
-   },
-   {
-    "model_id": "gpt-55",
-    "score": 1482,
-    "ci95": [
-     1478,
-     1486
-    ],
-    "votes": 69437,
-    "categories": {
-     "code": 1519
-    },
-    "rank_prev": 12,
-    "delta_score": 0
-   },
-   {
-    "model_id": "glm-53",
-    "score": 1478,
-    "ci95": [
-     1473,
-     1483
-    ],
-    "votes": 20049,
-    "categories": {
-     "code": 1520,
-     "webdev": 1622
-    },
-    "rank_prev": 13,
-    "delta_score": 0
-   },
-   {
-    "model_id": "gemini-35-flash",
-    "score": 1478,
-    "ci95": [
-     1474,
-     1482
-    ],
-    "votes": 48533,
-    "categories": {
-     "code": 1508,
-     "webdev": 1511
-    },
-    "rank_prev": 14,
-    "delta_score": 0
-   },
-   {
-    "model_id": "glm-52",
-    "score": 1475,
-    "ci95": [
-     1471,
-     1479
-    ],
-    "votes": 47521,
-    "categories": {
-     "code": 1512,
-     "webdev": 1603
-    },
-    "rank_prev": 15,
-    "delta_score": 0
-   },
-   {
-    "model_id": "claude-opus-4-8",
-    "score": 1474,
-    "ci95": [
-     1470,
-     1478
-    ],
-    "votes": 65259,
-    "categories": {
-     "code": 1529,
-     "webdev": 1536
-    },
-    "rank_prev": 16,
-    "delta_score": 0
-   },
-   {
-    "model_id": "gemini-3-flash",
-    "score": 1473,
-    "ci95": [
-     1469,
-     1477
-    ],
-    "votes": 31337,
-    "categories": {
-     "code": 1506,
-     "webdev": 1439
-    },
-    "rank_prev": 17,
-    "delta_score": 0
-   },
-   {
-    "model_id": "claude-sonnet-4-6",
-    "score": 1472,
-    "ci95": [
-     1468,
-     1476
-    ],
-    "votes": 70971,
-    "categories": {
-     "code": 1528,
-     "webdev": 1522
-    },
-    "rank_prev": 18,
-    "delta_score": 0
-   },
-   {
-    "model_id": "gpt-56-terra",
-    "score": 1466,
-    "ci95": [
-     1462,
-     1470
-    ],
-    "votes": 40278,
-    "categories": {
-     "code": 1516
-    },
-    "rank_prev": 19,
-    "delta_score": 0
-   },
-   {
-    "model_id": "grok-4-5",
-    "score": 1466,
-    "ci95": [
-     1462,
-     1470
-    ],
-    "votes": 39953,
-    "categories": {
-     "code": 1513,
-     "webdev": 1553
-    },
-    "rank_prev": 20,
-    "delta_score": 0
-   },
-   {
-    "model_id": "gpt-54",
-    "score": 1465,
-    "ci95": [
-     1461,
-     1469
-    ],
-    "votes": 67932,
-    "categories": {
-     "code": 1511,
-     "webdev": 1400
-    },
-    "rank_prev": 21,
-    "delta_score": 0
-   },
-   {
-    "model_id": "kimi-k2-6",
-    "score": 1461,
-    "ci95": [
-     1457,
-     1465
-    ],
-    "votes": 40066,
-    "categories": {
-     "code": 1516,
-     "webdev": 1509
-    },
-    "rank_prev": 22,
-    "delta_score": 0
-   },
-   {
-    "model_id": "grok-4-1",
-    "score": 1459,
-    "ci95": [
-     1456,
-     1462
-    ],
-    "votes": 68682,
-    "categories": {
-     "code": 1492
-    },
-    "rank_prev": 23,
-    "delta_score": 0
-   },
-   {
-    "model_id": "deepseek-v4",
-    "score": 1458,
-    "ci95": [
-     1454,
-     1462
-    ],
-    "votes": 57657,
-    "categories": {
-     "code": 1500,
-     "webdev": 1447
-    },
-    "rank_prev": 24,
-    "delta_score": 0
-   },
-   {
-    "model_id": "glm-5",
-    "score": 1458,
-    "ci95": [
-     1454,
-     1462
-    ],
-    "votes": 29292,
-    "categories": {
-     "code": 1498,
-     "webdev": 1434
-    },
-    "rank_prev": 25,
-    "delta_score": 0
-   },
-   {
-    "model_id": "qwen37-max",
-    "score": 1456,
-    "ci95": [
-     1452,
-     1460
-    ],
-    "votes": 42073,
-    "categories": {
-     "code": 1500
-    },
-    "rank_prev": 26,
-    "delta_score": 0
-   },
-   {
-    "model_id": "grok-4-6",
-    "score": 1454,
-    "ci95": [
-     1449,
-     1459
-    ],
-    "votes": 26115,
-    "categories": {
-     "code": 1508,
-     "webdev": 1617
-    },
-    "rank_prev": 27,
-    "delta_score": 0
-   },
-   {
-    "model_id": "gpt-56-luna",
-    "score": 1452,
-    "ci95": [
-     1448,
-     1456
-    ],
-    "votes": 40917,
-    "categories": {
-     "code": 1501
-    },
-    "rank_prev": 28,
-    "delta_score": 0
-   },
-   {
-    "model_id": "gemini-25-pro",
-    "score": 1445,
-    "ci95": [
-     1443,
-     1447
-    ],
-    "votes": 125379,
-    "categories": {
-     "code": 1464,
-     "webdev": 1227
-    },
-    "rank_prev": 29,
-    "delta_score": 0
-   },
-   {
-    "model_id": "minimax-m3",
-    "score": 1440,
-    "ci95": [
-     1436,
-     1444
-    ],
-    "votes": 61220,
-    "categories": {
-     "code": 1495,
-     "webdev": 1482
-    },
-    "rank_prev": 30,
-    "delta_score": 0
-   },
-   {
-    "model_id": "qwen38-27b",
-    "score": 1438,
-    "ci95": [
-     1433,
-     1443
-    ],
-    "votes": 20711,
-    "categories": {
-     "code": 1499,
-     "webdev": 1593
-    },
-    "rank_prev": 31,
-    "delta_score": 0
-   },
-   {
-    "model_id": "deepseek-v4-flash",
-    "score": 1436,
-    "ci95": [
-     1432,
-     1440
-    ],
-    "votes": 52047,
-    "categories": {
-     "code": 1484
-    },
-    "rank_prev": 32,
-    "delta_score": 0
-   },
-   {
-    "model_id": "qwen3-max",
-    "score": 1434,
-    "ci95": [
-     1429,
-     1439
-    ],
-    "votes": 27379,
-    "categories": {
-     "code": 1481
-    },
-    "rank_prev": 33,
-    "delta_score": 0
-   },
-   {
-    "model_id": "deepseek-v3-2",
-    "score": 1425,
-    "ci95": [
-     1422,
-     1428
-    ],
-    "votes": 48114,
-    "categories": {
-     "code": 1470,
-     "webdev": 1325
-    },
-    "rank_prev": 34,
-    "delta_score": 0
-   },
-   {
-    "model_id": "glm-46",
-    "score": 1424,
-    "ci95": [
-     1420,
-     1428
-    ],
-    "votes": 35828,
-    "categories": {
-     "code": 1458,
-     "webdev": 1340
-    },
-    "rank_prev": 35,
-    "delta_score": 0
-   },
-   {
-    "model_id": "deepseek-r1",
-    "score": 1421,
-    "ci95": [
-     1415,
-     1427
-    ],
-    "votes": 18171,
-    "categories": {
-     "code": 1464
-    },
-    "rank_prev": 36,
-    "delta_score": 0
-   },
-   {
-    "model_id": "deepseek-v31",
-    "score": 1417,
-    "ci95": [
-     1411,
-     1423
-    ],
-    "votes": 14610,
-    "categories": {
-     "code": 1448
-    },
-    "rank_prev": 37,
-    "delta_score": 0
-   },
-   {
-    "model_id": "mistral-large-3",
-    "score": 1414,
-    "ci95": [
-     1411,
-     1417
-    ],
-    "votes": 81759,
-    "categories": {
-     "code": 1470,
-     "webdev": 1230
-    },
-    "rank_prev": 38,
-    "delta_score": 0
-   },
-   {
-    "model_id": "glm-45",
-    "score": 1411,
-    "ci95": [
-     1406,
-     1416
-    ],
-    "votes": 23803,
-    "categories": {
-     "code": 1455
-    },
-    "rank_prev": 39,
-    "delta_score": 0
-   },
-   {
-    "model_id": "gemini-25-flash",
-    "score": 1409,
-    "ci95": [
-     1407,
-     1411
-    ],
-    "votes": 125562,
-    "categories": {
-     "code": 1424
-    },
-    "rank_prev": 40,
-    "delta_score": 0
-   },
-   {
-    "model_id": "minimax-m2-5",
-    "score": 1391,
-    "ci95": [
-     1387,
-     1395
-    ],
-    "votes": 42858,
-    "categories": {
-     "code": 1446,
-     "webdev": 1387
-    },
-    "rank_prev": 41,
-    "delta_score": 0
-   },
-   {
-    "model_id": "qwen3-coder-480b",
-    "score": 1388,
-    "ci95": [
-     1383,
-     1393
-    ],
-    "votes": 25197,
-    "categories": {
-     "code": 1457,
-     "webdev": 1275
-    },
-    "rank_prev": 42,
-    "delta_score": 0
-   },
-   {
-    "model_id": "qwen3-235b",
-    "score": 1375,
-    "ci95": [
-     1370,
-     1380
-    ],
-    "votes": 25953,
-    "categories": {
-     "code": 1432
-    },
-    "rank_prev": 43,
-    "delta_score": 0
-   },
-   {
-    "model_id": "glm-45-air",
-    "score": 1373,
-    "ci95": [
-     1369,
-     1377
-    ],
-    "votes": 30658,
-    "categories": {
-     "code": 1427
-    },
-    "rank_prev": 44,
-    "delta_score": 0
-   },
-   {
-    "model_id": "minimax-m1",
-    "score": 1364,
-    "ci95": [
-     1360,
-     1368
-    ],
-    "votes": 34313,
-    "categories": {
-     "code": 1416
-    },
-    "rank_prev": 45,
-    "delta_score": 0
-   },
-   {
-    "model_id": "o3-mini",
-    "score": 1364,
-    "ci95": [
-     1359,
-     1369
-    ],
-    "votes": 18589,
-    "categories": {
-     "code": 1434
-    },
-    "rank_prev": 46,
-    "delta_score": 0
-   },
-   {
-    "model_id": "gpt-oss-120b",
-    "score": 1352,
-    "ci95": [
-     1348,
-     1356
-    ],
-    "votes": 30218,
-    "categories": {
-     "code": 1389
-    },
-    "rank_prev": 47,
-    "delta_score": 0
-   },
-   {
-    "model_id": "minimax-m2",
-    "score": 1343,
-    "ci95": [
-     1335,
-     1351
-    ],
-    "votes": 6860,
-    "categories": {
-     "code": 1382,
-     "webdev": 1297
-    },
-    "rank_prev": 48,
-    "delta_score": 0
-   },
-   {
-    "model_id": "gpt-5",
-    "score": 1336,
-    "ci95": [
-     1332,
-     1340
-    ],
-    "votes": 45499,
-    "categories": {
-     "code": 1360
-    },
-    "rank_prev": 49,
-    "delta_score": 0
-   },
-   {
-    "model_id": "llama-4-maverick",
-    "score": 1327,
-    "ci95": [
-     1323,
-     1331
-    ],
-    "votes": 39453,
-    "categories": {
-     "code": 1373
-    },
-    "rank_prev": 50,
-    "delta_score": 0
-   },
-   {
-    "model_id": "gpt-5-pro",
-    "score": 1324,
-    "ci95": [
-     1320,
-     1328
-    ],
-    "votes": 98114,
-    "categories": {
-     "code": 1347
-    },
-    "rank_prev": 51,
-    "delta_score": 0
-   },
-   {
-    "model_id": "llama-4-scout",
-    "score": 1322,
-    "ci95": [
-     1317,
-     1327
-    ],
-    "votes": 29836,
-    "categories": {
-     "code": 1363
-    },
-    "rank_prev": 52,
-    "delta_score": 0
-   },
-   {
-    "model_id": "llama-33-70b",
-    "score": 1318,
-    "ci95": [
-     1314,
-     1322
-    ],
-    "votes": 54504,
-    "categories": {
-     "code": 1346
-    },
-    "rank_prev": 53,
-    "delta_score": 0
-   },
-   {
-    "model_id": "gpt-oss-20b",
-    "score": 1317,
-    "ci95": [
-     1311,
-     1323
-    ],
-    "votes": 10418,
-    "categories": {
-     "code": 1368
-    },
-    "rank_prev": 54,
-    "delta_score": 0
-   },
-   {
-    "model_id": "mistral-large-2411",
-    "score": 1306,
-    "ci95": [
-     1302,
-     1310
-    ],
-    "votes": 28073,
-    "categories": {
-     "code": 1346
-    },
-    "rank_prev": 55,
-    "delta_score": 0
-   },
-   {
-    "model_id": "qwen25-72b",
-    "score": 1303,
-    "ci95": [
-     1299,
-     1307
-    ],
-    "votes": 39406,
-    "categories": {
-     "code": 1355
-    },
-    "rank_prev": 56,
-    "delta_score": 0
-   },
-   {
-    "model_id": "llama-31-70b",
-    "score": 1293,
-    "ci95": [
-     1289,
-     1297
-    ],
-    "votes": 55240,
-    "categories": {
-     "code": 1333
-    },
-    "rank_prev": 57,
-    "delta_score": 0
-   },
-   {
-    "model_id": "gemma-2-27b",
-    "score": 1289,
-    "ci95": [
-     1286,
-     1292
-    ],
-    "votes": 75754,
-    "categories": {
-     "code": 1304
-    },
-    "rank_prev": 58,
-    "delta_score": 0
-   },
-   {
-    "model_id": "llama-3-70b",
-    "score": 1277,
-    "ci95": [
-     1273,
-     1281
-    ],
-    "votes": 156876,
-    "categories": {
-     "code": 1306
-    },
-    "rank_prev": 59,
-    "delta_score": 0
-   },
-   {
-    "model_id": "qwen25-coder-32b",
-    "score": 1271,
-    "ci95": [
-     1263,
-     1279
-    ],
-    "votes": 5432,
-    "categories": {
-     "code": 1342
-    },
-    "rank_prev": 60,
-    "delta_score": 0
-   },
-   {
-    "model_id": "gemma-2-9b",
-    "score": 1267,
-    "ci95": [
-     1263,
-     1271
-    ],
-    "votes": 54611,
-    "categories": {
-     "code": 1270
-    },
-    "rank_prev": 61,
-    "delta_score": 0
-   },
-   {
-    "model_id": "qwen2-72b",
-    "score": 1262,
-    "ci95": [
-     1257,
-     1267
-    ],
-    "votes": 37325,
-    "categories": {
-     "code": 1297
-    },
-    "rank_prev": 62,
-    "delta_score": 0
-   },
-   {
-    "model_id": "claude-haiku-4-5",
-    "score": 1262,
-    "ci95": [
-     1258,
-     1266
-    ],
-    "votes": 117701,
-    "categories": {
-     "code": 1301
-    },
-    "rank_prev": 63,
-    "delta_score": 0
-   },
-   {
-    "model_id": "phi-4",
-    "score": 1256,
-    "ci95": [
-     1251,
-     1261
-    ],
-    "votes": 24126,
-    "categories": {
-     "code": 1306
-    },
-    "rank_prev": 64,
-    "delta_score": 0
-   },
-   {
-    "model_id": "llama-3-8b",
-    "score": 1224,
-    "ci95": [
-     1220,
-     1228
-    ],
-    "votes": 104642,
-    "categories": {
-     "code": 1253
-    },
-    "rank_prev": 65,
-    "delta_score": 0
-   },
-   {
-    "model_id": "yi-15-34b",
-    "score": 1213,
-    "ci95": [
-     1208,
-     1218
-    ],
-    "votes": 24146,
-    "categories": {
-     "code": 1248
-    },
-    "rank_prev": 66,
-    "delta_score": 0
-   },
-   {
-    "model_id": "llama-31-8b",
-    "score": 1211,
-    "ci95": [
-     1207,
-     1215
-    ],
-    "votes": 49605,
-    "categories": {
-     "code": 1260
-    },
-    "rank_prev": 67,
-    "delta_score": 0
-   },
-   {
-    "model_id": "phi-3-medium",
-    "score": 1198,
-    "ci95": [
-     1193,
-     1203
-    ],
-    "votes": 25055,
-    "categories": {
-     "code": 1231
-    },
-    "rank_prev": 68,
-    "delta_score": 0
-   },
-   {
-    "model_id": "mixtral-8x7b",
-    "score": 1197,
-    "ci95": [
-     1193,
-     1201
-    ],
-    "votes": 73503,
-    "categories": {
-     "code": 1240
-    },
-    "rank_prev": 69,
-    "delta_score": 0
-   },
-   {
-    "model_id": "internlm-25-20b",
-    "score": 1191,
-    "ci95": [
-     1184,
-     1198
-    ],
-    "votes": 9901,
-    "categories": {
-     "code": 1249
-    },
-    "rank_prev": 70,
-    "delta_score": 0
-   },
-   {
-    "model_id": "yi-34b",
-    "score": 1184,
-    "ci95": [
-     1177,
-     1191
-    ],
-    "votes": 15483,
-    "categories": {
-     "code": 1206
-    },
-    "rank_prev": 71,
-    "delta_score": 0
-   },
-   {
-    "model_id": "phi-3-small",
-    "score": 1171,
-    "ci95": [
-     1165,
-     1177
-    ],
-    "votes": 17766,
-    "categories": {
-     "code": 1205
-    },
-    "rank_prev": 72,
-    "delta_score": 0
-   },
-   {
-    "model_id": "llama-2-70b",
-    "score": 1171,
-    "ci95": [
-     1166,
-     1176
-    ],
-    "votes": 38492,
-    "categories": {
-     "code": 1179
-    },
-    "rank_prev": 73,
-    "delta_score": 0
-   },
-   {
-    "model_id": "llama-32-3b",
-    "score": 1167,
-    "ci95": [
-     1159,
-     1175
-    ],
-    "votes": 7936,
-    "categories": {
-     "code": 1177
-    },
-    "rank_prev": 74,
-    "delta_score": 0
-   },
-   {
-    "model_id": "mistral-7b-instruct",
-    "score": 1149,
-    "ci95": [
-     1142,
-     1156
-    ],
-    "votes": 19402,
-    "categories": {
-     "code": 1186
-    },
-    "rank_prev": 75,
-    "delta_score": 0
-   },
-   {
-    "model_id": "llama-2-13b",
-    "score": 1141,
-    "ci95": [
-     1134,
-     1148
-    ],
-    "votes": 19174,
-    "categories": {
-     "code": 1163
-    },
-    "rank_prev": 76,
-    "delta_score": 0
-   },
-   {
-    "model_id": "gemma-7b",
-    "score": 1138,
-    "ci95": [
-     1129,
-     1147
-    ],
-    "votes": 8925,
-    "categories": {
-     "code": 1167
-    },
-    "rank_prev": 77,
-    "delta_score": 0
-   },
-   {
-    "model_id": "llama-32-1b",
-    "score": 1111,
-    "ci95": [
-     1103,
-     1119
-    ],
-    "votes": 8045,
-    "categories": {
-     "code": 1149
-    },
-    "rank_prev": 78,
-    "delta_score": 0
-   },
-   {
-    "model_id": "llama-2-7b",
-    "score": 1108,
-    "ci95": [
-     1101,
-     1115
-    ],
-    "votes": 14148,
-    "categories": {
-     "code": 1103
-    },
-    "rank_prev": 79,
-    "delta_score": 0
-   }
-  ],
+  "arena_elo": [],
   "aa_index": [
    {
     "model_id": "claude-opus-5",
@@ -1200,8 +63,8 @@
     "index": 44.8,
     "coding_index": 74.8,
     "math_index": null,
-    "output_speed_tps": 65.601,
-    "ttft_s": 3.05,
+    "output_speed_tps": 65.534,
+    "ttft_s": 3.005,
     "price_blin_per_m": 2.15,
     "price_in_per_m": 1.4,
     "price_out_per_m": 4.4,
@@ -1228,8 +91,8 @@
     "index": 43.6,
     "coding_index": 76.2,
     "math_index": null,
-    "output_speed_tps": 39.932,
-    "ttft_s": 2.571,
+    "output_speed_tps": 41.406,
+    "ttft_s": 2.437,
     "price_blin_per_m": 6,
     "price_in_per_m": 3,
     "price_out_per_m": 15,
@@ -1242,8 +105,8 @@
     "index": 42.1,
     "coding_index": 76.7,
     "math_index": null,
-    "output_speed_tps": 120.273,
-    "ttft_s": 74.461,
+    "output_speed_tps": 119.969,
+    "ttft_s": 64.215,
     "price_blin_per_m": 4.5,
     "price_in_per_m": 2,
     "price_out_per_m": 12,
@@ -1368,8 +231,8 @@
     "index": 33.7,
     "coding_index": 68.1,
     "math_index": null,
-    "output_speed_tps": 46.14,
-    "ttft_s": 1.235,
+    "output_speed_tps": 46.816,
+    "ttft_s": 1.195,
     "price_blin_per_m": 1.125,
     "price_in_per_m": 0.5,
     "price_out_per_m": 3,
@@ -1397,7 +260,7 @@
     "coding_index": null,
     "math_index": null,
     "output_speed_tps": 106.059,
-    "ttft_s": 29.56,
+    "ttft_s": 25.357,
     "price_blin_per_m": 4.813,
     "price_in_per_m": 1.75,
     "price_out_per_m": 14,
@@ -1410,7 +273,7 @@
     "index": 29.7,
     "coding_index": 68.8,
     "math_index": null,
-    "output_speed_tps": 123.664,
+    "output_speed_tps": 137.133,
     "ttft_s": 14.652,
     "price_blin_per_m": 4.5,
     "price_in_per_m": 2,
@@ -1438,8 +301,8 @@
     "index": 29.2,
     "coding_index": 58.6,
     "math_index": null,
-    "output_speed_tps": 115.244,
-    "ttft_s": 0.72,
+    "output_speed_tps": 119.048,
+    "ttft_s": 0.757,
     "price_blin_per_m": 0.525,
     "price_in_per_m": 0.3,
     "price_out_per_m": 1.2,
@@ -1508,8 +371,8 @@
     "index": 20.2,
     "coding_index": null,
     "math_index": 88.3,
-    "output_speed_tps": 122.808,
-    "ttft_s": 4.953,
+    "output_speed_tps": 126.475,
+    "ttft_s": 4.074,
     "price_blin_per_m": 3.5,
     "price_in_per_m": 2,
     "price_out_per_m": 8,
@@ -1580,9 +443,9 @@
     "math_index": 80.7,
     "output_speed_tps": 0,
     "ttft_s": 0,
-    "price_blin_per_m": 2.4,
-    "price_in_per_m": 1.2,
-    "price_out_per_m": 6,
+    "price_blin_per_m": 0,
+    "price_in_per_m": 0,
+    "price_out_per_m": 0,
     "tbench_v21_pct": null,
     "rank_prev": 30,
     "delta_score": 0
@@ -1608,9 +471,9 @@
     "math_index": 39.3,
     "output_speed_tps": 0,
     "ttft_s": 0,
-    "price_blin_per_m": 3,
-    "price_in_per_m": 1.5,
-    "price_out_per_m": 7.5,
+    "price_blin_per_m": 0.675,
+    "price_in_per_m": 0.3,
+    "price_out_per_m": 1.8,
     "tbench_v21_pct": null,
     "rank_prev": 32,
     "delta_score": 0
@@ -1620,8 +483,8 @@
     "index": 11.6,
     "coding_index": 30.4,
     "math_index": 93.4,
-    "output_speed_tps": 224.804,
-    "ttft_s": 0.514,
+    "output_speed_tps": 226.925,
+    "ttft_s": 0.504,
     "price_blin_per_m": 0.26,
     "price_in_per_m": 0.15,
     "price_out_per_m": 0.59,
@@ -1648,8 +511,8 @@
     "index": 10,
     "coding_index": 16.3,
     "math_index": 19.3,
-    "output_speed_tps": 46.812,
-    "ttft_s": 0.623,
+    "output_speed_tps": 53.302,
+    "ttft_s": 0.628,
     "price_blin_per_m": 0.405,
     "price_in_per_m": 0.25,
     "price_out_per_m": 0.87,
@@ -1690,8 +553,8 @@
     "index": 9,
     "coding_index": 20.7,
     "math_index": 89.3,
-    "output_speed_tps": 248.689,
-    "ttft_s": 0.414,
+    "output_speed_tps": 274.225,
+    "ttft_s": 0.426,
     "price_blin_per_m": 0.098,
     "price_in_per_m": 0.07,
     "price_out_per_m": 0.18,
@@ -1718,8 +581,8 @@
     "index": 8.1,
     "coding_index": 8.2,
     "math_index": 14,
-    "output_speed_tps": 81.038,
-    "ttft_s": 0.67,
+    "output_speed_tps": 84.556,
+    "ttft_s": 0.706,
     "price_blin_per_m": 0.3,
     "price_in_per_m": 0.18,
     "price_out_per_m": 0.66,
@@ -1760,8 +623,8 @@
     "index": 5.9,
     "coding_index": null,
     "math_index": 18,
-    "output_speed_tps": 44.29,
-    "ttft_s": 0.916,
+    "output_speed_tps": 44.892,
+    "ttft_s": 0.975,
     "price_blin_per_m": 0.219,
     "price_in_per_m": 0.125,
     "price_out_per_m": 0.5,

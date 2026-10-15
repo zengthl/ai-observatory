@@ -1,29 +1,29 @@
 {
- "date": "2026-10-14",
+ "date": "2026-10-15",
  "sources": {
   "artificial_analysis": {
    "status": "ok",
-   "fetched_at": "2026-10-14T00:48:37.501Z"
+   "fetched_at": "2026-10-15T00:14:59.710Z"
   },
   "lmarena": {
    "status": "unavailable",
-   "fetched_at": "2026-10-14T00:48:37.501Z"
+   "fetched_at": "2026-10-15T00:14:59.710Z"
   },
   "swebench": {
    "status": "ok",
-   "fetched_at": "2026-10-14T00:48:37.501Z"
+   "fetched_at": "2026-10-15T00:14:59.710Z"
   },
   "livebench": {
    "status": "ok",
-   "fetched_at": "2026-10-14T00:48:37.501Z"
+   "fetched_at": "2026-10-15T00:14:59.710Z"
   },
   "openllm": {
    "status": "ok",
-   "fetched_at": "2026-10-14T00:48:37.501Z"
+   "fetched_at": "2026-10-15T00:14:59.710Z"
   },
   "livecodebench": {
    "status": "ok",
-   "fetched_at": "2026-10-14T00:48:37.501Z"
+   "fetched_at": "2026-10-15T00:14:59.710Z"
   }
  },
  "llm": {
@@ -62,8 +62,8 @@
     "index": 44.8,
     "coding_index": 74.8,
     "math_index": null,
-    "output_speed_tps": 68.859,
-    "ttft_s": 3.013,
+    "output_speed_tps": 68.202,
+    "ttft_s": 2.879,
     "price_blin_per_m": 2.15,
     "price_in_per_m": 1.4,
     "price_out_per_m": 4.4,
@@ -90,8 +90,8 @@
     "index": 43.6,
     "coding_index": 76.2,
     "math_index": null,
-    "output_speed_tps": 45.319,
-    "ttft_s": 2.437,
+    "output_speed_tps": 41.956,
+    "ttft_s": 2.796,
     "price_blin_per_m": 6,
     "price_in_per_m": 3,
     "price_out_per_m": 15,
@@ -104,8 +104,8 @@
     "index": 42.1,
     "coding_index": 76.7,
     "math_index": null,
-    "output_speed_tps": 106.176,
-    "ttft_s": 74.913,
+    "output_speed_tps": 106.026,
+    "ttft_s": 96.078,
     "price_blin_per_m": 4.5,
     "price_in_per_m": 2,
     "price_out_per_m": 12,
@@ -230,8 +230,8 @@
     "index": 33.7,
     "coding_index": 68.1,
     "math_index": null,
-    "output_speed_tps": 46.587,
-    "ttft_s": 1.212,
+    "output_speed_tps": 42.392,
+    "ttft_s": 1.227,
     "price_blin_per_m": 1.125,
     "price_in_per_m": 0.5,
     "price_out_per_m": 3,
@@ -258,8 +258,8 @@
     "index": 32.5,
     "coding_index": null,
     "math_index": null,
-    "output_speed_tps": 92.374,
-    "ttft_s": 27.31,
+    "output_speed_tps": 87.437,
+    "ttft_s": 40.273,
     "price_blin_per_m": 4.813,
     "price_in_per_m": 1.75,
     "price_out_per_m": 14,
@@ -272,8 +272,8 @@
     "index": 29.7,
     "coding_index": 68.8,
     "math_index": null,
-    "output_speed_tps": 135.384,
-    "ttft_s": 17.559,
+    "output_speed_tps": 138.428,
+    "ttft_s": 18.51,
     "price_blin_per_m": 4.5,
     "price_in_per_m": 2,
     "price_out_per_m": 12,
@@ -300,8 +300,8 @@
     "index": 29.2,
     "coding_index": 58.6,
     "math_index": null,
-    "output_speed_tps": 100.64,
-    "ttft_s": 0.808,
+    "output_speed_tps": 99.134,
+    "ttft_s": 0.835,
     "price_blin_per_m": 0.525,
     "price_in_per_m": 0.3,
     "price_out_per_m": 1.2,
@@ -370,8 +370,8 @@
     "index": 20.2,
     "coding_index": null,
     "math_index": 88.3,
-    "output_speed_tps": 122.963,
-    "ttft_s": 6.027,
+    "output_speed_tps": 115.132,
+    "ttft_s": 5.404,
     "price_blin_per_m": 3.5,
     "price_in_per_m": 2,
     "price_out_per_m": 8,
@@ -482,8 +482,8 @@
     "index": 11.6,
     "coding_index": 30.4,
     "math_index": 93.4,
-    "output_speed_tps": 222.419,
-    "ttft_s": 0.53,
+    "output_speed_tps": 214.386,
+    "ttft_s": 0.505,
     "price_blin_per_m": 0.26,
     "price_in_per_m": 0.15,
     "price_out_per_m": 0.59,
@@ -507,17 +507,17 @@
    },
    {
     "model_id": "llama-4-maverick",
-    "index": 10,
+    "index": 9.3,
     "coding_index": 16.3,
     "math_index": 19.3,
-    "output_speed_tps": 51.279,
-    "ttft_s": 0.673,
+    "output_speed_tps": 58.928,
+    "ttft_s": 0.646,
     "price_blin_per_m": 0.405,
     "price_in_per_m": 0.25,
     "price_out_per_m": 0.87,
     "tbench_v21_pct": 7.9,
     "rank_prev": 35,
-    "delta_score": 0
+    "delta_score": -0.7
    },
    {
     "model_id": "mistral-large-3",
@@ -552,41 +552,13 @@
     "index": 9,
     "coding_index": 20.7,
     "math_index": 89.3,
-    "output_speed_tps": 253.848,
-    "ttft_s": 0.421,
+    "output_speed_tps": 224.817,
+    "ttft_s": 0.408,
     "price_blin_per_m": 0.098,
     "price_in_per_m": 0.07,
     "price_out_per_m": 0.18,
     "tbench_v21_pct": 13.9,
     "rank_prev": 38,
-    "delta_score": 0
-   },
-   {
-    "model_id": "mistral-small-3",
-    "index": 8.2,
-    "coding_index": 12.5,
-    "math_index": 27,
-    "output_speed_tps": 0,
-    "ttft_s": 0,
-    "price_blin_per_m": 0.106,
-    "price_in_per_m": 0.075,
-    "price_out_per_m": 0.2,
-    "tbench_v21_pct": 5.6,
-    "rank_prev": 39,
-    "delta_score": 0
-   },
-   {
-    "model_id": "llama-4-scout",
-    "index": 8.1,
-    "coding_index": 8.2,
-    "math_index": 14,
-    "output_speed_tps": 100.092,
-    "ttft_s": 0.714,
-    "price_blin_per_m": 0.3,
-    "price_in_per_m": 0.18,
-    "price_out_per_m": 0.66,
-    "tbench_v21_pct": 3.7,
-    "rank_prev": 40,
     "delta_score": 0
    },
    {
@@ -604,6 +576,20 @@
     "delta_score": 0
    },
    {
+    "model_id": "mistral-small-3",
+    "index": 7,
+    "coding_index": 12.5,
+    "math_index": 27,
+    "output_speed_tps": 0,
+    "ttft_s": 0,
+    "price_blin_per_m": 0.106,
+    "price_in_per_m": 0.075,
+    "price_out_per_m": 0.2,
+    "tbench_v21_pct": 5.6,
+    "rank_prev": 39,
+    "delta_score": -1.2
+   },
+   {
     "model_id": "gpt-5",
     "index": 6.7,
     "coding_index": 11.4,
@@ -618,12 +604,26 @@
     "delta_score": 0
    },
    {
+    "model_id": "llama-4-scout",
+    "index": 6.5,
+    "coding_index": 8.2,
+    "math_index": 14,
+    "output_speed_tps": 99.534,
+    "ttft_s": 0.815,
+    "price_blin_per_m": 0.3,
+    "price_in_per_m": 0.18,
+    "price_out_per_m": 0.66,
+    "tbench_v21_pct": 3.7,
+    "rank_prev": 40,
+    "delta_score": -1.6
+   },
+   {
     "model_id": "phi-4",
     "index": 5.9,
     "coding_index": null,
     "math_index": 18,
-    "output_speed_tps": 44.892,
-    "ttft_s": 0.961,
+    "output_speed_tps": 44.542,
+    "ttft_s": 0.971,
     "price_blin_per_m": 0.219,
     "price_in_per_m": 0.125,
     "price_out_per_m": 0.5,
@@ -2432,15 +2432,15 @@
     "delta_score": 0
    },
    {
-    "model_id": "yi-15-9b",
-    "score": 55.3,
-    "rank_prev": 2,
-    "delta_score": 0
-   },
-   {
     "model_id": "yi-34b",
     "score": 55.3,
     "rank_prev": 3,
+    "delta_score": 0
+   },
+   {
+    "model_id": "yi-15-9b",
+    "score": 55.3,
+    "rank_prev": 2,
     "delta_score": 0
    },
    {

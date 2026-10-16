@@ -1,29 +1,29 @@
 {
- "date": "2026-10-15",
+ "date": "2026-10-16",
  "sources": {
   "artificial_analysis": {
    "status": "ok",
-   "fetched_at": "2026-10-15T00:14:59.710Z"
+   "fetched_at": "2026-10-16T00:00:21.114Z"
   },
   "lmarena": {
    "status": "unavailable",
-   "fetched_at": "2026-10-15T00:14:59.710Z"
+   "fetched_at": "2026-10-16T00:00:21.114Z"
   },
   "swebench": {
    "status": "ok",
-   "fetched_at": "2026-10-15T00:14:59.710Z"
+   "fetched_at": "2026-10-16T00:00:21.114Z"
   },
   "livebench": {
    "status": "ok",
-   "fetched_at": "2026-10-15T00:14:59.710Z"
+   "fetched_at": "2026-10-16T00:00:21.114Z"
   },
   "openllm": {
    "status": "ok",
-   "fetched_at": "2026-10-15T00:14:59.710Z"
+   "fetched_at": "2026-10-16T00:00:21.114Z"
   },
   "livecodebench": {
    "status": "ok",
-   "fetched_at": "2026-10-15T00:14:59.710Z"
+   "fetched_at": "2026-10-16T00:00:21.114Z"
   }
  },
  "llm": {
@@ -62,8 +62,8 @@
     "index": 44.8,
     "coding_index": 74.8,
     "math_index": null,
-    "output_speed_tps": 68.202,
-    "ttft_s": 2.879,
+    "output_speed_tps": 70.142,
+    "ttft_s": 3.165,
     "price_blin_per_m": 2.15,
     "price_in_per_m": 1.4,
     "price_out_per_m": 4.4,
@@ -90,8 +90,8 @@
     "index": 43.6,
     "coding_index": 76.2,
     "math_index": null,
-    "output_speed_tps": 41.956,
-    "ttft_s": 2.796,
+    "output_speed_tps": 45.018,
+    "ttft_s": 2.797,
     "price_blin_per_m": 6,
     "price_in_per_m": 3,
     "price_out_per_m": 15,
@@ -104,8 +104,8 @@
     "index": 42.1,
     "coding_index": 76.7,
     "math_index": null,
-    "output_speed_tps": 106.026,
-    "ttft_s": 96.078,
+    "output_speed_tps": 106.176,
+    "ttft_s": 100.026,
     "price_blin_per_m": 4.5,
     "price_in_per_m": 2,
     "price_out_per_m": 12,
@@ -230,8 +230,8 @@
     "index": 33.7,
     "coding_index": 68.1,
     "math_index": null,
-    "output_speed_tps": 42.392,
-    "ttft_s": 1.227,
+    "output_speed_tps": 40.071,
+    "ttft_s": 1.242,
     "price_blin_per_m": 1.125,
     "price_in_per_m": 0.5,
     "price_out_per_m": 3,
@@ -258,8 +258,8 @@
     "index": 32.5,
     "coding_index": null,
     "math_index": null,
-    "output_speed_tps": 87.437,
-    "ttft_s": 40.273,
+    "output_speed_tps": 87.352,
+    "ttft_s": 48.955,
     "price_blin_per_m": 4.813,
     "price_in_per_m": 1.75,
     "price_out_per_m": 14,
@@ -272,8 +272,8 @@
     "index": 29.7,
     "coding_index": 68.8,
     "math_index": null,
-    "output_speed_tps": 138.428,
-    "ttft_s": 18.51,
+    "output_speed_tps": 135.594,
+    "ttft_s": 18.702,
     "price_blin_per_m": 4.5,
     "price_in_per_m": 2,
     "price_out_per_m": 12,
@@ -300,7 +300,7 @@
     "index": 29.2,
     "coding_index": 58.6,
     "math_index": null,
-    "output_speed_tps": 99.134,
+    "output_speed_tps": 96.184,
     "ttft_s": 0.835,
     "price_blin_per_m": 0.525,
     "price_in_per_m": 0.3,
@@ -370,8 +370,8 @@
     "index": 20.2,
     "coding_index": null,
     "math_index": 88.3,
-    "output_speed_tps": 115.132,
-    "ttft_s": 5.404,
+    "output_speed_tps": 115.405,
+    "ttft_s": 5.556,
     "price_blin_per_m": 3.5,
     "price_in_per_m": 2,
     "price_out_per_m": 8,
@@ -482,8 +482,8 @@
     "index": 11.6,
     "coding_index": 30.4,
     "math_index": 93.4,
-    "output_speed_tps": 214.386,
-    "ttft_s": 0.505,
+    "output_speed_tps": 209.522,
+    "ttft_s": 0.509,
     "price_blin_per_m": 0.26,
     "price_in_per_m": 0.15,
     "price_out_per_m": 0.59,
@@ -510,14 +510,14 @@
     "index": 9.3,
     "coding_index": 16.3,
     "math_index": 19.3,
-    "output_speed_tps": 58.928,
-    "ttft_s": 0.646,
+    "output_speed_tps": 50.455,
+    "ttft_s": 0.661,
     "price_blin_per_m": 0.405,
     "price_in_per_m": 0.25,
     "price_out_per_m": 0.87,
     "tbench_v21_pct": 7.9,
     "rank_prev": 35,
-    "delta_score": -0.7
+    "delta_score": 0
    },
    {
     "model_id": "mistral-large-3",
@@ -552,8 +552,8 @@
     "index": 9,
     "coding_index": 20.7,
     "math_index": 89.3,
-    "output_speed_tps": 224.817,
-    "ttft_s": 0.408,
+    "output_speed_tps": 224.415,
+    "ttft_s": 0.368,
     "price_blin_per_m": 0.098,
     "price_in_per_m": 0.07,
     "price_out_per_m": 0.18,
@@ -572,7 +572,7 @@
     "price_in_per_m": 10,
     "price_out_per_m": 30,
     "tbench_v21_pct": null,
-    "rank_prev": 41,
+    "rank_prev": 39,
     "delta_score": 0
    },
    {
@@ -586,8 +586,8 @@
     "price_in_per_m": 0.075,
     "price_out_per_m": 0.2,
     "tbench_v21_pct": 5.6,
-    "rank_prev": 39,
-    "delta_score": -1.2
+    "rank_prev": 40,
+    "delta_score": 0
    },
    {
     "model_id": "gpt-5",
@@ -600,7 +600,7 @@
     "price_in_per_m": 0.15,
     "price_out_per_m": 0.6,
     "tbench_v21_pct": 5.6,
-    "rank_prev": 42,
+    "rank_prev": 41,
     "delta_score": 0
    },
    {
@@ -609,20 +609,20 @@
     "coding_index": 8.2,
     "math_index": 14,
     "output_speed_tps": 99.534,
-    "ttft_s": 0.815,
+    "ttft_s": 0.84,
     "price_blin_per_m": 0.3,
     "price_in_per_m": 0.18,
     "price_out_per_m": 0.66,
     "tbench_v21_pct": 3.7,
-    "rank_prev": 40,
-    "delta_score": -1.6
+    "rank_prev": 42,
+    "delta_score": 0
    },
    {
     "model_id": "phi-4",
     "index": 5.9,
     "coding_index": null,
     "math_index": 18,
-    "output_speed_tps": 44.542,
+    "output_speed_tps": 43.868,
     "ttft_s": 0.971,
     "price_blin_per_m": 0.219,
     "price_in_per_m": 0.125,
@@ -2432,13 +2432,13 @@
     "delta_score": 0
    },
    {
-    "model_id": "yi-34b",
+    "model_id": "yi-15-9b",
     "score": 55.3,
     "rank_prev": 3,
     "delta_score": 0
    },
    {
-    "model_id": "yi-15-9b",
+    "model_id": "yi-34b",
     "score": 55.3,
     "rank_prev": 2,
     "delta_score": 0

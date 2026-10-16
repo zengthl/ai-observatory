@@ -1,5 +1,5 @@
 {
- "date": "2026-10-15",
+ "date": "2026-10-16",
  "names": [
   "Claude Opus 5.5 (Max, Default Fallback)",
   "Claude Sonnet 5.5 (Max, Default Fallback)",
@@ -53,6 +53,7 @@
   "Gemini 3.8 Flash (Medium)",
   "Muse Spark 1.2 (Xhigh)",
   "DeepSeek V4.1 Flash (Max)",
+  "Muse Spark Open (Xhigh)",
   "Mistral Large 4 Preview",
   "Claude Sonnet 5 (Max)",
   "GPT-6 Luna (Max)",
@@ -99,8 +100,7 @@
   "Grok Build 0.1 0616",
   "Qwen3.6 Plus",
   "Kimi K2.6 (Reasoning)",
-  "Quasar 438B (Max, Based on GLM-5.2)",
-  "GLM-5-Turbo"
+  "Quasar 438B (Max, Based on GLM-5.2)"
  ],
- "total": 1281
+ "total": 1284
 }

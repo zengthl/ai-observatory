@@ -1,10 +1,11 @@
 {
- "date": "2026-10-23",
+ "date": "2026-10-24",
  "names": [
   "Claude Opus 5.5 (Max, Default Fallback)",
   "Claude Sonnet 5.5 (Max, Default Fallback)",
   "Claude Opus 5.5 (Xhigh, Default Fallback)",
   "Muse Wonder Full (Max)",
+  "Kimi K3.1 Pro",
   "Claude Opus 5.5 (High, Default Fallback)",
   "Claude Fable 5.1 (Max, Default Fallback)",
   "Claude Fable 5.1 (Xhigh, Default Fallback)",
@@ -99,8 +100,7 @@
   "Claude Sonnet 5 (Medium)",
   "Gemini 3 Pro Preview (High)",
   "GLM-5 (Reasoning)",
-  "JT-4.1 Flash 236B A21B (Non-reasoning)",
-  "Grok Build 0.1 0616"
+  "JT-4.1 Flash 236B A21B (Non-reasoning)"
  ],
- "total": 1288
+ "total": 1289
 }

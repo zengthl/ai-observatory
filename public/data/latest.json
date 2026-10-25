@@ -1,29 +1,29 @@
 {
- "date": "2026-10-24",
+ "date": "2026-10-25",
  "sources": {
   "artificial_analysis": {
    "status": "ok",
-   "fetched_at": "2026-10-24T23:56:07.724Z"
+   "fetched_at": "2026-10-25T23:42:39.680Z"
   },
   "lmarena": {
    "status": "unavailable",
-   "fetched_at": "2026-10-24T23:56:07.724Z"
+   "fetched_at": "2026-10-25T23:42:39.680Z"
   },
   "swebench": {
    "status": "ok",
-   "fetched_at": "2026-10-24T23:56:07.724Z"
+   "fetched_at": "2026-10-25T23:42:39.680Z"
   },
   "livebench": {
    "status": "ok",
-   "fetched_at": "2026-10-24T23:56:07.724Z"
+   "fetched_at": "2026-10-25T23:42:39.680Z"
   },
   "openllm": {
    "status": "ok",
-   "fetched_at": "2026-10-24T23:56:07.724Z"
+   "fetched_at": "2026-10-25T23:42:39.680Z"
   },
   "livecodebench": {
    "status": "ok",
-   "fetched_at": "2026-10-24T23:56:07.724Z"
+   "fetched_at": "2026-10-25T23:42:39.680Z"
   }
  },
  "llm": {
@@ -62,8 +62,8 @@
     "index": 44.8,
     "coding_index": 74.8,
     "math_index": null,
-    "output_speed_tps": 76.252,
-    "ttft_s": 2.505,
+    "output_speed_tps": 85.838,
+    "ttft_s": 2.355,
     "price_blin_per_m": 2.15,
     "price_in_per_m": 1.4,
     "price_out_per_m": 4.4,
@@ -90,8 +90,8 @@
     "index": 43.6,
     "coding_index": 76.2,
     "math_index": null,
-    "output_speed_tps": 39.08,
-    "ttft_s": 2.647,
+    "output_speed_tps": 40.025,
+    "ttft_s": 2.417,
     "price_blin_per_m": 6,
     "price_in_per_m": 3,
     "price_out_per_m": 15,
@@ -104,8 +104,8 @@
     "index": 42.1,
     "coding_index": 76.7,
     "math_index": null,
-    "output_speed_tps": 121.781,
-    "ttft_s": 53.147,
+    "output_speed_tps": 120.809,
+    "ttft_s": 71.447,
     "price_blin_per_m": 4.5,
     "price_in_per_m": 2,
     "price_out_per_m": 12,
@@ -230,8 +230,8 @@
     "index": 33.7,
     "coding_index": 68.1,
     "math_index": null,
-    "output_speed_tps": 44.044,
-    "ttft_s": 1.188,
+    "output_speed_tps": 41.729,
+    "ttft_s": 1.193,
     "price_blin_per_m": 1.125,
     "price_in_per_m": 0.5,
     "price_out_per_m": 3,
@@ -258,8 +258,8 @@
     "index": 32.5,
     "coding_index": null,
     "math_index": null,
-    "output_speed_tps": 84.622,
-    "ttft_s": 40.436,
+    "output_speed_tps": 101.175,
+    "ttft_s": 39.881,
     "price_blin_per_m": 4.813,
     "price_in_per_m": 1.75,
     "price_out_per_m": 14,
@@ -272,8 +272,8 @@
     "index": 29.7,
     "coding_index": 68.8,
     "math_index": null,
-    "output_speed_tps": 132.229,
-    "ttft_s": 16.167,
+    "output_speed_tps": 131.41,
+    "ttft_s": 17.139,
     "price_blin_per_m": 4.5,
     "price_in_per_m": 2,
     "price_out_per_m": 12,
@@ -301,7 +301,7 @@
     "coding_index": 58.6,
     "math_index": null,
     "output_speed_tps": 88.037,
-    "ttft_s": 1.023,
+    "ttft_s": 0.784,
     "price_blin_per_m": 0.525,
     "price_in_per_m": 0.3,
     "price_out_per_m": 1.2,
@@ -370,8 +370,8 @@
     "index": 20.2,
     "coding_index": null,
     "math_index": 88.3,
-    "output_speed_tps": 136.509,
-    "ttft_s": 4.609,
+    "output_speed_tps": 144.435,
+    "ttft_s": 3.473,
     "price_blin_per_m": 3.5,
     "price_in_per_m": 2,
     "price_out_per_m": 8,
@@ -482,8 +482,8 @@
     "index": 11.6,
     "coding_index": 30.4,
     "math_index": 93.4,
-    "output_speed_tps": 203.47,
-    "ttft_s": 0.476,
+    "output_speed_tps": 232.324,
+    "ttft_s": 0.472,
     "price_blin_per_m": 0.262,
     "price_in_per_m": 0.15,
     "price_out_per_m": 0.6,
@@ -510,8 +510,8 @@
     "index": 9.3,
     "coding_index": 16.3,
     "math_index": 19.3,
-    "output_speed_tps": 54.48,
-    "ttft_s": 0.572,
+    "output_speed_tps": 53.884,
+    "ttft_s": 0.537,
     "price_blin_per_m": 0.417,
     "price_in_per_m": 0.25,
     "price_out_per_m": 0.92,
@@ -552,8 +552,8 @@
     "index": 9,
     "coding_index": 20.7,
     "math_index": 89.3,
-    "output_speed_tps": 163.167,
-    "ttft_s": 0.427,
+    "output_speed_tps": 173.093,
+    "ttft_s": 0.474,
     "price_blin_per_m": 0.092,
     "price_in_per_m": 0.05,
     "price_out_per_m": 0.22,
@@ -608,8 +608,8 @@
     "index": 6.5,
     "coding_index": 8.2,
     "math_index": 14,
-    "output_speed_tps": 107.688,
-    "ttft_s": 0.601,
+    "output_speed_tps": 121.94,
+    "ttft_s": 0.572,
     "price_blin_per_m": 0.3,
     "price_in_per_m": 0.18,
     "price_out_per_m": 0.66,
@@ -622,8 +622,8 @@
     "index": 5.9,
     "coding_index": null,
     "math_index": 18,
-    "output_speed_tps": 41.952,
-    "ttft_s": 1.004,
+    "output_speed_tps": 44.037,
+    "ttft_s": 0.938,
     "price_blin_per_m": 0.219,
     "price_in_per_m": 0.125,
     "price_out_per_m": 0.5,
@@ -2432,15 +2432,15 @@
     "delta_score": 0
    },
    {
-    "model_id": "yi-15-9b",
-    "score": 55.3,
-    "rank_prev": 2,
-    "delta_score": 0
-   },
-   {
     "model_id": "yi-34b",
     "score": 55.3,
     "rank_prev": 3,
+    "delta_score": 0
+   },
+   {
+    "model_id": "yi-15-9b",
+    "score": 55.3,
+    "rank_prev": 2,
     "delta_score": 0
    },
    {

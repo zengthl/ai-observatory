@@ -1,5 +1,5 @@
 {
- "date": "2026-10-29",
+ "date": "2026-10-30",
  "names": [
   "Gemini 4 Carbon (High)",
   "Claude Opus 5.5 (Max, Default Fallback)",
@@ -52,12 +52,15 @@
   "MiniMax-M3.1-Flash",
   "Step 5 Preview",
   "GPT-6 Luna (Max)",
+  "GLM-5.3-Flash",
   "MiMo-V2.6-Flash",
+  "Mistral Large 4 (High)",
   "Claude Sonnet 5.5 (Low, Default Fallback)",
   "Mistral Large 4 Preview",
   "Muse Spark Open (Xhigh)",
   "Claude Haiku 5.5 (Medium)",
   "GPT-6 Luna (Xhigh)",
+  "Mistral Large 4 (Medium)",
   "DeepSeek V4 Pro 0813 (Max)",
   "GLM-5.3 (Low)",
   "Gemini 3.8 Flash (Low)",
@@ -75,6 +78,8 @@
   "GPT-6 Luna (Non-reasoning)",
   "Muse Glimmer (High)",
   "Command A+",
+  "Nemotron 3.5 Lightning",
+  "Mistral Small 4 (Reasoning)",
   "NVIDIA Nemotron 3 Nano 4B",
   "Claude 4 Opus",
   "GPT 5.2",
@@ -95,12 +100,7 @@
   "CodeAct v2.1 (claude-3-5-sonnet-20241022)",
   "Gemini 2.0 Flash (v20241212-experimental)",
   "TTS(Bo8)",
-  "DevStral Small 2505",
-  "Co-PatcheR",
-  "Frogmini 14B 2510",
-  "Gemini 2.0 Flash (Experimental)",
-  "Amazon.nova Premier v1:0",
-  "DeepSWE-Preview"
+  "DevStral Small 2505"
  ],
- "total": 754
+ "total": 759
 }

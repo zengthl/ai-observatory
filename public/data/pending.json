@@ -1,5 +1,5 @@
 {
- "date": "2026-10-30",
+ "date": "2026-10-31",
  "names": [
   "Gemini 4 Carbon (High)",
   "Claude Opus 5.5 (Max, Default Fallback)",
@@ -66,6 +66,7 @@
   "Gemini 3.8 Flash (Low)",
   "GPT-6 Luna (High)",
   "Claude Haiku 5.5 (Low)",
+  "DeepSeek V4.1 Flash 1017 (Non-reasoning)",
   "GPT-6 Luna (Medium)",
   "K2 Horizon 375B A23B",
   "Beam 1.0",
@@ -74,11 +75,13 @@
   "Inkling (Xhigh)",
   "Nemotron 3 Ultra 550B A55B (Reasoning)",
   "Gemini 3.5 Flash-Lite",
+  "Qwen3.8 27B (Non-reasoning)",
   "GPT-6 Luna (Low)",
   "GPT-6 Luna (Non-reasoning)",
   "Muse Glimmer (High)",
   "Command A+",
   "Nemotron 3.5 Lightning",
+  "Granite 4.2 3B",
   "Mistral Small 4 (Reasoning)",
   "NVIDIA Nemotron 3 Nano 4B",
   "Claude 4 Opus",
@@ -97,10 +100,7 @@
   "Devstral Small (2512)",
   "Devstral (2512)",
   "Frogboss 32B 2510",
-  "CodeAct v2.1 (claude-3-5-sonnet-20241022)",
-  "Gemini 2.0 Flash (v20241212-experimental)",
-  "TTS(Bo8)",
-  "DevStral Small 2505"
+  "CodeAct v2.1 (claude-3-5-sonnet-20241022)"
  ],
- "total": 759
+ "total": 762
 }

@@ -1,29 +1,29 @@
 {
- "date": "2026-11-01",
+ "date": "2026-11-02",
  "sources": {
   "artificial_analysis": {
    "status": "ok",
-   "fetched_at": "2026-11-01T00:36:45.082Z"
+   "fetched_at": "2026-11-02T01:10:25.454Z"
   },
   "lmarena": {
    "status": "unavailable",
-   "fetched_at": "2026-11-01T00:36:45.082Z"
+   "fetched_at": "2026-11-02T01:10:25.454Z"
   },
   "swebench": {
    "status": "ok",
-   "fetched_at": "2026-11-01T00:36:45.082Z"
+   "fetched_at": "2026-11-02T01:10:25.454Z"
   },
   "livebench": {
    "status": "ok",
-   "fetched_at": "2026-11-01T00:36:45.082Z"
+   "fetched_at": "2026-11-02T01:10:25.454Z"
   },
   "openllm": {
    "status": "ok",
-   "fetched_at": "2026-11-01T00:36:45.082Z"
+   "fetched_at": "2026-11-02T01:10:25.454Z"
   },
   "livecodebench": {
    "status": "ok",
-   "fetched_at": "2026-11-01T00:36:45.082Z"
+   "fetched_at": "2026-11-02T01:10:25.454Z"
   }
  },
  "llm": {
@@ -34,8 +34,8 @@
     "index": 31.7,
     "coding_index": null,
     "math_index": null,
-    "output_speed_tps": 77.043,
-    "ttft_s": 1.429,
+    "output_speed_tps": 82.658,
+    "ttft_s": 1.309,
     "price_blin_per_m": 2.15,
     "price_in_per_m": 1.4,
     "price_out_per_m": 4.4,
@@ -48,8 +48,8 @@
     "index": 20.1,
     "coding_index": null,
     "math_index": null,
-    "output_speed_tps": 40.339,
-    "ttft_s": 1.209,
+    "output_speed_tps": 42.759,
+    "ttft_s": 1.353,
     "price_blin_per_m": 1.125,
     "price_in_per_m": 0.5,
     "price_out_per_m": 3,
@@ -62,8 +62,8 @@
     "index": 18.7,
     "coding_index": null,
     "math_index": null,
-    "output_speed_tps": 116.576,
-    "ttft_s": 0.632,
+    "output_speed_tps": 114.821,
+    "ttft_s": 0.658,
     "price_blin_per_m": 0.525,
     "price_in_per_m": 0.3,
     "price_out_per_m": 1.2,
@@ -618,13 +618,13 @@
     "delta_score": 0
    },
    {
-    "model_id": "yi-15-9b",
+    "model_id": "yi-34b",
     "score": 55.3,
     "rank_prev": 3,
     "delta_score": 0
    },
    {
-    "model_id": "yi-34b",
+    "model_id": "yi-15-9b",
     "score": 55.3,
     "rank_prev": 2,
     "delta_score": 0

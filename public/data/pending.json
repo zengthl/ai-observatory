@@ -1,5 +1,5 @@
 {
- "date": "2026-11-03",
+ "date": "2026-11-04",
  "names": [
   "Gemini 4 Carbon (High)",
   "Claude Opus 5.5 (Max, Default Fallback)",
@@ -23,9 +23,10 @@
   "Claude Fable 5.1 (Max, Default Fallback)",
   "Claude Opus 5.5 (Medium, Default Fallback)",
   "Claude Fable 5.1 (High, Default Fallback)",
-  "GPT-6.1 Sol (Medium)",
   "Kimi K3.1 Pro",
+  "GPT-6.1 Sol (Medium)",
   "GPT-6.1 Terra (Xhigh)",
+  "GPT-6 Sol (Max)",
   "Muse Wonder (Max)",
   "GPT-6 Astra (Low)",
   "Claude Fable 5.1 (Medium, Default Fallback)",
@@ -44,8 +45,8 @@
   "DeepSeek V4.1 Flash 1017 (Max)",
   "Grok 4.7 (Low)",
   "Gemini 3.8 Flash (High)",
-  "GPT-6.1 Terra (Non-reasoning)",
   "Claude Sonnet 5.5 (Medium, Default Fallback)",
+  "GPT-6.1 Terra (Non-reasoning)",
   "Gemini 3.8 Flash (Medium)",
   "MiMo-V2.6-Pro",
   "Claude Haiku 5.5 (High)",
@@ -64,8 +65,8 @@
   "Claude Haiku 5.5 (Medium)",
   "GPT-6 Luna (Xhigh)",
   "Mistral Large 4 (Medium)",
-  "DeepSeek V4 Pro 0813 (Max)",
   "GLM-5.3 (Low)",
+  "DeepSeek V4 Pro 0813 (Max)",
   "Gemini 3.8 Flash (Low)",
   "GPT-6 Luna (High)",
   "Nanbeige4.3-33B",
@@ -99,8 +100,7 @@
   "Claude 3.5 Sonnet",
   "Claude 3.7 Sonnet w/ Review Heavy",
   "swe-search",
-  "4x Scaled",
-  "Qwen3-Coder-30B-A3B-Instruct"
+  "4x Scaled"
  ],
- "total": 769
+ "total": 768
 }

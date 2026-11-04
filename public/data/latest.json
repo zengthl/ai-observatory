@@ -1,41 +1,55 @@
 {
- "date": "2026-11-03",
+ "date": "2026-11-04",
  "sources": {
   "artificial_analysis": {
    "status": "ok",
-   "fetched_at": "2026-11-03T03:14:42.330Z"
+   "fetched_at": "2026-11-04T01:49:06.912Z"
   },
   "lmarena": {
    "status": "unavailable",
-   "fetched_at": "2026-11-03T03:14:42.330Z"
+   "fetched_at": "2026-11-04T01:49:06.912Z"
   },
   "swebench": {
    "status": "ok",
-   "fetched_at": "2026-11-03T03:14:42.330Z"
+   "fetched_at": "2026-11-04T01:49:06.912Z"
   },
   "livebench": {
    "status": "ok",
-   "fetched_at": "2026-11-03T03:14:42.330Z"
+   "fetched_at": "2026-11-04T01:49:06.912Z"
   },
   "openllm": {
    "status": "ok",
-   "fetched_at": "2026-11-03T03:14:42.330Z"
+   "fetched_at": "2026-11-04T01:49:06.912Z"
   },
   "livecodebench": {
    "status": "ok",
-   "fetched_at": "2026-11-03T03:14:42.330Z"
+   "fetched_at": "2026-11-04T01:49:06.912Z"
   }
  },
  "llm": {
   "arena_elo": [],
   "aa_index": [
    {
+    "model_id": "gpt-56-terra",
+    "index": 32.3,
+    "coding_index": null,
+    "math_index": null,
+    "output_speed_tps": 0,
+    "ttft_s": 0,
+    "price_blin_per_m": 4.5,
+    "price_in_per_m": 2,
+    "price_out_per_m": 12,
+    "tbench_v21_pct": 88,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "glm-53",
     "index": 31.7,
     "coding_index": null,
     "math_index": null,
-    "output_speed_tps": 77.429,
-    "ttft_s": 1.25,
+    "output_speed_tps": 73.359,
+    "ttft_s": 1.299,
     "price_blin_per_m": 2.15,
     "price_in_per_m": 1.4,
     "price_out_per_m": 4.4,
@@ -48,8 +62,8 @@
     "index": 20.1,
     "coding_index": null,
     "math_index": null,
-    "output_speed_tps": 39.444,
-    "ttft_s": 1.407,
+    "output_speed_tps": 37.755,
+    "ttft_s": 1.295,
     "price_blin_per_m": 1.125,
     "price_in_per_m": 0.5,
     "price_out_per_m": 3,
@@ -59,17 +73,17 @@
    },
    {
     "model_id": "minimax-m3",
-    "index": 18.7,
+    "index": 18.9,
     "coding_index": null,
     "math_index": null,
-    "output_speed_tps": 112.456,
+    "output_speed_tps": 106.231,
     "ttft_s": 0.743,
     "price_blin_per_m": 0.525,
     "price_in_per_m": 0.3,
     "price_out_per_m": 1.2,
     "tbench_v21_pct": 65.2,
     "rank_prev": 3,
-    "delta_score": 0
+    "delta_score": 0.2
    },
    {
     "model_id": "kimi-k3-max",
@@ -95,6 +109,12 @@
     "delta_score": 0
    },
    {
+    "model_id": "gpt-56-terra",
+    "score": 92.5,
+    "rank_prev": null,
+    "delta_score": null
+   },
+   {
     "model_id": "glm-53",
     "score": 91.7,
     "rank_prev": 2,
@@ -114,6 +134,12 @@
    }
   ],
   "aa_hle": [
+   {
+    "model_id": "gpt-56-terra",
+    "score": 42.9,
+    "rank_prev": null,
+    "delta_score": null
+   },
    {
     "model_id": "glm-53",
     "score": 42.3,
@@ -146,9 +172,21 @@
     "score": 82.9,
     "rank_prev": 1,
     "delta_score": 0
+   },
+   {
+    "model_id": "gpt-56-terra",
+    "score": 71.2,
+    "rank_prev": null,
+    "delta_score": null
    }
   ],
   "aa_lcr": [
+   {
+    "model_id": "gpt-56-terra",
+    "score": 83,
+    "rank_prev": null,
+    "delta_score": null
+   },
    {
     "model_id": "minimax-m3",
     "score": 83,
@@ -620,13 +658,13 @@
    {
     "model_id": "yi-15-9b",
     "score": 55.3,
-    "rank_prev": 3,
+    "rank_prev": 2,
     "delta_score": 0
    },
    {
     "model_id": "yi-34b",
     "score": 55.3,
-    "rank_prev": 2,
+    "rank_prev": 3,
     "delta_score": 0
    },
    {
@@ -985,6 +1023,12 @@
    }
   ],
   "terminal_bench": [
+   {
+    "model_id": "gpt-56-terra",
+    "score": 88,
+    "rank_prev": null,
+    "delta_score": null
+   },
    {
     "model_id": "glm-53",
     "score": 83.9,

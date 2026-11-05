@@ -1,217 +1,41 @@
 {
- "date": "2026-11-04",
+ "date": "2026-11-05",
  "sources": {
   "artificial_analysis": {
-   "status": "ok",
-   "fetched_at": "2026-11-04T01:49:06.912Z"
+   "status": "unavailable",
+   "fetched_at": "2026-11-05T01:56:37.742Z",
+   "last_ok": "2026-11-04"
   },
   "lmarena": {
    "status": "unavailable",
-   "fetched_at": "2026-11-04T01:49:06.912Z"
+   "fetched_at": "2026-11-05T01:56:37.742Z"
   },
   "swebench": {
    "status": "ok",
-   "fetched_at": "2026-11-04T01:49:06.912Z"
+   "fetched_at": "2026-11-05T01:56:37.742Z"
   },
   "livebench": {
    "status": "ok",
-   "fetched_at": "2026-11-04T01:49:06.912Z"
+   "fetched_at": "2026-11-05T01:56:37.742Z"
   },
   "openllm": {
    "status": "ok",
-   "fetched_at": "2026-11-04T01:49:06.912Z"
+   "fetched_at": "2026-11-05T01:56:37.742Z"
   },
   "livecodebench": {
    "status": "ok",
-   "fetched_at": "2026-11-04T01:49:06.912Z"
+   "fetched_at": "2026-11-05T01:56:37.742Z"
   }
  },
  "llm": {
   "arena_elo": [],
-  "aa_index": [
-   {
-    "model_id": "gpt-56-terra",
-    "index": 32.3,
-    "coding_index": null,
-    "math_index": null,
-    "output_speed_tps": 0,
-    "ttft_s": 0,
-    "price_blin_per_m": 4.5,
-    "price_in_per_m": 2,
-    "price_out_per_m": 12,
-    "tbench_v21_pct": 88,
-    "rank_prev": null,
-    "delta_score": null
-   },
-   {
-    "model_id": "glm-53",
-    "index": 31.7,
-    "coding_index": null,
-    "math_index": null,
-    "output_speed_tps": 73.359,
-    "ttft_s": 1.299,
-    "price_blin_per_m": 2.15,
-    "price_in_per_m": 1.4,
-    "price_out_per_m": 4.4,
-    "tbench_v21_pct": 83.9,
-    "rank_prev": 1,
-    "delta_score": 0
-   },
-   {
-    "model_id": "qwen38-27b",
-    "index": 20.1,
-    "coding_index": null,
-    "math_index": null,
-    "output_speed_tps": 37.755,
-    "ttft_s": 1.295,
-    "price_blin_per_m": 1.125,
-    "price_in_per_m": 0.5,
-    "price_out_per_m": 3,
-    "tbench_v21_pct": 79.8,
-    "rank_prev": 2,
-    "delta_score": 0
-   },
-   {
-    "model_id": "minimax-m3",
-    "index": 18.9,
-    "coding_index": null,
-    "math_index": null,
-    "output_speed_tps": 106.231,
-    "ttft_s": 0.743,
-    "price_blin_per_m": 0.525,
-    "price_in_per_m": 0.3,
-    "price_out_per_m": 1.2,
-    "tbench_v21_pct": 65.2,
-    "rank_prev": 3,
-    "delta_score": 0.2
-   },
-   {
-    "model_id": "kimi-k3-max",
-    "index": 17.4,
-    "coding_index": null,
-    "math_index": null,
-    "output_speed_tps": 0,
-    "ttft_s": 0,
-    "price_blin_per_m": 6,
-    "price_in_per_m": 3,
-    "price_out_per_m": 15,
-    "tbench_v21_pct": 82.4,
-    "rank_prev": 4,
-    "delta_score": 0
-   }
-  ],
+  "aa_index": [],
   "aa_mmlu_pro": [],
-  "aa_gpqa": [
-   {
-    "model_id": "minimax-m3",
-    "score": 92.9,
-    "rank_prev": 1,
-    "delta_score": 0
-   },
-   {
-    "model_id": "gpt-56-terra",
-    "score": 92.5,
-    "rank_prev": null,
-    "delta_score": null
-   },
-   {
-    "model_id": "glm-53",
-    "score": 91.7,
-    "rank_prev": 2,
-    "delta_score": 0
-   },
-   {
-    "model_id": "qwen38-27b",
-    "score": 90.5,
-    "rank_prev": 3,
-    "delta_score": 0
-   },
-   {
-    "model_id": "kimi-k3-max",
-    "score": 84.2,
-    "rank_prev": 4,
-    "delta_score": 0
-   }
-  ],
-  "aa_hle": [
-   {
-    "model_id": "gpt-56-terra",
-    "score": 42.9,
-    "rank_prev": null,
-    "delta_score": null
-   },
-   {
-    "model_id": "glm-53",
-    "score": 42.3,
-    "rank_prev": 1,
-    "delta_score": 0
-   },
-   {
-    "model_id": "minimax-m3",
-    "score": 39,
-    "rank_prev": 2,
-    "delta_score": 0
-   },
-   {
-    "model_id": "qwen38-27b",
-    "score": 33.9,
-    "rank_prev": 3,
-    "delta_score": 0
-   },
-   {
-    "model_id": "kimi-k3-max",
-    "score": 25,
-    "rank_prev": 4,
-    "delta_score": 0
-   }
-  ],
+  "aa_gpqa": [],
+  "aa_hle": [],
   "aa_livecodebench": [],
-  "aa_ifeval": [
-   {
-    "model_id": "minimax-m3",
-    "score": 82.9,
-    "rank_prev": 1,
-    "delta_score": 0
-   },
-   {
-    "model_id": "gpt-56-terra",
-    "score": 71.2,
-    "rank_prev": null,
-    "delta_score": null
-   }
-  ],
-  "aa_lcr": [
-   {
-    "model_id": "gpt-56-terra",
-    "score": 83,
-    "rank_prev": null,
-    "delta_score": null
-   },
-   {
-    "model_id": "minimax-m3",
-    "score": 83,
-    "rank_prev": 1,
-    "delta_score": 0
-   },
-   {
-    "model_id": "qwen38-27b",
-    "score": 82,
-    "rank_prev": 2,
-    "delta_score": 0
-   },
-   {
-    "model_id": "glm-53",
-    "score": 79.7,
-    "rank_prev": 3,
-    "delta_score": 0
-   },
-   {
-    "model_id": "kimi-k3-max",
-    "score": 79.3,
-    "rank_prev": 4,
-    "delta_score": 0
-   }
-  ],
+  "aa_ifeval": [],
+  "aa_lcr": [],
   "livebench_coding": [
    {
     "model_id": "mistral-7b-instruct",
@@ -1022,38 +846,7 @@
     "delta_score": 0
    }
   ],
-  "terminal_bench": [
-   {
-    "model_id": "gpt-56-terra",
-    "score": 88,
-    "rank_prev": null,
-    "delta_score": null
-   },
-   {
-    "model_id": "glm-53",
-    "score": 83.9,
-    "rank_prev": 1,
-    "delta_score": 0
-   },
-   {
-    "model_id": "kimi-k3-max",
-    "score": 82.4,
-    "rank_prev": 2,
-    "delta_score": 0
-   },
-   {
-    "model_id": "qwen38-27b",
-    "score": 79.8,
-    "rank_prev": 3,
-    "delta_score": 0
-   },
-   {
-    "model_id": "minimax-m3",
-    "score": 65.2,
-    "rank_prev": 4,
-    "delta_score": 0
-   }
-  ]
+  "terminal_bench": []
  },
  "models": [
   {

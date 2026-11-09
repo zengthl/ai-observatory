@@ -1,29 +1,29 @@
 {
- "date": "2026-11-08",
+ "date": "2026-11-09",
  "sources": {
   "artificial_analysis": {
    "status": "unavailable",
-   "fetched_at": "2026-11-08T00:59:55.052Z"
+   "fetched_at": "2026-11-09T01:21:21.244Z"
   },
   "lmarena": {
    "status": "unavailable",
-   "fetched_at": "2026-11-08T00:59:55.052Z"
+   "fetched_at": "2026-11-09T01:21:21.244Z"
   },
   "swebench": {
    "status": "ok",
-   "fetched_at": "2026-11-08T00:59:55.052Z"
+   "fetched_at": "2026-11-09T01:21:21.244Z"
   },
   "livebench": {
    "status": "ok",
-   "fetched_at": "2026-11-08T00:59:55.052Z"
+   "fetched_at": "2026-11-09T01:21:21.244Z"
   },
   "openllm": {
    "status": "ok",
-   "fetched_at": "2026-11-08T00:59:55.052Z"
+   "fetched_at": "2026-11-09T01:21:21.244Z"
   },
   "livecodebench": {
    "status": "ok",
-   "fetched_at": "2026-11-08T00:59:55.052Z"
+   "fetched_at": "2026-11-09T01:21:21.244Z"
   }
  },
  "llm": {

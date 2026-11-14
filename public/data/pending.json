@@ -1,5 +1,5 @@
 {
- "date": "2026-11-13",
+ "date": "2026-11-14",
  "names": [
   "Claude 4 Opus",
   "GPT 5.2",
@@ -102,5 +102,5 @@
   "amazon.nova-micro-v1:0",
   "amazon.nova-pro-v1:0"
  ],
- "total": 1177
+ "total": 678
 }

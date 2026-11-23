@@ -1,29 +1,29 @@
 {
- "date": "2026-11-22",
+ "date": "2026-11-23",
  "sources": {
   "artificial_analysis": {
    "status": "unavailable",
-   "fetched_at": "2026-11-22T01:51:39.195Z"
+   "fetched_at": "2026-11-23T02:07:33.671Z"
   },
   "lmarena": {
    "status": "unavailable",
-   "fetched_at": "2026-11-22T01:51:39.195Z"
+   "fetched_at": "2026-11-23T02:07:33.671Z"
   },
   "swebench": {
    "status": "ok",
-   "fetched_at": "2026-11-22T01:51:39.195Z"
+   "fetched_at": "2026-11-23T02:07:33.671Z"
   },
   "livebench": {
    "status": "ok",
-   "fetched_at": "2026-11-22T01:51:39.195Z"
+   "fetched_at": "2026-11-23T02:07:33.671Z"
   },
   "openllm": {
    "status": "ok",
-   "fetched_at": "2026-11-22T01:51:39.195Z"
+   "fetched_at": "2026-11-23T02:07:33.671Z"
   },
   "livecodebench": {
    "status": "ok",
-   "fetched_at": "2026-11-22T01:51:39.195Z"
+   "fetched_at": "2026-11-23T02:07:33.671Z"
   }
  },
  "llm": {
@@ -479,15 +479,15 @@
     "delta_score": 0
    },
    {
-    "model_id": "yi-34b",
-    "score": 55.3,
-    "rank_prev": 2,
-    "delta_score": 0
-   },
-   {
     "model_id": "yi-15-9b",
     "score": 55.3,
     "rank_prev": 3,
+    "delta_score": 0
+   },
+   {
+    "model_id": "yi-34b",
+    "score": 55.3,
+    "rank_prev": 2,
     "delta_score": 0
    },
    {
